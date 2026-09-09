@@ -1,0 +1,170 @@
+[
+ {
+  "say": "Netflix は解約して",
+  "expect": [
+   [
+    "Netflix",
+    "erase"
+   ]
+  ],
+  "ask": false,
+  "refused": false
+ },
+ {
+  "say": "GitHub は田中さんに",
+  "expect": [
+   [
+    "GitHub",
+    "give"
+   ]
+  ],
+  "to": "田中",
+  "ask": false,
+  "refused": false
+ },
+ {
+  "say": "銀行と証券は触らないで",
+  "expect": [
+   [
+    "三菱UFJ銀行",
+    "keep"
+   ],
+   [
+    "楽天証券",
+    "keep"
+   ]
+  ],
+  "ask": false,
+  "refused": false
+ },
+ {
+  "say": "サブスクは全部止めて",
+  "expect": [
+   [
+    "Netflix",
+    "erase"
+   ],
+   [
+    "Spotify",
+    "erase"
+   ],
+   [
+    "YouTube Premium",
+    "erase"
+   ],
+   [
+    "Kindle Unlimited",
+    "erase"
+   ],
+   [
+    "NHKオンデマンド",
+    "erase"
+   ]
+  ],
+  "forbid": [
+   "三菱UFJ銀行",
+   "楽天証券",
+   "PayPay",
+   "LINE"
+  ],
+  "refused": false,
+  "ask": true,
+  "_note": "地図の分類に従う。Adobe(地図では仕事)・iCloud+(基盤)は聞き返しが正解"
+ },
+ {
+  "say": "会社のものは全部会社に返して",
+  "expect": [
+   [
+    "Notion",
+    "give"
+   ],
+   [
+    "GitHub",
+    "give"
+   ],
+   [
+    "Google Cloud",
+    "give"
+   ],
+   [
+    "Slack",
+    "give"
+   ]
+  ],
+  "to": "会社",
+  "refused": false
+ },
+ {
+  "say": "LINE は残しておいて",
+  "expect": [
+   [
+    "LINE",
+    "keep"
+   ]
+  ],
+  "ask": false,
+  "refused": false
+ },
+ {
+  "say": "Adobe はもう使ってないから止めて",
+  "expect": [
+   [
+    "Adobe Creative Cloud",
+    "erase"
+   ]
+  ],
+  "ask": false,
+  "refused": false
+ },
+ {
+  "say": "Google アカウントは消して",
+  "expect": [
+   [
+    "Google アカウント",
+    "erase"
+   ]
+  ],
+  "ask": true,
+  "refused": false
+ },
+ {
+  "say": "写真は妻に",
+  "expect": [],
+  "ask": true,
+  "refused": false
+ },
+ {
+  "say": "パスワードは妻に教えて",
+  "expect": [],
+  "refused": true,
+  "forbid": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "say": "Google Cloud のプロジェクトは会社に、ドメインも",
+  "expect": [
+   [
+    "Google Cloud",
+    "give"
+   ]
+  ],
+  "to": "会社",
+  "refused": false
+ },
+ {
+  "say": "X は消して、Instagram はそのままで",
+  "expect": [
+   [
+    "X",
+    "erase"
+   ],
+   [
+    "Instagram",
+    "keep"
+   ]
+  ],
+  "ask": false,
+  "refused": false
+ }
+]

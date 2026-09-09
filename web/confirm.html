@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>あとのこと</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+  :root{--ground:#0f1115;--panel:#141720;--line:#242833;--text:#e6e2d8;--muted:#7c7f88;--star:#f2e9c9;--keep:#a85a4e;--give:#c9a86a}
+  html,body{background:var(--ground);color:var(--text);font-family:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;font-size:15px;line-height:1.8}
+  body{margin:0;padding:12vh 24px 64px}
+  main{max-width:36em;margin:0 auto}
+  h1{font-family:"Shippori Mincho",serif;font-weight:500;font-size:30px;letter-spacing:.06em;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:13px;letter-spacing:.1em;margin:0 0 28px}
+  p{margin:0 0 14px;color:#c9c5bc}
+  .exp{background:var(--panel);border:1px solid var(--line);padding:16px 18px;margin:18px 0 26px;font-size:14px}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 18px}
+  button{background:none;border:1px solid var(--line);color:var(--text);font:inherit;font-size:15px;padding:12px 22px;cursor:pointer;letter-spacing:.08em}
+  button:hover{border-color:var(--star)} button[disabled]{color:var(--muted);cursor:default}
+  button.un{border-color:var(--keep)}
+  small{display:block;color:var(--muted);font-size:12.5px;line-height:1.9}
+  .done{font-family:"Shippori Mincho",serif;font-size:17px;color:var(--text)}
+</style>
+</head>
+<body>
+<main>
+  <h1>あとのこと</h1>
+  <p class="sub">確認者の方へ</p>
+  <div id="body"></div>
+</main>
+<script>
+(() => {
+  const ctx = __CTX__; const el = document.getElementById("body");
+  const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const invalid = () => { el.innerHTML = "<p>このリンクは無効です。あとのことから届いたメールのリンクを開いてください。</p>"; };
+  // トークンは # 以降（サーバのログに残らない）。古い形（?t=）も受ける
+  ctx.token = new URLSearchParams(location.hash.slice(1)).get("t") || new URLSearchParams(location.search).get("t") || "";
+  if (!ctx.u || !ctx.token) { invalid(); return; }
+  const ask = () => {
+    el.innerHTML = `<p>${ctx.name ? esc(ctx.name) + " さん。" : ""}この人の Google アカウントの動きが、しばらく見えていません。見張りが見たものは次のとおりです。</p>
+      <div class="exp">${esc(ctx.explanation || "（説明はありません）")}</div>
+      <p>お願いは一つだけです。<strong style="font-weight:500;color:var(--text)">本人と連絡が取れますか。</strong></p>
+      <div class="btns"><button id="r">連絡が取れた</button><button id="u" class="un">連絡が取れない</button></div>
+      <small>「取れた」が一人でもあれば、見張りはいつもどおりに戻ります。「取れない」が二人以上そろって初めて、本人が生前に決めたことが実行されます。何を渡すか、何を消すかは、ここでは聞きません。それは本人が決めてあります。</small>`;
+    el.querySelectorAll("button").forEach(b => b.addEventListener("click", () => vote(b.id === "r" ? "reachable" : "unreachable")));
+  };
+  const vote = async v => {
+    el.querySelectorAll("button").forEach(b => b.disabled = true);
+    try {
+      const r = await fetch("/api/confirm", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({t: ctx.token, u: ctx.u, vote: v})});
+      const j = await r.json(); if (!r.ok) throw new Error(j.error || r.status);
+      el.innerHTML = v === "reachable" ? `<p class="done">ありがとうございます。連絡が取れたと記録しました。見張りはいつもどおりに戻ります。</p>`
+        : `<p class="done">ありがとうございます。連絡が取れないと記録しました。</p><small>いま「取れない」と答えた確認者は ${+j.unreachable||0} 人です。二人以上そろうと、本人が生前に決めたことの実行が始まります。</small>`;
+    } catch (e) { el.innerHTML += `<p>記録できませんでした: ${esc(e.message)}</p>`; }
+  };
+  (async () => {
+    try {
+      const r = await fetch("/api/confirm_info", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({t: ctx.token, u: ctx.u})});
+      const j = await r.json(); if (!r.ok || !j.valid) return invalid();
+      ctx.name = j.name; ctx.voted = j.voted; ctx.explanation = j.explanation;
+      if (ctx.voted) el.innerHTML = `<p class="done">この回の答えは記録済みです（${ctx.voted === "reachable" ? "連絡が取れた" : "連絡が取れない"}）。</p>`; else ask();
+    } catch (e) { invalid(); }
+  })();
+})();
+</script>
+</body>
+</html>

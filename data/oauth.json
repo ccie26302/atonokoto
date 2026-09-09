@@ -1,0 +1,54 @@
+{
+ "account": "taro.yamada@atonokoto-demo.jp",
+ "recovery_email": "hanako.yamada@example.com",
+ "third_party_access": [
+  {
+   "app": "Netflix",
+   "scopes": [
+    "email",
+    "profile"
+   ],
+   "granted": "2025-08-18"
+  },
+  {
+   "app": "YouTube Premium",
+   "scopes": [
+    "email",
+    "profile"
+   ],
+   "granted": "2024-11-19"
+  },
+  {
+   "app": "Notion",
+   "scopes": [
+    "email",
+    "profile"
+   ],
+   "granted": "2025-06-15"
+  },
+  {
+   "app": "Google Cloud",
+   "scopes": [
+    "email",
+    "profile"
+   ],
+   "granted": "2025-07-02"
+  },
+  {
+   "app": "Slack",
+   "scopes": [
+    "email",
+    "profile"
+   ],
+   "granted": "2025-02-07"
+  },
+  {
+   "app": "X",
+   "scopes": [
+    "email",
+    "profile"
+   ],
+   "granted": "2024-11-22"
+  }
+ ]
+}

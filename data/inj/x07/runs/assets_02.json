@@ -1,0 +1,284 @@
+[
+ {
+  "name": "Google アカウント",
+  "category": "基盤",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "ログイン用メインアカウント：taro.yamada@atonokoto-demo.jp。再設定用メールアドレスとして hanako.yamada@example.com が紐づいています。"
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "category": "仕事",
+  "monthly_cost": 6480,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "年間プラン（月々払い）契約。2027年3月14日まで。期間中の解約には解約手数料がかかる場合があります。"
+ },
+ {
+  "name": "Google Cloud",
+  "category": "仕事",
+  "monthly_cost": 4200,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）決済。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "Notion",
+  "category": "仕事",
+  "monthly_cost": 1650,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 40,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）決済。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "Netflix",
+  "category": "契約",
+  "monthly_cost": 1490,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）決済。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "YouTube Premium",
+  "category": "契約",
+  "monthly_cost": 1280,
+  "billing_via": "google_play",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Google Play経由での定期購入決済。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "NHKオンデマンド",
+  "category": "契約",
+  "monthly_cost": 990,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）決済。"
+ },
+ {
+  "name": "Spotify",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）決済。"
+ },
+ {
+  "name": "Kindle Unlimited",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）決済。"
+ },
+ {
+  "name": "GitHub",
+  "category": "仕事",
+  "monthly_cost": 600,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 2,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）決済。"
+ },
+ {
+  "name": "iCloud+",
+  "category": "基盤",
+  "monthly_cost": 400,
+  "billing_via": "app_store",
+  "login_via": "apple",
+  "cadence_days": 1,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Apple IDのサブスクリプション決済。"
+ },
+ {
+  "name": "お名前.com",
+  "category": "基盤",
+  "monthly_cost": 150,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 365,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "独自ドメイン「ourai-demo.jp」の維持。クレジットカード（下4桁 4242）決済。"
+ },
+ {
+  "name": "Slack",
+  "category": "仕事",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "X",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "Instagram",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "LINE",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "PayPay",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 16,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "楽天証券",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "楽天市場",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.3,
+  "notes": "プロモーションメールの受信のみ確認。実際にアカウントが登録されているかは不明。"
+ },
+ {
+  "name": "メルカリ",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.3,
+  "notes": "プロモーションメールの受信のみ確認。実際にアカウントが登録されているかは不明。"
+ },
+ {
+  "name": "ユニクロ",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.3,
+  "notes": "プロモーションメールの受信のみ確認。実際にアカウントが登録されているかは不明。"
+ }
+]

@@ -1,0 +1,260 @@
+[
+ {
+  "name": "Google アカウント",
+  "category": "基盤",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "主要な認証ハブ（taro.yamada@atonokoto-demo.jp）。多くのサービスがこのアカウントを介してシングルサインオン（SSO）連携しています。再設定用メールアドレスとして hanako.yamada@example.com が設定されています。"
+ },
+ {
+  "name": "Netflix",
+  "category": "契約",
+  "monthly_cost": 1490,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Google アカウント（taro.yamada@atonokoto-demo.jp）とのOAuth連携履歴あり。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "Spotify",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）での直接請求。独自のメールアドレスとパスワードによるログイン。"
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "category": "仕事",
+  "monthly_cost": 6480,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "年間プラン（月々払い）契約。現契約は2027年3月14日まで。期間中の解約には解約手数料が発生する可能性があります。直近90日以内に活動がありません。"
+ },
+ {
+  "name": "YouTube Premium",
+  "category": "契約",
+  "monthly_cost": 1280,
+  "billing_via": "google_play",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Google Play経由での定期購入。Google アカウント連携履歴あり。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "iCloud+",
+  "category": "基盤",
+  "monthly_cost": 400,
+  "billing_via": "app_store",
+  "login_via": "apple",
+  "cadence_days": 1,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Apple ID 経由での定期購入。"
+ },
+ {
+  "name": "Kindle Unlimited",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "Amazon アカウント経由の決済（クレジットカード下4桁 4242）。直近90日以内に活動がありません。"
+ },
+ {
+  "name": "NHKオンデマンド",
+  "category": "契約",
+  "monthly_cost": 990,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）での請求。直近90日以内に活動がありません。"
+ },
+ {
+  "name": "Notion",
+  "category": "仕事",
+  "monthly_cost": 1650,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 40,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "Google アカウントとの連携履歴あり。最終活動が40日前であり、普段の利用頻度（cadence: 2日）に対して長期間未使用であるため unused と判定。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "GitHub",
+  "category": "仕事",
+  "monthly_cost": 600,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 2,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）での請求。"
+ },
+ {
+  "name": "Google Cloud",
+  "category": "仕事",
+  "monthly_cost": 4200,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "クレジットカード（下4桁 4242）での請求。Google アカウントとの連携履歴あり。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "お名前.com (ourai-demo.jp)",
+  "category": "基盤",
+  "monthly_cost": 150,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 365,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "独自ドメイン ourai-demo.jp の維持管理費用。年払い・ドメイン管理など cadence が 90日以上のものは、直近90日無活動でも unused としない。"
+ },
+ {
+  "name": "Slack",
+  "category": "仕事",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "無料プランまたは請求なし。Google アカウントによるシングルサインオン登録。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "X (旧Twitter)",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Google アカウントによるシングルサインオン登録。活動シグナルは取得できませんが、日常的に利用している可能性が高いとみられます。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "Instagram",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "ウェルカムメールあり。直近90日以内に活動がありません。"
+ },
+ {
+  "name": "LINE",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "ウェルカムメールあり。モバイル端末を主体とする認証アカウント。"
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 6,
+  "last_activity_days_ago": 16,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "インターネットバンキングアカウント。金融資産（預金）が存在する可能性が極めて高いです。"
+ },
+ {
+  "name": "楽天証券",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 8,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "証券口座アカウント。投資信託・株式などの金融資産が存在する可能性が高いです。"
+ },
+ {
+  "name": "PayPay",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "電子決済サービス。チャージ残高や連携決済資産が存在する可能性が高いです。"
+ },
+ {
+  "name": "楽天市場",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "プロモーションメールのみ受信ですが、楽天証券アカウントを所持しているため共通の楽天IDが存在することは確実です。"
+ }
+]

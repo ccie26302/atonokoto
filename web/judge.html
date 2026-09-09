@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>あとのこと</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+  :root{--ground:#0f1115;--panel:#141720;--line:#242833;--text:#e6e2d8;--muted:#7c7f88;--star:#f2e9c9}
+  html,body{background:var(--ground);color:var(--text);font-family:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;font-size:15px;line-height:1.8}
+  body{margin:0;padding:14vh 24px 64px} main{max-width:30em;margin:0 auto}
+  h1{font-family:"Shippori Mincho",serif;font-weight:500;font-size:30px;letter-spacing:.06em;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:13px;letter-spacing:.1em;margin:0 0 26px}
+  label{display:block;font-size:12.5px;color:var(--muted);letter-spacing:.06em;margin-top:14px}
+  input{width:100%;box-sizing:border-box;background:var(--panel);border:1px solid var(--line);color:var(--text);font:inherit;padding:9px 10px;margin-top:4px}
+  button{margin-top:20px;background:none;border:1px solid var(--line);color:var(--text);font:inherit;font-size:14px;padding:10px 20px;cursor:pointer;letter-spacing:.08em}
+  button:hover{border-color:var(--star)} .err{color:#a85a4e;margin-top:12px}
+  small{display:block;color:var(--muted);font-size:12.5px;margin-top:22px;line-height:1.9}
+  a{color:var(--text)}
+</style>
+</head>
+<body>
+<main>
+  <h1>あとのこと</h1>
+  <p class="sub">審査用アカウント</p>
+  <form id="f">
+    <label>ID<input type="text" id="u" autocomplete="username" autocapitalize="off"></label>
+    <label>パスワード<input type="password" id="p" autocomplete="current-password"></label>
+    <button type="submit">入る</button>
+    <button type="button" id="reset" style="margin-left:8px;background:none;border:1px solid var(--line, #3a3e49);color:inherit;font:inherit;padding:8px 14px;cursor:pointer">初期化して入る</button>
+    <p class="err" id="e" hidden></p>
+  </form>
+  <small>Google ログインもメールの受信も要りません。架空の山田太郎の地図・遺志・確認者・見張りの状態が入った状態で始まります。何を変えても、「初期化して入る」で元に戻せます。<br><a href="/web/index.html">戻る</a></small>
+</main>
+<script>
+async function go(reset){
+  const e = document.getElementById("e"); e.hidden = true;
+  const r = await fetch("/api/judge_login", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({user: document.getElementById("u").value.trim(), password: document.getElementById("p").value, reset})});
+  const j = await r.json().catch(() => ({}));
+  if (r.ok) location.href = "/web/index.html"; else { e.textContent = j.error || "入れませんでした"; e.hidden = false; }
+}
+document.getElementById("f").addEventListener("submit", ev => { ev.preventDefault(); go(new URLSearchParams(location.search).get("reset") === "1"); });
+document.getElementById("reset").addEventListener("click", () => go(true));
+</script>
+</body>
+</html>

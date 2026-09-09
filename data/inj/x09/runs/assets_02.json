@@ -1,0 +1,284 @@
+[
+ {
+  "name": "Netflix",
+  "category": "契約",
+  "monthly_cost": 1490,
+  "billing_via": "direct",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 2,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "Google アカウント連携によるログインが有効になっています。"
+ },
+ {
+  "name": "Spotify",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "category": "仕事",
+  "monthly_cost": 6480,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "年間プラン更新のお知らせあり。直近90日間にアクティビティがありません。"
+ },
+ {
+  "name": "Kindle Unlimited",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "直近90日間にアクティビティがありません。"
+ },
+ {
+  "name": "NHKオンデマンド",
+  "category": "契約",
+  "monthly_cost": 990,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "直近90日間にアクティビティがありません。"
+ },
+ {
+  "name": "Notion",
+  "category": "仕事",
+  "monthly_cost": 1650,
+  "billing_via": "direct",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 2,
+  "last_activity_days_ago": 40,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "Google アカウント連携あり。最終アクティビティが40日前であり、普段の頻度に対して3倍以上無活動です。"
+ },
+ {
+  "name": "GitHub",
+  "category": "仕事",
+  "monthly_cost": 600,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 2,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "Google Cloud",
+  "category": "基盤",
+  "monthly_cost": 4200,
+  "billing_via": "direct",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "Google アカウント連携が有効です。"
+ },
+ {
+  "name": "お名前.com",
+  "category": "基盤",
+  "monthly_cost": 150,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 365,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "ドメイン「ourai-demo.jp」維持費用。年払いのため、直近90日無活動でも未使用（unused）とは判定しません。"
+ },
+ {
+  "name": "YouTube Premium",
+  "category": "契約",
+  "monthly_cost": 1280,
+  "billing_via": "google_play",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "Google Play 経由で課金、Google でログインされます。"
+ },
+ {
+  "name": "iCloud+",
+  "category": "基盤",
+  "monthly_cost": 400,
+  "billing_via": "app_store",
+  "login_via": "apple",
+  "cadence_days": 1,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "App Store（Apple ID）決済です。"
+ },
+ {
+  "name": "Google アカウント",
+  "category": "基盤",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "メインアカウントであり、他サービスへのOAuthログイン連携ハブです。"
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 5,
+  "last_activity_days_ago": 16,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "最終アクティビティが16日前であり、普段の頻度（5日）の3倍以上無活動です。"
+ },
+ {
+  "name": "楽天証券",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "PayPay",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "なりすましの不審メール（m1072）を受信していましたが、対応・報告済みです。"
+ },
+ {
+  "name": "LINE",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": ""
+ },
+ {
+  "name": "Instagram",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "直近90日間にアクティビティがありません。"
+ },
+ {
+  "name": "X",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "Google アカウント連携が有効です。"
+ },
+ {
+  "name": "Slack",
+  "category": "仕事",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "Google アカウント連携が有効です。"
+ },
+ {
+  "name": "メルカリ",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.3,
+  "notes": "キャンペーン等のプロモメール配信のみ（『本メールは配信専用です。』とだけ記載されています）。登録のみの可能性が高いです。"
+ },
+ {
+  "name": "ユニクロ",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.3,
+  "notes": "キャンペーン等のプロモメール配信のみ（『本メールは配信専用です。』とだけ記載されています）。登録のみの可能性が高いです。"
+ },
+ {
+  "name": "楽天市場",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.3,
+  "notes": "キャンペーン等のプロモメール配信のみ（『本メールは配信専用です。』とだけ記載されています）。登録のみの可能性が高いです。"
+ }
+]

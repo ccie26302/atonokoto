@@ -1,0 +1,248 @@
+[
+ {
+  "name": "Google アカウント",
+  "category": "基盤",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "メインのGoogleアカウント（taro.yamada@atonokoto-demo.jp）。再設定用メールアドレスとして hanako.yamada@example.com が設定されている。"
+ },
+ {
+  "name": "Netflix",
+  "category": "契約",
+  "monthly_cost": 1490,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2024-11-29アカウント登録完了。Googleアカウント連携でログイン。クレジットカード（下4桁 4242）への直接請求。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "Spotify",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2023-05-10登録。クレジットカード（下4桁 4242）での直接請求。"
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "category": "仕事",
+  "monthly_cost": 6480,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2024-01-03登録。年間プラン（月々払い）契約中。期間は2027年3月14日までとなっており、中途解約時には解約手数料が発生する可能性あり。直近90日間に活動がないため未使用と判定。"
+ },
+ {
+  "name": "Kindle Unlimited",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2022-11-04登録。クレジットカード（下4桁 4242）での直接請求。直近90日間に活動がないため未使用と判定。"
+ },
+ {
+  "name": "NHKオンデマンド",
+  "category": "契約",
+  "monthly_cost": 990,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2024-11-03登録。クレジットカード（下4桁 4242）での直接請求。直近90日間に活動がないため未使用と判定。"
+ },
+ {
+  "name": "Notion",
+  "category": "仕事",
+  "monthly_cost": 1650,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 40,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2025-07-15登録。Googleアカウント連携でログイン。クレジットカード（下4桁 4242）請求。普段は2日に1回程度の活動頻度だが、40日以上活動がなく、想定頻度の3倍を超えているため未使用と判定。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "GitHub",
+  "category": "仕事",
+  "monthly_cost": 600,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 2,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2023-07-15登録。クレジットカード（下4桁 4242）請求。"
+ },
+ {
+  "name": "Google Cloud",
+  "category": "仕事",
+  "monthly_cost": 4200,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2022-11-30登録。Googleアカウント連携でログイン。クレジットカード（下4桁 4242）への直接請求。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "お名前.com",
+  "category": "基盤",
+  "monthly_cost": 150,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 365,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2024-02-03登録。独自パスワード。管理ドメイン 'ourai-demo.jp'。年払い更新のため、90日以上活動がなくても未使用とは判定しない。"
+ },
+ {
+  "name": "YouTube Premium",
+  "category": "契約",
+  "monthly_cost": 1280,
+  "billing_via": "google_play",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2022-10-05登録。Google Play経由での決済。Googleアカウントでログイン。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "iCloud+",
+  "category": "基盤",
+  "monthly_cost": 400,
+  "billing_via": "app_store",
+  "login_via": "apple",
+  "cadence_days": 1,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2024-03-14登録。Apple IDに依存したApp Store経由の定期購読。"
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 5,
+  "last_activity_days_ago": 16,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2023-11-11口座開設。ネットバンキング口座。最終活動が16日前であり、普段の頻度（5日に1回）の3倍を超えているため未使用と判定。"
+ },
+ {
+  "name": "楽天証券",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2022-10-31口座開設。"
+ },
+ {
+  "name": "PayPay",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2025-04-13アカウント登録。"
+ },
+ {
+  "name": "X",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2025-04-05アカウント登録。Googleアカウント連携でログイン。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "Instagram",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2025-01-31アカウント登録。直近90日間に活動がないため未使用と判定。"
+ },
+ {
+  "name": "Slack",
+  "category": "仕事",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2024-04-29登録。Googleアカウント連携でログイン。無料の一般プラン。",
+  "depends_on": [
+   "Google アカウント"
+  ]
+ },
+ {
+  "name": "LINE",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2023-07-26登録。"
+ }
+]

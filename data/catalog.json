@@ -1,0 +1,656 @@
+{
+ "_note": "手動で足せるサービスの一覧と、それぞれが生存の合図になり得るか。signal.auth: none=認証不要で公開情報から取れる / oauth=本人の同意で取れる / no=取れない（受信箱の通知メールから間接的に見るだけ）。合図の有無は加入時に本人へ正直に告げる。 plans は目安の月額（円）。実際の金額は本人が地図上で直せる。空なら無料か金額を手入力。",
+ "services": [
+  {
+   "name": "Google アカウント",
+   "cat": "基盤",
+   "hub": true,
+   "signal": {
+    "auth": "oauth",
+    "how": "Gmail の既読・送信（メタデータ）、買い物・予約の通知メール、Drive の活動、Calendar の更新、YouTube の高評価・登録",
+    "scopes": [
+     "gmail.metadata",
+     "drive.activity.readonly",
+     "calendar.readonly",
+     "youtube.readonly"
+    ]
+   },
+   "plans": [
+    {
+     "name": "Google One 100GB",
+     "cost": 250
+    },
+    {
+     "name": "Google One 2TB",
+     "cost": 1300
+    },
+    {
+     "name": "Google AI Pro",
+     "cost": 2900
+    }
+   ]
+  },
+  {
+   "name": "Apple ID",
+   "cat": "基盤",
+   "hub": true,
+   "signal": {
+    "auth": "no",
+    "how": "API 無し。App Store の領収メールしか見えない"
+   },
+   "plans": [
+    {
+     "name": "Apple One 個人",
+     "cost": 1200
+    },
+    {
+     "name": "Apple One ファミリー",
+     "cost": 1980
+    }
+   ]
+  },
+  {
+   "name": "Yahoo! JAPAN ID",
+   "cat": "基盤",
+   "hub": true,
+   "signal": {
+    "auth": "no",
+    "how": "本作では受信箱を読まない"
+   },
+   "plans": [
+    {
+     "name": "LYP プレミアム",
+     "cost": 508
+    }
+   ]
+  },
+  {
+   "name": "Netflix",
+   "cat": "契約",
+   "signal": {
+    "auth": "no",
+    "how": "公開 API 無し"
+   },
+   "plans": [
+    {
+     "name": "広告つきスタンダード",
+     "cost": 890
+    },
+    {
+     "name": "スタンダード",
+     "cost": 1590
+    },
+    {
+     "name": "プレミアム",
+     "cost": 2290
+    }
+   ]
+  },
+  {
+   "name": "Spotify",
+   "cat": "契約",
+   "signal": {
+    "auth": "oauth",
+    "how": "最近再生した曲（user-read-recently-played）",
+    "scopes": [
+     "user-read-recently-played"
+    ]
+   },
+   "plans": [
+    {
+     "name": "Premium Standard",
+     "cost": 980
+    },
+    {
+     "name": "Premium Duo",
+     "cost": 1280
+    },
+    {
+     "name": "Premium Family",
+     "cost": 1580
+    },
+    {
+     "name": "Premium Student",
+     "cost": 480
+    }
+   ]
+  },
+  {
+   "name": "YouTube Premium",
+   "cat": "契約",
+   "signal": {
+    "auth": "google",
+    "how": "高評価とチャンネル登録の日付（youtube.readonly）。視聴履歴そのものは API に無い",
+    "scopes": [
+     "youtube.readonly"
+    ]
+   },
+   "plans": [
+    {
+     "name": "個人",
+     "cost": 1280
+    },
+    {
+     "name": "ファミリー",
+     "cost": 2280
+    },
+    {
+     "name": "学生",
+     "cost": 780
+    }
+   ]
+  },
+  {
+   "name": "Amazon Prime",
+   "cat": "契約",
+   "signal": {
+    "auth": "no",
+    "how": "会費の通知は本人が死んでも届くので合図にしない。買い物は「Amazon」で数える"
+   },
+   "plans": [
+    {
+     "name": "月間",
+     "cost": 600
+    },
+    {
+     "name": "年間（月あたり）",
+     "cost": 492
+    },
+    {
+     "name": "Prime Student",
+     "cost": 300
+    }
+   ]
+  },
+  {
+   "name": "Kindle Unlimited",
+   "cat": "契約",
+   "signal": {
+    "auth": "no",
+    "how": "公開 API 無し"
+   },
+   "plans": [
+    {
+     "name": "月額",
+     "cost": 980
+    }
+   ]
+  },
+  {
+   "name": "Adobe Creative Cloud",
+   "cat": "契約",
+   "signal": {
+    "auth": "no",
+    "how": "公開 API 無し"
+   },
+   "plans": [
+    {
+     "name": "コンプリート 年間（月々払い）",
+     "cost": 7780
+    },
+    {
+     "name": "フォトプラン",
+     "cost": 1180
+    },
+    {
+     "name": "単体プラン",
+     "cost": 3280
+    }
+   ]
+  },
+  {
+   "name": "iCloud+",
+   "cat": "契約",
+   "signal": {
+    "auth": "no",
+    "how": "公開 API 無し"
+   },
+   "plans": [
+    {
+     "name": "50GB",
+     "cost": 130
+    },
+    {
+     "name": "200GB",
+     "cost": 400
+    },
+    {
+     "name": "2TB",
+     "cost": 1500
+    }
+   ]
+  },
+  {
+   "name": "NHKオンデマンド",
+   "cat": "契約",
+   "signal": {
+    "auth": "no",
+    "how": "公開 API 無し"
+   },
+   "plans": [
+    {
+     "name": "まるごと見放題",
+     "cost": 990
+    }
+   ]
+  },
+  {
+   "name": "GitHub",
+   "cat": "仕事",
+   "signal": {
+    "auth": "none",
+    "how": "公開イベント（GET /users/{user}/events/public）。非公開の活動は含まない",
+    "scopes": []
+   },
+   "plans": [
+    {
+     "name": "Pro",
+     "cost": 600
+    },
+    {
+     "name": "Team（1席）",
+     "cost": 600
+    },
+    {
+     "name": "Copilot Pro",
+     "cost": 1500
+    }
+   ]
+  },
+  {
+   "name": "Notion",
+   "cat": "仕事",
+   "signal": {
+    "auth": "oauth",
+    "how": "ページの last_edited_time（自分が編集したもの）",
+    "scopes": [
+     "read_content"
+    ]
+   },
+   "plans": [
+    {
+     "name": "Plus",
+     "cost": 1650
+    },
+    {
+     "name": "Business",
+     "cost": 3300
+    }
+   ]
+  },
+  {
+   "name": "Slack",
+   "cat": "仕事",
+   "signal": {
+    "auth": "oauth",
+    "how": "users.getPresence は現在の在席のみ。履歴は取れない（弱い）",
+    "scopes": [
+     "users:read"
+    ]
+   },
+   "plans": [
+    {
+     "name": "Pro",
+     "cost": 1050
+    },
+    {
+     "name": "Business+",
+     "cost": 1800
+    }
+   ]
+  },
+  {
+   "name": "Google Cloud",
+   "cat": "仕事",
+   "signal": {
+    "auth": "oauth",
+    "how": "Cloud Audit Logs の本人プリンシパル",
+    "scopes": [
+     "cloud-platform.read-only"
+    ]
+   },
+   "plans": []
+  },
+  {
+   "name": "ドメイン（お名前.com 等）",
+   "cat": "仕事",
+   "signal": {
+    "auth": "no",
+    "how": "更新メールのみ。年 1 回"
+   },
+   "plans": [
+    {
+     "name": "年額（月あたり）",
+     "cost": 150
+    }
+   ]
+  },
+  {
+   "name": "X",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開投稿の最終日時（公開アカウントのみ。API は有料枠）"
+   },
+   "plans": [
+    {
+     "name": "Premium",
+     "cost": 980
+    },
+    {
+     "name": "Premium+",
+     "cost": 2980
+    }
+   ]
+  },
+  {
+   "name": "Instagram",
+   "cat": "交流",
+   "signal": {
+    "auth": "oauth",
+    "how": "自分の投稿の timestamp（Basic Display 後継の Instagram API）",
+    "scopes": [
+     "instagram_basic"
+    ]
+   },
+   "plans": []
+  },
+  {
+   "name": "LINE",
+   "cat": "交流",
+   "signal": {
+    "auth": "no",
+    "how": "個人の利用履歴は取れない"
+   },
+   "plans": [
+    {
+     "name": "LYP プレミアム",
+     "cost": 508
+    }
+   ]
+  },
+  {
+   "name": "Strava",
+   "cat": "交流",
+   "signal": {
+    "auth": "oauth",
+    "how": "アクティビティの start_date",
+    "scopes": [
+     "activity:read"
+    ]
+   },
+   "plans": [
+    {
+     "name": "サブスクリプション",
+     "cost": 800
+    }
+   ]
+  },
+  {
+   "name": "Steam",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "最近プレイしたゲーム（公開プロフィールのみ）"
+   },
+   "plans": []
+  },
+  {
+   "name": "銀行（三菱UFJ 等）",
+   "cat": "金融",
+   "signal": {
+    "auth": "no",
+    "how": "個人向け API 無し。地図に載せて『触るな』を塗る用"
+   },
+   "plans": []
+  },
+  {
+   "name": "証券（楽天証券 等）",
+   "cat": "金融",
+   "signal": {
+    "auth": "no",
+    "how": "同上"
+   },
+   "plans": []
+  },
+  {
+   "name": "PayPay",
+   "cat": "金融",
+   "signal": {
+    "auth": "mail",
+    "how": "支払い完了の通知（noreply@paypay.ne.jp）。ポイント付与は数えない"
+   },
+   "plans": []
+  },
+  {
+   "name": "Zenn",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開フィード（記事・本の公開日）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Qiita",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開記事の作成・更新日"
+   },
+   "plans": []
+  },
+  {
+   "name": "Bluesky",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開投稿の日時"
+   },
+   "plans": []
+  },
+  {
+   "name": "Amazon",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "注文確認・発送の通知（auto-confirm@amazon.co.jp）。定期おトク便とプライム会費は数えない"
+   },
+   "plans": [
+    {
+     "name": "Amazon プライム",
+     "cost": 600
+    }
+   ]
+  },
+  {
+   "name": "楽天市場",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "注文内容確認の通知（order@rakuten.co.jp）。クーポンや定期購入は数えない"
+   },
+   "plans": []
+  },
+  {
+   "name": "メルカリ",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "購入・取引の通知（no-reply@mercari.jp）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Yahoo!ショッピング",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "注文確認の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "Uber Eats",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "注文の領収書"
+   },
+   "plans": []
+  },
+  {
+   "name": "出前館",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "注文完了の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "App Store",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "Apple からの領収書。サブスクリプションの更新は数えない"
+   },
+   "plans": []
+  },
+  {
+   "name": "Google Play",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "注文の領収書。定期購入の更新は数えない"
+   },
+   "plans": []
+  },
+  {
+   "name": "モバイルSuica",
+   "cat": "金融",
+   "signal": {
+    "auth": "mail",
+    "how": "チャージ完了の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "じゃらん",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "予約内容確認の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "楽天トラベル",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "予約確認の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "ANA",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "予約・搭乗の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "JAL",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "予約・搭乗の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "えきねっと",
+   "cat": "契約",
+   "signal": {
+    "auth": "mail",
+    "how": "予約・乗車の通知"
+   },
+   "plans": []
+  },
+  {
+   "name": "note",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開 RSS の記事公開日（note.com/{user}/rss）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Mastodon",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開プロフィールの last_status_at（最後に投稿した日）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Wikipedia",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開の編集履歴（usercontribs）"
+   },
+   "plans": []
+  },
+  {
+   "name": "AtCoder",
+   "cat": "仕事",
+   "signal": {
+    "auth": "none",
+    "how": "提出履歴（AtCoder Problems の API）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Lichess",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "seenAt（サイトを最後に開いた日。対局しなくても更新）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Chess.com",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "last_online（サイトを最後に開いた日）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Stack Overflow",
+   "cat": "仕事",
+   "signal": {
+    "auth": "none",
+    "how": "last_access_date（読むだけでも更新される）"
+   },
+   "plans": []
+  },
+  {
+   "name": "Letterboxd",
+   "cat": "交流",
+   "signal": {
+    "auth": "none",
+    "how": "公開 RSS の「観た日」"
+   },
+   "plans": []
+  }
+ ]
+}

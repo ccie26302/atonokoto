@@ -1,0 +1,289 @@
+[
+ {
+  "name": "Netflix",
+  "category": "契約",
+  "monthly_cost": 1490,
+  "billing_via": "direct",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 2,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Googleアカウント連携あり"
+ },
+ {
+  "name": "Spotify",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "特になし"
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "category": "仕事",
+  "monthly_cost": 6480,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "年間プラン（月々払い）で契約中（2027年3月14日まで）。期間中の解約には解約手数料がかかる場合があります。直近90日間の活動なし。"
+ },
+ {
+  "name": "YouTube Premium",
+  "category": "契約",
+  "monthly_cost": 1280,
+  "billing_via": "google_play",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Google Play経由の定期購入"
+ },
+ {
+  "name": "iCloud+",
+  "category": "基盤",
+  "monthly_cost": 400,
+  "billing_via": "app_store",
+  "login_via": "apple",
+  "cadence_days": 1,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Apple ID決済"
+ },
+ {
+  "name": "Kindle Unlimited",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "Amazonアカウント経由。直近90日間の活動なし。"
+ },
+ {
+  "name": "NHKオンデマンド",
+  "category": "契約",
+  "monthly_cost": 990,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "直近90日間の活動なし。"
+ },
+ {
+  "name": "Notion",
+  "category": "仕事",
+  "monthly_cost": 1650,
+  "billing_via": "direct",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 2,
+  "last_activity_days_ago": 40,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "Googleアカウント連携あり。直近40日間活動がないため休眠状態。"
+ },
+ {
+  "name": "GitHub",
+  "category": "仕事",
+  "monthly_cost": 600,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 2,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "特になし"
+ },
+ {
+  "name": "Google Cloud",
+  "category": "仕事",
+  "monthly_cost": 4200,
+  "billing_via": "direct",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Googleアカウント連携あり"
+ },
+ {
+  "name": "お名前.com (ourai-demo.jp)",
+  "category": "基盤",
+  "monthly_cost": 150,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 365,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "独自ドメイン「ourai-demo.jp」維持用。直近90日間の活動なし。"
+ },
+ {
+  "name": "Slack",
+  "category": "仕事",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Googleアカウント連携あり。無料プラン。"
+ },
+ {
+  "name": "X",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "Googleアカウント連携あり。"
+ },
+ {
+  "name": "Instagram",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "直近90日間の活動なし。"
+ },
+ {
+  "name": "LINE",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "特になし"
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 16,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "インターネットバンキング"
+ },
+ {
+  "name": "楽天証券",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "楽天IDでのログイン"
+ },
+ {
+  "name": "PayPay",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "携帯電話番号による認証"
+ },
+ {
+  "name": "メルカリ",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 0.8,
+  "notes": "活動シグナル取得不可。会員向けプロモーションメールを定期的に受信。"
+ },
+ {
+  "name": "楽天市場",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 0.8,
+  "notes": "活動シグナル取得不可。会員向けプロモーションメールを定期的に受信。"
+ },
+ {
+  "name": "ユニクロ",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 0.8,
+  "notes": "活動シグナル取得不可。会員向けプロモーションメールを定期的に受信。"
+ },
+ {
+  "name": "Google アカウント",
+  "category": "基盤",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "taro.yamada@atonokoto-demo.jp。再設定用メールアドレスに hanako.yamada@example.com が設定されている。各種Google連携サービスのハブ。"
+ },
+ {
+  "injection_detected": [
+   "m1072"
+  ]
+ }
+]

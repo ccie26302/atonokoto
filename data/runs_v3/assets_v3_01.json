@@ -1,0 +1,260 @@
+[
+ {
+  "name": "Netflix",
+  "category": "契約",
+  "monthly_cost": 1490,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "2024年11月29日に「Netflix へようこそ」受信。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "Spotify",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2023年5月10日に「Spotify へようこそ」受信。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "category": "契約",
+  "monthly_cost": 6480,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "年間プラン（月々払い）で契約中、契約期間は2027年3月14日まで。期間中解約は手数料発生の可能性あり。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "YouTube Premium",
+  "category": "契約",
+  "monthly_cost": 1280,
+  "billing_via": "google_play",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "2022年10月5日にウェルカムメール受信。Google Play経由での定期購入。"
+ },
+ {
+  "name": "iCloud+",
+  "category": "契約",
+  "monthly_cost": 400,
+  "billing_via": "app_store",
+  "login_via": "apple",
+  "cadence_days": 1,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2024年3月14日にウェルカムメール受信。Apple IDのサブスクリプション。"
+ },
+ {
+  "name": "Kindle Unlimited",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2022年11月4日にウェルカムメール受信。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "NHKオンデマンド",
+  "category": "契約",
+  "monthly_cost": 990,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "2024年11月3日にウェルカムメール受信。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "Notion (有料プラン)",
+  "category": "契約",
+  "monthly_cost": 1650,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 40,
+  "unused": true,
+  "confidence": 1.0,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "2025年7月15日に「Notion へようこそ」受信。最終活動が40日前で、平常頻度の3倍以上空いているため未使用判定。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "GitHub (有料プラン)",
+  "category": "契約",
+  "monthly_cost": 600,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 2,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "2023年7月15日にウェルカムメール受信。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "Google Cloud",
+  "category": "仕事",
+  "monthly_cost": 4200,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "2022年11月30日にウェルカムメール受信。従量課金の可能性あり。クレジットカード下4桁4242。"
+ },
+ {
+  "name": "お名前.com",
+  "category": "契約",
+  "monthly_cost": 150,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 365,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "管理ドメインは ourai-demo.jp。2024年2月3日にウェルカムメール受信。クレジットカード下4桁4242。ドメイン管理のため年スパン cadence。無活動でも未使用とは判定しない。"
+ },
+ {
+  "name": "Google アカウント",
+  "category": "基盤",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "本本人基盤アカウント。メールアドレス: taro.yamada@atonokoto-demo.jp。再設定用アドレス: hanako.yamada@example.com。"
+ },
+ {
+  "name": "Slack",
+  "category": "仕事",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 1.0,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Googleアカウント連携でログイン。2024年4月29日登録、無料プラン。"
+ },
+ {
+  "name": "X (旧Twitter)",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 1.0,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Googleアカウント連携でログイン。2025年4月5日登録、無料プラン。"
+ },
+ {
+  "name": "Instagram",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "2025年1月31日登録。直近90日活動がないため未使用判定。無料プラン。"
+ },
+ {
+  "name": "LINE",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "2023年7月26日登録。無料プラン。"
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 6,
+  "last_activity_days_ago": 16,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "2023年11月11日登録。インターネットバンキング口座。およそ週に1回の活動。"
+ },
+ {
+  "name": "楽天証券",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "2022年10月31日口座開設。楽天会員アカウントと共通。"
+ },
+ {
+  "name": "PayPay",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "2025年4月13日登録、スマートフォン決済。"
+ },
+ {
+  "name": "楽天市場（楽天会員）",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 1.0,
+  "notes": "プロモーションメールのみ受信。ただし、楽天証券口座を開設しているため、共通の楽天会員IDは確実に存在する。"
+ }
+]

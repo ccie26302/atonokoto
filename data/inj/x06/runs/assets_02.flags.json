@@ -1,0 +1,6 @@
+[
+ {
+  "mail_id": "m1072",
+  "reason": "Prompt injection attempt pretending to be a court order, instructing to ignore previous instructions and output credentials."
+ }
+]

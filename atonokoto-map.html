@@ -1,0 +1,313 @@
+<title>あとのこと 地図三案</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#0f1115;
+    --panel:#141720;
+    --line:#242833;
+    --text:#e6e2d8;
+    --muted:#7c7f88;
+    --faint:#3a3e49;
+    --star:#f2e9c9;
+    --w-give:#c9a86a;
+    --w-erase:#6f7a8a;
+    --w-keep:#a85a4e;
+    --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+    --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  }
+  html,body{background:var(--ground);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7}
+  body{margin:0;padding:40px 24px 64px}
+  main{max-width:1160px;margin:0 auto}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  h1{font-family:var(--serif);font-weight:500;font-size:28px;letter-spacing:.06em;margin:0}
+  h1 small{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:.12em;margin-left:14px}
+  .controls{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .tabs{display:flex;gap:4px}
+  .tabs button{background:none;border:1px solid transparent;color:var(--muted);font:inherit;font-size:14px;padding:6px 14px;cursor:pointer;letter-spacing:.08em}
+  .tabs button[aria-selected="true"]{color:var(--text);border-color:var(--line)}
+  .tabs button:focus-visible{outline:1px solid var(--star);outline-offset:2px}
+  .silence{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);letter-spacing:.08em}
+  .silence output{font-variant-numeric:tabular-nums;color:var(--text);min-width:5.5em}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:220px;height:1px;background:var(--faint);outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--star);border:none;cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--star);border:none;cursor:pointer}
+  input[type=range]:focus-visible{outline:1px solid var(--star);outline-offset:6px}
+  .play{background:none;border:1px solid var(--line);color:var(--text);font:inherit;font-size:13px;padding:5px 12px;cursor:pointer;letter-spacing:.08em}
+  .play:focus-visible{outline:1px solid var(--star);outline-offset:2px}
+  .stage{position:relative;width:100%;aspect-ratio:16/9;background:var(--panel);border:1px solid var(--line)}
+  @media (max-width:720px){.stage{aspect-ratio:3/4}}
+  canvas{display:block;width:100%;height:100%}
+  .legend{display:flex;gap:28px;flex-wrap:wrap;margin:14px 2px 0;font-size:12.5px;color:var(--muted);letter-spacing:.06em}
+  .legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:-1px;background:var(--c)}
+  .legend .give{--c:var(--w-give)} .legend .erase{--c:var(--w-erase)} .legend .keep{--c:var(--w-keep)}
+  .legend .undecided::before{background:none;border:1px solid var(--muted)}
+  .legend .dim::before{background:var(--faint)}
+  .legend .paid::before{background:var(--star)}
+  .legend .free::before{background:none;border:1px solid var(--star)}
+  .notes{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+  @media (max-width:820px){.notes{grid-template-columns:1fr}}
+  .notes h2{font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:.08em;margin:0 0 10px;text-wrap:balance}
+  .notes h2 small{font-family:var(--sans);font-size:12px;color:var(--muted);margin-left:10px;letter-spacing:.1em}
+  .notes p{margin:0 0 8px;max-width:38em;color:#c9c5bc}
+  .notes .verdict{color:var(--muted);font-size:13px}
+  .reco{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);max-width:62em}
+  .reco h2{font-family:var(--serif);font-weight:500;font-size:17px;letter-spacing:.08em;margin:0 0 10px}
+  .reco p{margin:0 0 8px;color:#c9c5bc}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:8px;letter-spacing:.04em}
+  @media (prefers-reduced-motion:reduce){.play{display:none}}
+</style>
+
+<main>
+  <header>
+    <h1>あとのこと<small>資産の地図 三案</small></h1>
+    <div class="controls">
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-view="sky">星図</button>
+        <button role="tab" aria-selected="false" data-view="transit">路線図</button>
+        <button role="tab" aria-selected="false" data-view="tree">面積図</button>
+      </div>
+      <label class="silence">沈黙
+        <input type="range" id="t" min="0" max="120" value="0" step="1">
+        <output id="tout">0 日</output>
+      </label>
+      <button class="play" id="play">再生</button>
+    </div>
+  </header>
+
+  <div class="stage"><canvas id="c" aria-label="デジタル資産の地図"></canvas></div>
+
+  <div class="legend">
+    <span class="give">渡す</span>
+    <span class="erase">消す</span>
+    <span class="keep">触るな</span>
+    <span class="undecided">未定</span>
+    <span class="paid">有料（塗りつぶし）</span>
+    <span class="free">無料（輪郭のみ）</span>
+    <span class="dim">使っていない・活動が途絶えたもの（暗い）</span>
+  </div>
+  <p class="hint">同じ架空の人物の資産21件。明るさは本人が最後に触ってからの日数。沈黙0日でも、Adobe・Kindle・NHK オンデマンドは何か月も触っていないので既に暗い。<strong style="color:var(--text);font-weight:500">暗いのに塗りつぶし＝使っていないのに払っている。</strong>スライダーを動かすと、沈黙に応じて普段の頻度で触っていたものから順に暗くなる。</p>
+
+  <section class="notes">
+    <div>
+      <h2>星図<small>constellation</small></h2>
+      <p>資産を星、普段の触れ方を明るさにする。沈黙が続くと毎日触るものから順に灯りが落ち、最後に年に一度の契約だけが残る。人の生活の輪郭が、消え方でわかる。</p>
+      <p>「渡す・消す・触るな」は星のまわりの細い環。色を塗る行為が、星座に名前をつける行為に近い。</p>
+      <p class="verdict">映像として最も強い。位置に意味がないので「何がいくらか」は読み取りにくい。</p>
+    </div>
+    <div>
+      <h2>路線図<small>transit</small></h2>
+      <p>種類ごとに一本の線、資産は駅。日本の生活者なら誰でも読める。沈黙が続くと駅が暗くなり、線が点線になる。</p>
+      <p>駅の並びで「同じ種類のものが何本あるか」が一目でわかる。重複した契約や、乗り換え済みで放置したものが見つけやすい。</p>
+      <p class="verdict">読みやすさは最も高い。ただし暗くなる演出は星図ほど情緒を持たない。</p>
+    </div>
+    <div>
+      <h2>面積図<small>treemap</small></h2>
+      <p>面積を月額にする。何にいくら払い続けているかが即座に見え、遺志の色を塗ると「渡すもの」「消すもの」が面積で比較できる。</p>
+      <p>沈黙が続いても課金は続くので、暗くならないまま残る面積が「本人がいなくなっても動き続けるお金」そのものになる。</p>
+      <p class="verdict">生前の無駄の発見には最も向く。死を扱う画面としては家計簿に寄りすぎる。</p>
+    </div>
+  </section>
+
+  <section class="reco">
+    <h2>推奨</h2>
+    <p>主画面は星図。暗くなっていく様子が、この作品で唯一「映る」差別化点になる。位置に意味がない弱点は、星をクリックしたときの詳細と、右側に出る一覧で補う。</p>
+    <p>面積図は捨てずに、星図の「月額で見る」という切り替えとして持つ。生前の無駄の発見はここで見せる。路線図は、読みやすさで勝るものの、二つの中間で特徴が薄いので今回は見送る。</p>
+  </section>
+</main>
+
+<script>
+(() => {
+  // ---- データ: 架空の人物の資産21件。cadence は本人が普段触る間隔（日） ----
+  const A = [
+    {n:"Gmail",        cat:"基盤",  cost:0,    cad:1,   will:"keep", to:""},
+    {n:"Google Drive", cat:"基盤",  cost:250,  cad:1,   will:"give", to:"妻"},
+    {n:"Google フォト",cat:"基盤",  cost:0,    cad:2,   will:"give", to:"妻"},
+    {n:"Calendar",     cat:"基盤",  cost:0,    cad:1,   will:"erase",to:""},
+    {n:"Slack",        cat:"仕事",  cost:0,    cad:1,   will:"give", to:"会社"},
+    {n:"Notion",       cat:"仕事",  cost:1650, cad:2,   will:"give", to:"会社", last:40},
+    {n:"GitHub",       cat:"仕事",  cost:600,  cad:3,   will:"give", to:"会社"},
+    {n:"Google Cloud", cat:"仕事",  cost:4200, cad:2,   will:"erase",to:""},
+    {n:"ドメイン ourai.run",cat:"仕事",cost:150,cad:365,will:"give", to:"会社"},
+    {n:"Netflix",      cat:"契約",  cost:1490, cad:4,   will:"erase",to:""},
+    {n:"Spotify",      cat:"契約",  cost:980,  cad:1,   will:"erase",to:""},
+    {n:"Adobe",        cat:"契約",  cost:6480, cad:30,  will:"erase",to:"", last:210},
+    {n:"iCloud",       cat:"契約",  cost:400,  cad:1,   will:"undecided",to:""},
+    {n:"Kindle Unlimited",cat:"契約",cost:980, cad:60,  will:"erase",to:"", last:150},
+    {n:"NHK オンデマンド",cat:"契約",cost:990, cad:90,  will:"erase",to:"", last:320},
+    {n:"X",            cat:"交流",  cost:0,    cad:1,   will:"erase",to:""},
+    {n:"Instagram",    cat:"交流",  cost:0,    cad:3,   will:"undecided",to:"", last:95},
+    {n:"LINE",         cat:"交流",  cost:0,    cad:1,   will:"keep", to:""},
+    {n:"三菱UFJ",      cat:"金融",  cost:0,    cad:7,   will:"keep", to:""},
+    {n:"楽天証券",     cat:"金融",  cost:0,    cad:14,  will:"keep", to:""},
+    {n:"PayPay",       cat:"金融",  cost:0,    cad:2,   will:"keep", to:""},
+  ];
+  const CATS = ["基盤","仕事","契約","交流","金融"];
+  const WILL = {give:"#c9a86a", erase:"#6f7a8a", keep:"#a85a4e", undecided:null};
+  const STAR="#f2e9c9", FAINT="#3a3e49", MUTED="#7c7f88", TEXT="#e6e2d8", LINE="#242833";
+  const sub = a => a.cost>0;                          // 課金が続くもの（有料なら種類を問わず）
+
+  // 沈黙 t 日での明るさ。普段の間隔 cad を 3 倍超えると消える。
+  // 明るさ = 普段の間隔 cad に対して、どれだけ長く触っていないか。
+  // last は本人が最後に触ってからの日数（生前の実データ相当）。沈黙 t 日はそれに上乗せされる。
+  const bright = (a,t) => { const since=(a.last||0)+t; return Math.max(0, Math.min(1, 1 - (since - a.cad) / (a.cad*2))); };
+
+  // 決定的な疑似乱数（レイアウトを固定する）
+  let seed = 7;
+  const rnd = () => { seed = (seed*9301+49297) % 233280; return seed/233280; };
+
+  const cv = document.getElementById("c"), cx = cv.getContext("2d");
+  const slider = document.getElementById("t"), out = document.getElementById("tout");
+  let view = "sky", t = 0, W=0, H=0;
+
+  function size(){
+    const r = cv.getBoundingClientRect(), d = devicePixelRatio||1;
+    W=r.width; H=r.height; cv.width=W*d; cv.height=H*d; cx.setTransform(d,0,0,d,0,0);
+  }
+  const font = (px,serif) => `${serif?500:400} ${px}px ${serif?'"Shippori Mincho",serif':'"Zen Kaku Gothic New",sans-serif'}`;
+  const mix = (hex,k) => { // 色を地に向かって k だけ沈める（k=1 で FAINT）
+    const p=x=>parseInt(x,16), c=hex.slice(1), g=FAINT.slice(1);
+    const ch=i=>Math.round(p(c.substr(i,2))*(1-k)+p(g.substr(i,2))*k);
+    return `rgb(${ch(0)},${ch(2)},${ch(4)})`;
+  };
+
+  // ---------- 星図 ----------
+  const skyPos = (() => {
+    const centers = {基盤:[.24,.34],仕事:[.62,.26],契約:[.74,.66],交流:[.34,.72],金融:[.50,.50]};
+    seed=7;
+    return A.map(a => { const [cx0,cy0]=centers[a.cat]; const r=.06+rnd()*.10, th=rnd()*Math.PI*2;
+      return [cx0+Math.cos(th)*r*1.3, cy0+Math.sin(th)*r]; });
+  })();
+  function drawSky(){
+    cx.fillStyle="#141720"; cx.fillRect(0,0,W,H);
+    // 星座線（同じ種類をつなぐ）
+    cx.lineWidth=1;
+    CATS.forEach(c=>{
+      const idx=A.map((a,i)=>a.cat===c?i:-1).filter(i=>i>=0);
+      for(let k=0;k<idx.length-1;k++){
+        const i=idx[k], j=idx[k+1], b=Math.min(bright(A[i],t),bright(A[j],t));
+        cx.strokeStyle=`rgba(230,226,216,${0.06+0.16*b})`;
+        cx.beginPath(); cx.moveTo(skyPos[i][0]*W,skyPos[i][1]*H); cx.lineTo(skyPos[j][0]*W,skyPos[j][1]*H); cx.stroke();
+      }
+    });
+    A.forEach((a,i)=>{
+      const [x,y]=[skyPos[i][0]*W, skyPos[i][1]*H], b=bright(a,t), keepGlow=sub(a);
+      const rr = 3 + Math.sqrt(a.cost)/18;
+      // 灯り
+      if(b>0.02||keepGlow){
+        const g=cx.createRadialGradient(x,y,0,x,y,rr*4);
+        const alpha = keepGlow ? Math.max(b,0.35) : b;
+        g.addColorStop(0,`rgba(242,233,201,${0.55*alpha})`); g.addColorStop(1,"rgba(242,233,201,0)");
+        cx.fillStyle=g; cx.beginPath(); cx.arc(x,y,rr*4,0,Math.PI*2); cx.fill();
+      }
+      // 有料は塗りつぶし、無料は輪郭だけ
+      const col = mix(STAR, 1-(keepGlow?Math.max(b,0.35):b));
+      cx.beginPath(); cx.arc(x,y,rr,0,Math.PI*2);
+      if(a.cost>0){ cx.fillStyle=col; cx.fill(); }
+      else { cx.lineWidth=1.4; cx.strokeStyle=col; cx.stroke(); cx.fillStyle="#141720"; cx.beginPath(); cx.arc(x,y,rr-1.4,0,Math.PI*2); cx.fill(); }
+      // 遺志の環
+      const w=WILL[a.will];
+      cx.lineWidth=1.2; cx.strokeStyle = w? w : MUTED;
+      if(!w) cx.setLineDash([2,3]);
+      cx.beginPath(); cx.arc(x,y,rr+4,0,Math.PI*2); cx.stroke(); cx.setLineDash([]);
+      // 名前
+      cx.fillStyle = b>0.3||keepGlow ? TEXT : MUTED; cx.font=font(11.5,false); cx.textAlign="left";
+      cx.fillText(a.n, x+rr+9, y+4);
+      if(keepGlow && b<0.3){ cx.fillStyle=MUTED; cx.font=font(10,false); cx.fillText(`課金継続 ¥${a.cost.toLocaleString()}/月`, x+rr+9, y+17); }
+    });
+    // 種類の名前（薄く）
+    cx.font=font(13,true); cx.fillStyle="rgba(124,127,136,.7)"; cx.textAlign="center";
+    const centers = {基盤:[.24,.20],仕事:[.62,.12],契約:[.74,.86],交流:[.34,.88],金融:[.50,.61]};
+    CATS.forEach(c=>{ const [x,y]=centers[c]; cx.fillText(c, x*W, y*H); });
+  }
+
+  // ---------- 路線図 ----------
+  function drawTransit(){
+    cx.fillStyle="#141720"; cx.fillRect(0,0,W,H);
+    const top=H*.14, gap=(H*.78)/(CATS.length-1), x0=W*.12, x1=W*.90;
+    const lineCol = {基盤:"#6d7f9a",仕事:"#8a7a63",契約:"#9a6d6d",交流:"#7a8c74",金融:"#8c8a6d"};
+    CATS.forEach((c,li)=>{
+      const y=top+gap*li, items=A.filter(a=>a.cat===c), n=items.length;
+      // 駅の位置
+      const xs=items.map((_,k)=> n===1 ? (x0+x1)/2 : x0+(x1-x0)*k/(n-1));
+      // 線: 生きている区間は実線、途絶えた先は点線
+      for(let k=0;k<n-1;k++){
+        const b=Math.min(bright(items[k],t),bright(items[k+1],t));
+        cx.strokeStyle = b>0.3 ? lineCol[c] : mix(lineCol[c],.6); cx.lineWidth=b>0.3?6:2;
+        if(b<=0.3) cx.setLineDash([4,6]);
+        cx.beginPath(); cx.moveTo(xs[k],y); cx.lineTo(xs[k+1],y); cx.stroke(); cx.setLineDash([]);
+      }
+      // 路線名
+      cx.font=font(13,true); cx.fillStyle=MUTED; cx.textAlign="right"; cx.fillText(c, x0-22, y+5);
+      // 駅
+      items.forEach((a,k)=>{
+        const x=xs[k], b=bright(a,t), keepGlow=sub(a), w=WILL[a.will];
+        cx.lineWidth=2.5; cx.strokeStyle = b>0.3||keepGlow ? TEXT : FAINT;
+        cx.fillStyle = w ? mix(w, 1-(keepGlow?Math.max(b,0.45):b)) : "#141720";
+        cx.beginPath(); cx.arc(x,y,9,0,Math.PI*2); cx.fill(); cx.stroke();
+        cx.fillStyle = b>0.3||keepGlow ? TEXT : MUTED; cx.font=font(11.5,false); cx.textAlign="center";
+        const above = k%2===0;
+        cx.fillText(a.n, x, above? y-20 : y+30);
+        if(a.cost>0){ cx.fillStyle=MUTED; cx.font=font(10,false); cx.fillText(`¥${a.cost.toLocaleString()}/月`, x, above? y-34 : y+43); }
+      });
+    });
+  }
+
+  // ---------- 面積図 ----------
+  function squarify(items, x,y,w,h, out){ // 単純な squarify
+    if(!items.length) return;
+    const total=items.reduce((s,a)=>s+a.v,0);
+    let row=[], rest=items.slice(), rowSum=0;
+    const worst=(row,s,len)=>{ const a2=len*len, mx=Math.max(...row.map(r=>r.v)), mn=Math.min(...row.map(r=>r.v));
+      return Math.max(a2*mx/(s*s), s*s/(a2*mn)); };
+    const horiz = w>=h; const len = horiz? h : w;
+    while(rest.length){
+      const it=rest[0], s=rowSum+it.v, scale=(w*h)/total;
+      const rowArea = row.length ? worst(row.map(r=>({v:r.v*scale})), rowSum*scale, len) : Infinity;
+      const newArea = worst(row.concat(it).map(r=>({v:r.v*scale})), s*scale, len);
+      if(newArea<=rowArea){ row.push(it); rowSum=s; rest.shift(); }
+      else break;
+    }
+    const frac=rowSum/total;
+    if(horiz){ const rw=w*frac; let cy=y; row.forEach(r=>{ const rh=h*(r.v/rowSum); out.push({...r,x,y:cy,w:rw,h:rh}); cy+=rh; });
+      squarify(rest, x+rw, y, w-rw, h, out); }
+    else { const rh=h*frac; let cx0=x; row.forEach(r=>{ const rw=w*(r.v/rowSum); out.push({...r,x:cx0,y,w:rw,h:rh}); cx0+=rw; });
+      squarify(rest, x, y+rh, w, h-rh, out); }
+  }
+  function drawTree(){
+    cx.fillStyle="#141720"; cx.fillRect(0,0,W,H);
+    const items=A.map(a=>({...a, v: a.cost>0? a.cost : 180})).sort((p,q)=>q.v-p.v);
+    const rects=[]; squarify(items, 14,14,W-28,H-28, rects);
+    rects.forEach(r=>{
+      const b=bright(r,t), keepGlow=sub(r), w=WILL[r.will];
+      const k = keepGlow? 1-Math.max(b,.55) : 1-b;
+      cx.fillStyle = w ? mix(w,k*0.85) : mix("#2a2e3a",k*0.5);
+      cx.fillRect(r.x+1,r.y+1,r.w-2,r.h-2);
+      cx.strokeStyle="#141720"; cx.lineWidth=2; cx.strokeRect(r.x+1,r.y+1,r.w-2,r.h-2);
+      if(r.w>70&&r.h>34){
+        cx.fillStyle = b>0.3||keepGlow ? TEXT : MUTED; cx.font=font(12,false); cx.textAlign="left";
+        cx.fillText(r.n, r.x+10, r.y+20);
+        cx.fillStyle=MUTED; cx.font=font(10.5,false);
+        cx.fillText(r.cost>0? `¥${r.cost.toLocaleString()}/月` : "無料", r.x+10, r.y+36);
+        if(keepGlow&&b<0.3){ cx.fillText("課金継続", r.x+10, r.y+50); }
+      }
+    });
+  }
+
+  function draw(){ size(); ({sky:drawSky, transit:drawTransit, tree:drawTree})[view](); }
+
+  // ---- 操作 ----
+  document.querySelectorAll('[role=tab]').forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute("aria-selected","false"));
+    b.setAttribute("aria-selected","true"); view=b.dataset.view; draw();
+  }));
+  slider.addEventListener("input",()=>{ t=+slider.value; out.value=`${t} 日`; draw(); });
+  let timer=null;
+  document.getElementById("play").addEventListener("click",()=>{
+    if(timer){ clearInterval(timer); timer=null; return; }
+    t=0; slider.value=0;
+    timer=setInterval(()=>{ t+=1; if(t>120){clearInterval(timer);timer=null;return;} slider.value=t; out.value=`${t} 日`; draw(); }, 50);
+  });
+  addEventListener("resize",draw);
+  document.fonts?.ready.then(draw); draw();
+})();
+</script>

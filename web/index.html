@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>あとのこと</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
+<script src="vendor/mermaid.min.js"></script>
+<style>
+  :root{
+    --ground:#0f1115; --panel:#141720; --line:#242833; --text:#e6e2d8; --muted:#7c7f88; --faint:#3a3e49;
+    --star:#f2e9c9; --w-give:#c9a86a; --w-erase:#6f7a8a; --w-keep:#a85a4e;
+    --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+    --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  }
+  html,body{background:var(--ground);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7}
+  body{margin:0;padding:36px 24px 64px}
+  main{max-width:1200px;margin:0 auto}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:22px}
+  h1{font-family:var(--serif);font-weight:500;font-size:28px;letter-spacing:.06em;margin:0}
+  h1 small{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:.12em;margin-left:14px}
+  .controls{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .tabs{display:flex;gap:4px}
+  .tabs button{background:none;border:1px solid transparent;color:var(--muted);font:inherit;font-size:14px;padding:6px 14px;cursor:pointer;letter-spacing:.08em}
+  .tabs button[aria-selected="true"]{color:var(--text);border-color:var(--line)}
+  button:focus-visible,input:focus-visible,textarea:focus-visible{outline:1px solid var(--star);outline-offset:2px}
+  .silence{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);letter-spacing:.08em}
+  .silence output{font-variant-numeric:tabular-nums;color:var(--text);min-width:5.5em}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:200px;height:1px;background:var(--faint);outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--star);border:none;cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--star);border:none;cursor:pointer}
+  .summary{display:flex;gap:36px;flex-wrap:wrap;margin:0 0 18px;font-size:13px;color:var(--muted);letter-spacing:.06em}
+  .summary b{font-weight:500;color:var(--text);font-variant-numeric:tabular-nums;margin-left:8px}
+  .summary .warn b{color:var(--w-give)}
+  .wrap{display:grid;grid-template-columns:210px 1fr 320px;gap:18px;align-items:start}
+  @media (max-width:1100px){.wrap{grid-template-columns:1fr 320px}.side{grid-column:1 / -1}}
+  @media (max-width:900px){.wrap{grid-template-columns:1fr}.side{order:3;position:static;max-height:none}.summary{gap:8px 24px}}
+  .side{background:var(--panel);border:1px solid var(--line);padding:16px 14px;max-height:calc(100vh - 120px);overflow:auto;position:sticky;top:12px}
+  .side h2{font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:.08em;margin:0 0 4px}
+  .side p{margin:0 0 10px;font-size:12px;color:var(--muted);line-height:1.7}
+  .side input[type=text]{margin:0 0 10px;padding:6px 8px;font-size:12.5px}
+  .side .picker{display:flex;flex-direction:column;gap:3px}
+  .side .picker button{text-align:left;display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-color:transparent}
+  .side .picker button:hover{border-color:var(--line)}
+  .side .picker button[aria-pressed="true"]{color:var(--muted);border-color:transparent}
+  .side .picker button[aria-pressed="true"]::after{content:"載っています";font-size:10.5px;letter-spacing:.06em}
+  .side .picker button .sig{margin-left:8px}
+  .side .grp{margin:8px 0 4px;font-size:11px;color:var(--muted);letter-spacing:.1em}
+  .side .legend-mini{margin-top:12px;font-size:11.5px;color:var(--muted);line-height:1.8}
+  .side .legend-mini .sig{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--star);margin-right:6px;vertical-align:1px}
+  @media (max-width:1100px){.side{position:static;max-height:none}.side .picker{flex-direction:row;flex-wrap:wrap}.side .picker button{border-color:var(--line)}}
+  .stage{position:relative;width:100%;aspect-ratio:16/10;background:var(--panel);border:1px solid var(--line)}
+  canvas{display:block;width:100%;height:100%;cursor:pointer}
+  aside{background:var(--panel);border:1px solid var(--line);padding:20px 22px}
+  aside h2{font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.06em;margin:0 0 4px}
+  aside .meta{font-size:12.5px;color:var(--muted);letter-spacing:.04em;margin:0 0 14px;line-height:1.9}
+  aside .meta b{font-weight:500;color:var(--text)}
+  .wills{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 12px}
+  .wills button{background:none;border:1px solid var(--line);color:var(--muted);font:inherit;font-size:13px;padding:7px 0;cursor:pointer;letter-spacing:.06em}
+  .wills button[aria-pressed="true"]{color:var(--text);border-color:var(--c)}
+  .wills .give{--c:var(--w-give)} .wills .erase{--c:var(--w-erase)} .wills .keep{--c:var(--w-keep)} .wills .undecided{--c:var(--muted)}
+  label.to{display:block;font-size:12.5px;color:var(--muted);letter-spacing:.06em}
+  input[type=text],textarea{width:100%;box-sizing:border-box;background:var(--ground);border:1px solid var(--line);color:var(--text);font:inherit;padding:8px 10px;margin-top:4px}
+  textarea{min-height:120px;resize:vertical;line-height:1.8}
+  .ask{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:#c9c5bc;line-height:1.8}
+  .ask p{margin:0 0 6px}
+  .ask .q{font-family:var(--serif);color:var(--text)}
+  .empty{color:var(--muted);font-size:13.5px}
+  [hidden]{display:none!important}
+  .legend{display:flex;gap:24px;flex-wrap:wrap;margin:14px 2px 0;font-size:12.5px;color:var(--muted);letter-spacing:.06em}
+  .legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:-1px;background:var(--c)}
+  .legend .give{--c:var(--w-give)} .legend .erase{--c:var(--w-erase)} .legend .keep{--c:var(--w-keep)}
+  .legend .undecided::before{background:none;border:1px solid var(--muted)}
+  .legend .paid::before{background:var(--star)} .legend .free::before{background:none;border:1px solid var(--star)}
+  .legend .dep::before{border-radius:0;height:1px;width:18px;background:var(--muted);vertical-align:3px}
+  .legend .bill::before{border-radius:0;height:0;width:18px;border-top:1px dashed var(--muted);background:none;vertical-align:3px}
+  .after{margin-top:44px;padding-top:26px;border-top:1px solid var(--line);max-width:62em}
+  .after h2{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:.08em;margin:0 0 6px}
+  .after p{margin:0 0 10px;color:var(--muted);font-size:13.5px}
+  .foot{margin-top:28px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .me{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--muted);letter-spacing:.06em}
+  .gate{max-width:34em;margin:18vh auto 0;text-align:left}
+  .gate h1{font-size:34px;margin:0 0 18px}
+  .gate p{color:#c9c5bc;margin:0 0 22px;line-height:2}
+  .gate a{display:inline-block;color:var(--text);text-decoration:none;border:1px solid var(--line);padding:9px 18px;letter-spacing:.08em;margin-right:12px}
+  .gate a:hover{border-color:var(--star)}
+  .gate .demo{color:var(--muted);border-color:transparent}
+  .gate small{display:block;margin-top:26px;color:var(--muted);font-size:12.5px;line-height:1.9}
+  .start{margin:0 0 18px;padding:18px 22px;border:1px solid var(--line);background:var(--panel);max-width:62em}
+  .start p{margin:0 0 10px;color:#c9c5bc}
+  .start a{color:var(--text);text-decoration:none;border:1px solid var(--line);padding:7px 16px;letter-spacing:.08em}
+  .start a:hover{border-color:var(--star)}
+  .me a{color:var(--text);text-decoration:none;border:1px solid var(--line);padding:5px 12px}
+  .me a:hover{border-color:var(--star)}
+  .fp{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);max-width:62em}
+  .fp h2{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:.08em;margin:0 0 6px}
+  .fp p{margin:0 0 10px;color:var(--muted);font-size:13.5px}
+  .fp table{border-collapse:collapse;font-size:13.5px;margin:8px 0 12px}
+  .fp td{padding:3px 18px 3px 0;color:#c9c5bc;font-variant-numeric:tabular-nums}
+  .fp td:first-child{color:var(--muted)}
+  .fp .q{font-family:var(--serif);color:var(--text);font-size:14.5px;line-height:1.9}
+  .say{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);max-width:62em}
+  .say h2{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:.08em;margin:0 0 6px}
+  .say p{margin:0 0 10px;color:var(--muted);font-size:13.5px}
+  .say form{display:flex;gap:8px}
+  .say input[type=text]{margin:0;flex:1}
+  .go{background:none;border:1px solid var(--line);color:var(--text);font:inherit;font-size:13.5px;padding:0 18px;cursor:pointer;letter-spacing:.08em;white-space:nowrap}
+  .go[disabled]{color:var(--muted);cursor:default}
+  .reply{margin-top:14px;font-size:13.5px;line-height:1.9;color:#c9c5bc}
+  .reply .q{font-family:var(--serif);color:var(--text)}
+  .reply ul{margin:6px 0 0;padding-left:1.2em}
+  .reply .err{color:var(--w-keep)}
+  .add{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);max-width:62em}
+  .add h2{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:.08em;margin:0 0 6px}
+  .add p{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+  .picker{display:flex;flex-wrap:wrap;gap:6px}
+  .picker button{background:none;border:1px solid var(--line);color:var(--muted);font:inherit;font-size:13px;padding:6px 12px;cursor:pointer;letter-spacing:.04em}
+  .picker button[aria-pressed="true"]{color:var(--text);border-color:var(--star)}
+  .picker button .sig{display:inline-block;width:6px;height:6px;border-radius:50%;margin-left:8px;vertical-align:1px;background:var(--faint)}
+  .picker button .sig.yes{background:var(--star)}
+  .added{margin-top:12px;font-size:13.5px;color:#c9c5bc;line-height:1.9}
+  .added .q{font-family:var(--serif);color:var(--text)}
+  .plans{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 6px}
+  .plans button{background:none;border:1px solid var(--line);color:var(--muted);font:inherit;font-size:12.5px;padding:5px 10px;cursor:pointer;letter-spacing:.03em;font-variant-numeric:tabular-nums}
+  .plans button[aria-pressed="true"]{color:var(--text);border-color:var(--star)}
+  .plan-row{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+  .plan-row label{white-space:nowrap}
+  .plan-row input[type=number]{width:7em;margin:0;padding:5px 8px;font-variant-numeric:tabular-nums}
+  .plan-row select{background:var(--ground);border:1px solid var(--line);color:var(--text);font:inherit;font-size:12.5px;padding:5px 6px}
+  .plan-label{font-size:12.5px;color:var(--muted);letter-spacing:.06em;margin-top:12px}
+  .flow{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);max-width:62em}
+  .flow h2{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:.08em;margin:0 0 6px}
+  .flow p{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;counter-reset:st}
+  @media (max-width:820px){.steps{grid-template-columns:1fr}}
+  .steps li{position:relative;background:var(--panel);border:1px solid var(--line);padding:14px 16px 14px;margin-right:22px;min-height:96px}
+  .steps li:last-child{margin-right:0}
+  .steps li::after{content:"";position:absolute;right:-22px;top:50%;width:22px;height:1px;background:var(--faint)}
+  .steps li:last-child::after{display:none}
+  @media (max-width:820px){.steps li{margin-right:0;margin-bottom:14px}.steps li::after{display:none}}
+  .steps li.now{border-color:var(--star)}
+  .steps .k{font-family:var(--serif);font-size:15px;color:var(--text);letter-spacing:.04em;margin:0 0 6px}
+  .steps .d{font-size:12.5px;color:var(--muted);line-height:1.7;margin:0}
+  .steps .n{position:absolute;top:-10px;left:12px;background:var(--ground);padding:0 6px;font-size:11px;color:var(--star);letter-spacing:.1em}
+  .flow-note{font-size:12.5px;color:var(--muted);margin:12px 0 0;line-height:1.8}
+  .mermaid-wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);padding:10px}
+  .mermaid-wrap .mermaid{margin:0}
+  .mermaid-wrap svg{display:block}
+  .watchnow{display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:var(--muted);letter-spacing:.06em;margin:0 0 12px}
+  .watchnow b{font-weight:500;color:var(--text);margin-left:8px;font-variant-numeric:tabular-nums}
+  .timeline{list-style:none;margin:16px 0 0;padding:0;font-size:13.5px}
+  .timeline li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:6px 0;border-bottom:1px solid var(--line);color:#c9c5bc}
+  .timeline li span{color:var(--muted);font-variant-numeric:tabular-nums}
+  .timeline li.deny{color:var(--w-keep)}
+  .timeline li.llm div{font-family:var(--serif);color:var(--text)}
+  .report{max-height:420px;overflow:auto;white-space:pre-wrap;background:var(--panel);border:1px solid var(--line);padding:16px 18px;margin-top:16px;font:inherit;font-size:13.5px;line-height:1.8;color:#c9c5bc}
+  .watchnow .exp{flex-basis:100%;color:#c9c5bc;font-size:13.5px;letter-spacing:0;line-height:1.8}
+  .who{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);max-width:62em}
+  .who h2{font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:.08em;margin:0 0 6px}
+  .who p{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+  .who table{border-collapse:collapse;width:100%;font-size:13.5px}
+  .who td{padding:6px 10px 6px 0;border-bottom:1px solid var(--line);color:#c9c5bc;vertical-align:middle}
+  .who td input{margin:0}
+  .who .row-add{display:flex;gap:8px;margin-top:10px}
+  .who .row-add input{margin:0;flex:1}
+  .who .note{margin-top:10px;font-size:12.5px}
+  .who .warn{color:var(--w-give)}
+  .x{background:none;border:1px solid var(--line);color:var(--muted);font:inherit;font-size:12px;padding:3px 8px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="gate" id="gate" hidden>
+  <h1 style="font-family:var(--serif);font-weight:500;letter-spacing:.06em">あとのこと</h1>
+  <p>何があるかを描く。誰に渡すかを塗る。いなくなったら、そのとおりに。</p>
+  <p style="font-size:14px;color:var(--muted);margin-top:-8px">ネットの契約や写真、アカウントを、あなたに何かあったとき「家族に渡す」か「止める」かを決めておく場所です。決めたあとは何もしなくていい。毎日こちらが、あなたの Google アカウントの動きを静かに見ています。</p>
+  <a class="demo" href="?demo=1" style="border-color:var(--line)">まず架空の例を見る</a><a href="/login?kind=watch" id="gate-login">自分の分をつくる（Google でログイン）</a><a class="demo" href="/web/judge.html">審査用アカウントで入る</a>
+  <small>ログインで求めるのは読み取りだけです。メールの既読と送信の日時、注文や予約の通知、Drive の活動、予定の変更、YouTube の高評価。件名や本文は見ません。受信箱の本文を読むのは、あなたが「棚卸し」を押したときの一回だけです。</small>
+</div>
+<main id="main" hidden>
+  <header>
+    <h1>あとのこと<small id="who">山田太郎</small></h1>
+    <div class="controls">
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-view="sky">星図</button>
+        <button role="tab" aria-selected="false" data-view="tree">月額で見る</button>
+      </div>
+      <div class="me" id="me"></div>
+      <label class="silence" title="もし何日も動きが無かったら、星がどう暗くなるかを試すつまみ。実際の見張りとは別です">もし止まったら
+        <input type="range" id="t" min="0" max="120" value="0" step="1">
+        <output id="tout">0 日</output>
+      </label>
+    </div>
+  </header>
+
+  <div class="start" id="start" hidden></div>
+  <div class="summary" id="summary"></div>
+
+  <div class="wrap">
+    <nav class="side" aria-label="足す">
+      <h2>足す</h2>
+      <p>受信箱に痕跡が無いものはここから。押すと地図に載り、右で契約とプランを選べます。</p>
+      <input type="text" id="pfilter" placeholder="探す" autocomplete="off">
+      <div class="picker" id="picker"></div>
+      <p class="legend-mini"><span class="sig"></span>足すと、そのサービスの活動も見張りの合図にできる</p>
+    </nav>
+    <div>
+      <div class="stage"><canvas id="c" aria-label="デジタル資産の地図"></canvas></div>
+      <div class="legend">
+        <span class="give">渡す</span><span class="erase">消す</span><span class="keep">残す</span><span class="undecided">未定</span>
+        <span class="paid">有料</span><span class="free">無料</span>
+        <span class="dep">ログインの依存</span><span class="bill">課金の依存</span>
+      </div>
+    </div>
+    <aside id="panel"><p class="empty">星を押すと、その資産をどうするかを決められます。</p></aside>
+  </div>
+
+  <section class="flow">
+    <h2>何かあったとき、どうなるか</h2>
+    <p>見張りは裏であなたの Google アカウントの動きだけを追います。あとのことへのログインは合図にしません。段階ごとの日数は下限で、短くなることはありません。</p>
+    <div class="watchnow" id="watchnow"></div>
+    <ol class="steps" id="flowsteps"></ol>
+    <p class="flow-note">どの段階でも、あなたの動きが見えたら最初に戻ります。確認者の誰かが「連絡が取れた」と答えても戻ります。実行の前には、あなた宛てに最後の通知を送って 7 日待ちます。</p>
+    <p class="flow-note">保険として: Google の「アカウント無効化管理ツール」の信頼できる連絡先に あとのこと を入れておくと、上の見張りが全部止まっていても、Google の通知（最短 3 か月）で「沈黙 60 日」の段階に入ります。</p>
+    <details class="flow-note"><summary style="cursor:pointer">詳しい図（本人・見張り・確認者・実行の順番）</summary><div class="mermaid-wrap" style="margin-top:10px"><pre class="mermaid" id="flowchart"></pre></div></details>
+  </section>
+
+  <section class="flow" id="invlog" hidden>
+    <h2>この地図は、どうやってできたか</h2>
+    <p>審査員向け。棚卸しエージェント（ADK、4 段: scout → linker → classifier → verifier）を、架空の受信箱 72 通に対していま走らせます。探索の順番、本文を読み直す判断、注入メールの報告が、そのまま流れます。2〜3 分かかります。</p>
+    <button type="button" class="go" id="invrun">いま走らせる</button>
+    <pre class="report" id="invlogbody" hidden></pre>
+    <p class="flow-note" id="invnote"></p>
+  </section>
+
+  <section class="flow" id="enclavedemo" hidden>
+    <h2>封印は、承認されたコードの中でしか開かない</h2>
+    <p>審査員向け。架空の山田太郎が預けた Netflix の資格情報（ブラウザで KMS の公開鍵で封印済み）を、本物の Confidential Space の VM を起こして開け、執行します。5 分ほどかかります。30 分に 1 回だけ。復号を許されているのは、いま動いている執行コードの image digest ひとつです。Cloud Run 側のサービスアカウントで同じ復号を試すと PERMISSION_DENIED になります（実測済み）。</p>
+    <button type="button" class="go" id="enclaverun">本物の enclave で開ける</button>
+    <pre class="report" id="enclavelog" hidden></pre>
+    <p class="flow-note" id="enclavenote"></p>
+  </section>
+
+  <section class="flow" id="demofire" hidden>
+    <h2>この人が、いなくなったら</h2>
+    <p>審査員向け。架空の山田太郎について、沈黙から執行までを時間を圧縮して通します。82 日が数秒になります。本物のアカウントには触りません。</p>
+    <button type="button" class="go" id="firebtn">通してみる</button>
+    <ol class="timeline" id="timeline"></ol>
+    <pre class="report" id="demoreport" hidden></pre>
+  </section>
+
+  <section class="who">
+    <h2>もしものとき、誰に連絡が行くか</h2>
+    <p>沈黙が 60 日続いたら、ここに登録した確認者に連絡します。2 人以上が「本人と連絡が取れない」と答えて初めて、遺志の執行が始まります。確認者は決めるだけで、何を渡すか・消すかには関われません。</p>
+    <table id="whotable"></table>
+    <div class="row-add"><input type="text" id="wname" placeholder="名前（妻、田中さん）"><input type="text" id="wmail" placeholder="連絡先（メール）"><button type="button" class="go" id="wadd">足す</button></div>
+    <p class="note" id="whonote"></p>
+  </section>
+
+  <section class="fp" id="fp" hidden>
+    <h2>あなたの足跡</h2>
+    <p>直近 90 日に Google の上で残した行為の回数です。件名も本文も見ていません。ここから、何で見張れるかが決まります。</p>
+    <div id="fpbody"></div>
+  </section>
+
+  <section class="say">
+    <h2>一言で</h2>
+    <p>「写真は妻に」「サブスクは全部止めて」のように。地図の星に色が付きます。曖昧なら聞き返します。</p>
+    <form id="sayform"><input type="text" id="say" placeholder="Netflix は解約して" autocomplete="off"><button type="submit" class="go">聞く</button></form>
+    <div class="reply" id="reply" hidden></div>
+  </section>
+
+  <section class="after">
+    <h2>あとがき</h2>
+    <p>地図に書けないことを、ここに。この端末ではなく、あとのことに保存します。開けるのは、あなたがいなくなったあと、確認者が揃ったときだけです。</p>
+    <textarea id="afterword" placeholder="例: 写真は妻に。GitHub の会社のリポジトリは同僚の田中さんに引き継ぎを。"></textarea>
+    <p class="meta" id="afternote"></p>
+  </section>
+  <p class="foot" id="foot"></p>
+</main>
+
+<script>
+(async () => {
+  // 外部由来の文字列（受信箱から来た資産名、LLM の説明、確認者名）は必ずこれを通す
+  const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  // ---- データ: 棚卸しエージェントの出力 (data/assets.json) を読む。無ければ同梱の例 ----
+  const FALLBACK = [
+    {name:"Google アカウント",category:"基盤",monthly_cost:0,billing_via:"free",login_via:"password",cadence_days:1,last_activity_days_ago:0},
+    {name:"Netflix",category:"契約",monthly_cost:1490,billing_via:"direct",login_via:"google",cadence_days:4,last_activity_days_ago:1,depends_on:["Google アカウント"]},
+    {name:"YouTube Premium",category:"契約",monthly_cost:1280,billing_via:"google_play",login_via:"google",cadence_days:2,last_activity_days_ago:0,depends_on:["Google アカウント"]},
+    {name:"Adobe Creative Cloud",category:"契約",monthly_cost:6480,billing_via:"direct",login_via:"password",cadence_days:30,last_activity_days_ago:null,unused:true},
+    {name:"LINE",category:"交流",monthly_cost:0,billing_via:"free",login_via:"password",cadence_days:1,last_activity_days_ago:0},
+  ];
+  const params = new URLSearchParams(location.search), DEMO = params.get("demo") === "1";
+  let ME = {email:null};
+  try { ME = await (await fetch("/api/me")).json(); } catch (e) {}
+  if (!ME.email && !DEMO) { document.getElementById("gate").hidden = false; return; }
+  document.getElementById("main").hidden = false;
+  let raw = [], source = "";
+  if (ME.email && !DEMO) {
+    try { const r = await fetch("/api/assets?me=1", {cache:"no-store"}); if (r.ok) { raw = await r.json(); source = raw.length ? "あなたの受信箱の棚卸し" : "まだ棚卸ししていない"; } } catch (e) {}
+    document.getElementById("who").textContent = ME.email;
+  } else {
+    raw = FALLBACK; source = "同梱の例";
+    try { const r = await fetch("../data/assets.json", {cache:"no-store"}); if (r.ok) { raw = await r.json(); source = "架空の山田太郎（合成データ）"; } } catch (e) {}
+    document.getElementById("who").textContent = "山田太郎（架空）";
+  }
+  raw = (Array.isArray(raw) ? raw : raw.assets || []).filter(x => x && (x.name || x.service));
+
+  // 内部形式へ。cad=普段触る間隔, last=最終活動からの日数(不明=90日超)
+  const CATS = ["基盤","仕事","契約","交流","金融"];
+  const A = raw.map(x => ({
+    n: x.name || x.service, cat: CATS.includes(x.category) ? x.category : "契約",
+    cost: +x.monthly_cost || 0, via: x.billing_via || (x.monthly_cost > 0 ? "direct" : "free"), login: x.login_via || "password",
+    cad: Math.max(1, +x.cadence_days || 7), last: x.last_activity_days_ago == null ? 120 : +x.last_activity_days_ago,
+    dep: (x.depends_on || []).slice(), notes: x.notes || "", will: "undecided", to: "", plan: null, billing: (+x.cadence_days >= 365 ? "yearly" : "monthly"),
+  }));
+  // 起点: Google アカウント。ログイン中は本人のアカウントが必ず地図の中心にある（棚卸し前でも）
+  if (ME.email && !DEMO && !A.some(a => /google.*アカウント|^google$/i.test(a.n)))
+    A.unshift({n:"Google アカウント", cat:"基盤", cost:0, via:"free", login:"password", cad:1, last:0, dep:[], notes:ME.email, will:"undecided", to:"", plan:null, billing:"monthly", hub:true});
+  const hubName = s => (A.find(a => /google.*アカウント|^google$/i.test(a.n)) || {}).n;
+  const GHUB = hubName();
+  if (A.some(a => a.via === "app_store" || a.login === "apple") && !A.some(a => /apple/i.test(a.n)))
+    A.push({n:"Apple ID",cat:"基盤",cost:0,via:"free",login:"password",cad:1,last:0,dep:[],notes:"",will:"undecided",to:"",synthetic:true});
+  const AHUBn = () => (A.find(a => /apple/i.test(a.n)) || {}).n, YHUBn = () => (A.find(a => /yahoo/i.test(a.n)) || {}).n;
+  const AHUB = AHUBn();
+  const YHUB = (A.find(a => /yahoo/i.test(a.n)) || {}).n;
+  const HUBS = () => A.filter(a => a.hub || a.n===GHUB || a.n===AHUB || a.n===YHUB || a.cat==="基盤" && /アカウント|ID/.test(a.n));
+  // 依存の線: ログイン(実線) と 課金(点線)。ログイン経路や課金元を変えるたびに引き直す
+  let edges = [];
+  function buildEdges(){
+    edges = [];
+    A.forEach(a => {
+      const g = hubName(), ap = (A.find(x => /apple/i.test(x.n)) || {}).n, y = (A.find(x => /yahoo/i.test(x.n)) || {}).n;
+      if (a.login === "google" && g && a.n !== g) edges.push({from:a.n,to:g,kind:"login"});
+      if (a.login === "apple" && ap && a.n !== ap) edges.push({from:a.n,to:ap,kind:"login"});
+      if (a.login === "yahoo" && y && a.n !== y) edges.push({from:a.n,to:y,kind:"login"});
+      if (a.via === "google_play" && g && a.n !== g) edges.push({from:a.n,to:g,kind:"bill"});
+      if (a.via === "app_store" && ap && a.n !== ap) edges.push({from:a.n,to:ap,kind:"bill"});
+      a.dep.forEach(d => { if (!edges.some(e => e.from===a.n && e.to===d)) edges.push({from:a.n,to:d,kind:"login"}); });
+    });
+  }
+  buildEdges();
+  const dependents = h => [...new Set(edges.filter(e => e.to === h).map(e => e.from))].map(n => A.find(a => a.n === n)).filter(Boolean);
+
+  // ---- 足す: カタログから手で ----
+  let CAT = [];
+  try { const r = await fetch("../data/catalog.json", {cache:"no-store"}); if (r.ok) CAT = (await r.json()).services; } catch (e) {}
+  const SIGTXT = {google:"Google の見張りの同意で合図になる", mail:"通知メールが合図になる（Google の同意の範囲内。定期課金は数えない）", none:"認証なしで合図になる", oauth:"同意すれば合図になる", no:"合図にはならない（地図に載るだけ）"};
+  const has = n => A.some(a => a.n === n);
+  const addFromCatalog = c => {
+    if (has(c.name)) return;
+    A.push({n:c.name, cat:c.cat, cost:0, via:"free", login:"password", cad:7, last:0, dep:[], notes:c.signal.how,
+            will:"undecided", to:"", added:true, signal:c.signal.auth, plan:null, plans:c.plans||[], billing:"monthly", hub:!!c.hub});
+    pos.push(jitter(centers[c.cat] || centers["契約"]));
+    if (c.hub && /apple/i.test(c.name)) {} // ハブとして足した場合も星は同じ
+  };
+  const jitter = ([x0,y0]) => { const r = .05 + rnd()*.10, th = rnd()*Math.PI*2; return [Math.min(.80,Math.max(.05,x0+Math.cos(th)*r*1.3)), Math.min(.92,Math.max(.10,y0+Math.sin(th)*r))]; };
+  let justAdded = null;
+  function picker(){
+    const el = document.getElementById("picker"), f = (document.getElementById("pfilter").value || "").toLowerCase();
+    const btn = c => `<button type="button" data-n="${esc(c.name)}" aria-pressed="${has(c.name)}"><span>${esc(c.name)}</span><span class="sig ${c.signal.auth!=="no"?"yes":""}"></span></button>`;
+    const rank = c => (c.signal.auth === "mail" || c.signal.auth === "google") ? 0 : c.signal.auth === "none" ? 1 : c.signal.auth === "oauth" ? 2 : 3;   // 通知メールで取れるものを先頭に
+    const list = CAT.filter(c => !f || c.name.toLowerCase().includes(f)).sort((a,b) => rank(a)-rank(b));
+    el.innerHTML = `<p class="grp">起点になるアカウント</p>` + list.filter(c => c.hub).map(btn).join("")
+      + `<p class="grp">合図になるサービス</p>` + list.filter(c => !c.hub && c.signal.auth !== "no").map(btn).join("")
+      + `<p class="grp">地図に載るだけ</p>` + list.filter(c => !c.hub && c.signal.auth === "no").map(btn).join("");
+    el.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+      const c = CAT.find(x => x.name === b.dataset.n); if (!c) return;
+      if (!has(c.name)) { addFromCatalog(c); save(); summary(); draw(); picker(); justAdded = c.name; }
+      sel = A.find(a => a.n === c.name); panel(); draw();
+      document.getElementById("panel").scrollIntoView({behavior:"smooth", block:"nearest"});
+    }));
+  }
+  document.getElementById("pfilter").addEventListener("input", picker);
+
+  // ---- 遺志の保存 ----
+  // ログイン中はサーバ（利用者の置き場）が正。端末の保存は表示の細部（金額・プラン）だけに使う。架空モードは will_demo.json と確認者 2 人で始める
+  const SRV = {will: {}, who: null, after: null};
+  if (ME.email && !DEMO) {
+    try { const [w, c, af] = await Promise.all(["/api/will", "/api/confirmers", "/api/afterword"].map(u => fetch(u, {cache:"no-store"}).then(r => r.ok ? r.json() : null)));
+          if (w && typeof w === "object") SRV.will = w; if (Array.isArray(c)) SRV.who = c; if (af && typeof af.text === "string") SRV.after = af.text; } catch (e) {}
+  } else if (DEMO) {
+    try { const r = await fetch("../data/will_demo.json", {cache:"no-store"}); if (r.ok) SRV.will = await r.json(); } catch (e) {}
+    SRV.who = [{name:"妻（花子）", mail:"hanako@example.com"}, {name:"同僚（田中）", mail:"tanaka@example.com"}];
+    SRV.after = "写真は妻に。GitHub の会社のリポジトリは同僚の田中さんに引き継ぎを。";
+  }
+  const KEY = "atonokoto.will.v1." + (DEMO || !ME.email ? "demo" : ME.email);   // 架空と本人で保存を分ける
+  try { const s = JSON.parse(localStorage.getItem(KEY) || "{}");
+        window.__restoreAdded = s.__added || [];
+        A.forEach(a => { if (s[a.n]) applySaved(a, s[a.n]); });
+        document.getElementById("afterword").value = s.__afterword || ""; } catch (e) {}
+  Object.entries(SRV.will).forEach(([n, v]) => { const a = A.find(x => x.n === n); if (a && v && v.will) { a.will = v.will; if (v.to) a.to = v.to; if (v.login) a.login = v.login; if (v.sealed) a.sealed = true; } });
+  if (SRV.after != null && (!DEMO || !document.getElementById("afterword").value)) document.getElementById("afterword").value = SRV.after;
+  function applySaved(a, v){ a.will = v.will || a.will; a.to = v.to || a.to; if (v.cost != null) a.cost = v.cost; if (v.via) a.via = v.via; if (v.plan !== undefined) a.plan = v.plan; if (v.billing) a.billing = v.billing; if (v.login) a.login = v.login; if (v.sigid) { a.sigid = v.sigid; a.signote = v.signote; } }
+  const save = () => { try { const s = {}; A.forEach(a => s[a.n] = {will:a.will,to:a.to,cost:a.cost,via:a.via,plan:a.plan,billing:a.billing,login:a.login,sigid:a.sigid,signote:a.signote}); s.__afterword = document.getElementById("afterword").value;
+        s.__added = A.filter(a => a.added).map(a => a.n); localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} saveWill(); };
+
+  // ---- 描画 ----
+  const WILL = {give:"#c9a86a", erase:"#6f7a8a", keep:"#a85a4e", undecided:null};
+  const STAR="#f2e9c9", FAINT="#3a3e49", MUTED="#7c7f88", TEXT="#e6e2d8", PANEL="#141720";
+  const paid = a => a.cost > 0;
+  const bright = (a,t) => { const since = a.last + t; return Math.max(0, Math.min(1, 1 - (since - a.cad) / (a.cad*2))); };
+  let seed = 7; const rnd = () => { seed = (seed*9301+49297) % 233280; return seed/233280; };
+  const cv = document.getElementById("c"), cx = cv.getContext("2d");
+  let view = "sky", t = 0, W = 0, H = 0, sel = null, rects = [];
+  const size = () => { const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1; W = r.width; H = r.height; cv.width = W*d; cv.height = H*d; cx.setTransform(d,0,0,d,0,0); };
+  const font = (px,serif) => `${serif?500:400} ${px}px ${serif?'"Shippori Mincho",serif':'"Zen Kaku Gothic New",sans-serif'}`;
+  const mix = (hex,k) => { const p=x=>parseInt(x,16), c=hex.slice(1), g=FAINT.slice(1); const ch=i=>Math.round(p(c.substr(i,2))*(1-k)+p(g.substr(i,2))*k); return `rgb(${ch(0)},${ch(2)},${ch(4)})`; };
+
+  const centers = {基盤:[.22,.36],仕事:[.60,.24],契約:[.74,.66],交流:[.34,.74],金融:[.50,.50]};
+  seed = 7;
+  const pos = A.map(a => { const [x0,y0] = centers[a.cat]; const r = .05 + rnd()*.10, th = rnd()*Math.PI*2; return [x0+Math.cos(th)*r*1.3, y0+Math.sin(th)*r]; });
+  // ハブは種類の中心に置く
+  A.forEach((a,i) => { if (a.n === GHUB) pos[i] = centers["基盤"].slice(); if (a.n === AHUB) pos[i] = [centers["基盤"][0]+.14, centers["基盤"][1]+.16]; });
+  // 名札が重ならないように、近い星を少しずつ離す（決定的）。右端は名札の分だけ余白を残す
+  (function relax(){
+    for (let it = 0; it < 120; it++) for (let i = 0; i < pos.length; i++) for (let j = i+1; j < pos.length; j++) {
+      const dx = (pos[j][0]-pos[i][0])*1.6, dy = pos[j][1]-pos[i][1], d = Math.hypot(dx,dy) || 1e-4, min = .165;
+      if (d < min) { const k = (min-d)/d*.5; pos[i][0] -= dx*k/1.6; pos[i][1] -= dy*k; pos[j][0] += dx*k/1.6; pos[j][1] += dy*k; }
+    }
+    pos.forEach(p => { p[0] = Math.min(.80, Math.max(.05, p[0])); p[1] = Math.min(.92, Math.max(.10, p[1])); });
+  })();
+  const radius = a => 3 + Math.sqrt(a.cost)/18 + (a.hub || a.n===GHUB || a.n===AHUBn() || a.n===YHUBn() ? 3 : 0);
+  (window.__restoreAdded || []).forEach(n => { const c = CAT.find(x => x.name === n); if (c) addFromCatalog(c); });
+  try { const s = JSON.parse(localStorage.getItem(KEY) || "{}"); A.forEach(a => { if (a.added && s[a.n]) applySaved(a, s[a.n]); }); } catch (e) {}
+
+  function drawSky(){
+    cx.fillStyle = PANEL; cx.fillRect(0,0,W,H);
+    const P = i => [pos[i][0]*W, pos[i][1]*H];
+    edges.forEach(e => {
+      const i = A.findIndex(a => a.n===e.from), j = A.findIndex(a => a.n===e.to); if (i<0||j<0) return;
+      const b = Math.max(bright(A[i],t), paid(A[i]) ? .35 : 0), hi = sel && (A[i].n===sel.n || A[j].n===sel.n);
+      cx.strokeStyle = `rgba(230,226,216,${hi ? .55 : .08 + .18*b})`; cx.lineWidth = hi ? 1.2 : 1;
+      if (e.kind === "bill") cx.setLineDash([3,5]);
+      cx.beginPath(); cx.moveTo(...P(i)); cx.lineTo(...P(j)); cx.stroke(); cx.setLineDash([]);
+    });
+    A.forEach((a,i) => {
+      const [x,y] = P(i), b = bright(a,t), keep = paid(a), rr = radius(a);
+      if (b > .02 || keep) { const g = cx.createRadialGradient(x,y,0,x,y,rr*4), al = keep ? Math.max(b,.35) : b;
+        g.addColorStop(0,`rgba(242,233,201,${.55*al})`); g.addColorStop(1,"rgba(242,233,201,0)"); cx.fillStyle = g; cx.beginPath(); cx.arc(x,y,rr*4,0,Math.PI*2); cx.fill(); }
+      const col = mix(STAR, 1-(keep ? Math.max(b,.35) : b));
+      cx.beginPath(); cx.arc(x,y,rr,0,Math.PI*2);
+      if (keep) { cx.fillStyle = col; cx.fill(); } else { cx.lineWidth = 1.4; cx.strokeStyle = col; cx.stroke(); cx.fillStyle = PANEL; cx.beginPath(); cx.arc(x,y,rr-1.4,0,Math.PI*2); cx.fill(); }
+      const w = WILL[a.will]; cx.lineWidth = 1.2; cx.strokeStyle = w || MUTED; if (!w) cx.setLineDash([2,3]);
+      cx.beginPath(); cx.arc(x,y,rr+4,0,Math.PI*2); cx.stroke(); cx.setLineDash([]);
+      if (sel && sel.n === a.n) { cx.strokeStyle = TEXT; cx.lineWidth = 1; cx.beginPath(); cx.arc(x,y,rr+9,0,Math.PI*2); cx.stroke(); }
+      cx.fillStyle = b > .3 || keep ? TEXT : MUTED; cx.font = font(11.5,false); cx.textAlign = "left"; cx.fillText(a.n, x+rr+9, y+4);
+      if (keep && b < .3) { cx.fillStyle = MUTED; cx.font = font(10,false); cx.fillText(`課金継続 ¥${a.cost.toLocaleString()}/月`, x+rr+9, y+17); }
+    });
+    cx.font = font(13,true); cx.fillStyle = "rgba(124,127,136,.7)"; cx.textAlign = "center";
+    const lab = {基盤:[.22,.19],仕事:[.60,.10],契約:[.74,.87],交流:[.34,.90],金融:[.50,.62]};
+    CATS.forEach(c => { const [x,y] = lab[c]; cx.fillText(c, x*W, y*H); });
+  }
+  function squarify(items,x,y,w,h,out){
+    if (!items.length) return; const total = items.reduce((s,a)=>s+a.v,0); let row=[], rest=items.slice(), rowSum=0;
+    const worst=(row,s,len)=>{const a2=len*len,mx=Math.max(...row.map(r=>r.v)),mn=Math.min(...row.map(r=>r.v));return Math.max(a2*mx/(s*s),s*s/(a2*mn));};
+    const horiz = w>=h, len = horiz?h:w;
+    while (rest.length) { const it=rest[0], s=rowSum+it.v, scale=(w*h)/total;
+      const ra = row.length ? worst(row.map(r=>({v:r.v*scale})),rowSum*scale,len) : Infinity, na = worst(row.concat(it).map(r=>({v:r.v*scale})),s*scale,len);
+      if (na<=ra) { row.push(it); rowSum=s; rest.shift(); } else break; }
+    const frac=rowSum/total;
+    if (horiz) { const rw=w*frac; let cy=y; row.forEach(r=>{const rh=h*(r.v/rowSum); out.push({...r,x,y:cy,w:rw,h:rh}); cy+=rh;}); squarify(rest,x+rw,y,w-rw,h,out); }
+    else { const rh=h*frac; let cx0=x; row.forEach(r=>{const rw=w*(r.v/rowSum); out.push({...r,x:cx0,y,w:rw,h:rh}); cx0+=rw;}); squarify(rest,x,y+rh,w,h-rh,out); }
+  }
+  function drawTree(){
+    cx.fillStyle = PANEL; cx.fillRect(0,0,W,H);
+    const items = A.map(a => ({a, v: a.cost>0 ? a.cost : 180})).sort((p,q)=>q.v-p.v); rects = []; squarify(items,14,14,W-28,H-28,rects);
+    rects.forEach(r => { const a=r.a, b=bright(a,t), keep=paid(a), w=WILL[a.will], k = keep ? 1-Math.max(b,.55) : 1-b;
+      cx.fillStyle = w ? mix(w,k*.85) : mix("#2a2e3a",k*.5); cx.fillRect(r.x+1,r.y+1,r.w-2,r.h-2);
+      cx.strokeStyle = sel && sel.n===a.n ? TEXT : PANEL; cx.lineWidth = 2; cx.strokeRect(r.x+1,r.y+1,r.w-2,r.h-2);
+      if (r.w>70 && r.h>34) { cx.fillStyle = b>.3||keep ? TEXT : MUTED; cx.font = font(12,false); cx.textAlign="left"; cx.fillText(a.n, r.x+10, r.y+20);
+        cx.fillStyle = MUTED; cx.font = font(10.5,false); cx.fillText(a.cost>0 ? `¥${a.cost.toLocaleString()}/月` : "無料", r.x+10, r.y+36);
+        if (keep && b<.3) cx.fillText(r.w > 190 ? "使っていないのに払っている" : "使っていない", r.x+10, r.y+50); } });
+  }
+  const draw = () => { buildEdges(); size(); (view==="sky" ? drawSky : drawTree)(); };
+
+  // ---- 当たり判定 ----
+  cv.addEventListener("click", ev => {
+    const r = cv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top; let hit = null;
+    if (view === "sky") { let best = 1e9; A.forEach((a,i) => { const d = Math.hypot(pos[i][0]*W-x, pos[i][1]*H-y); if (d < radius(a)+12 && d < best) { best = d; hit = a; } }); }
+    else { const rr = rects.find(q => x>=q.x && x<=q.x+q.w && y>=q.y && y<=q.y+q.h); hit = rr && rr.a; }
+    sel = hit || null; panel(); draw();
+  });
+
+  // ---- 右の欄: 遺志を塗る、聞き返す ----
+  const VIA = {direct:"本体に直接",google_play:"Google Play 経由",app_store:"App Store 経由",carrier:"キャリア決済",free:"無料"};
+  const LOGIN = {google:"Google でログイン",apple:"Apple でログイン",yahoo:"Yahoo! JAPAN ID でログイン",password:"メールとパスワード"};
+  function asks(a){
+    const out = [];
+    if (a.will === "give" && !a.to) out.push({q:"誰に渡しますか。", note:"名前だけで構いません。連絡先はあとで。"});
+    const deps = dependents(a.n);
+    if (a.will === "erase" && deps.length) {
+      const undecided = deps.filter(d => d.will !== "erase");
+      if (undecided.length) out.push({q:`${a.n} を消すと、${undecided.map(d=>d.n).join("、")} にも入れなくなります。先にそちらを決めますか。`, note:"Google など、他のログインの元になるものは最後に処理します。依存が残っている間は消しません。"});
+    }
+    if (a.will === "erase" && a.via === "google_play") out.push({q:"", note:"Google Play の定期購入は Google アカウントを閉じても止まりません。先に定期購入を止めます。"});
+    if (a.will === "erase" && a.via === "app_store") out.push({q:"", note:"App Store の定期購入は Apple ID 側で止める必要があります。"});
+    if (a.will === "keep" && paid(a)) out.push({q:"", note:`触らない間も ¥${a.cost.toLocaleString()}/月 の請求は続きます。それでよければそのままで。`});
+    if (a.will === "undecided" && paid(a) && bright(a,0) < .3) out.push({q:`${a.n} は最近使っていないようです。今のうちに止めますか。`, note:"これは死後ではなく、今の話です。"});
+    if (a.notes) out.push({q:"", note:a.notes});
+    return out;
+  }
+  function panel(){
+    const el = document.getElementById("panel");
+    if (!sel) { el.innerHTML = '<p class="empty">星を押すと、その資産をどうするかを決められます。</p>'; return; }
+    const a = sel, b = bright(a,0);
+    const lastTxt = a.last >= 120 ? "90日以上前" : a.last === 0 ? "今日" : `${a.last} 日前`;
+    const c0 = CAT.find(c => c.name === a.n);
+    const addedNote = justAdded === a.n && c0 ? `<p class="meta" style="color:#c9c5bc">地図に足しました。無料か、どのプランをいくらで契約しているかを下で選んでください。${SIGTXT[c0.signal.auth]}${c0.signal.auth === "oauth" ? `。合図に使うには ${esc(a.n)} 側で一度同意が要ります` : ""}。</p>` : "";
+    el.innerHTML = `<h2>${esc(a.n)}</h2>${addedNote}
+      <p class="meta">${a.cat} ・ ${a.cost>0 ? `<b>¥${a.cost.toLocaleString()}</b>/月 ・ ${VIA[a.via]||esc(a.via)}` : "無料"}<br>
+      ${LOGIN[a.login]||esc(a.login)} ・ 普段 ${a.cad} 日ごと ・ 最終活動 <b>${lastTxt}</b>${b < .3 && a.cost>0 ? " ・ 使っていないのに払っている" : ""}</p>
+      <div class="wills">${["give","erase","keep","undecided"].map(w => `<button class="${w}" data-w="${w}" aria-pressed="${a.will===w}" title="${{give:"誰かに引き継いでもらう",erase:"解約して退会する",keep:"そのまま残す（請求も続く）",undecided:"まだ決めていない"}[w]}">${{give:"渡す",erase:"消す",keep:"残す",undecided:"未定"}[w]}</button>`).join("")}</div>
+      <p class="meta">渡す = 誰かに引き継いでもらう。消す = 解約して退会する。残す = そのまま置く（請求も続く）。</p>
+      <label class="to" ${a.will==="give" ? "" : "hidden"}>誰に<input type="text" id="to" value="${esc(a.to)}" placeholder="妻、会社、田中さん"></label>
+      ${(a.n===GHUB) ? "" : `<div class="plan-label">ログイン</div>
+      <div class="plans" id="logins">${["google","apple","yahoo","password"].filter(k => k==="password" || k==="google" || (k==="apple" && AHUBn()) || (k==="yahoo" && YHUBn())).map(k => `<button type="button" data-login="${k}" aria-pressed="${a.login===k}">${LOGIN[k]}</button>`).join("")}</div>`}
+      ${a.signal === "mail" ? `<div class="plan-label">見張りの合図</div><p class="meta">${esc(a.notes||"")}。Google の見張りの同意があれば、この店からの注文確認・予約・決済の通知が自動で合図になります。入力は要りません。</p>` : ""}
+      ${a.signal === "google" ? `<div class="plan-label">見張りの合図</div><p class="meta">${esc(a.notes||"")}。Google の見張りの同意に含まれます。入力は要りません。</p>` : ""}
+      ${(a.signal && a.signal !== "no" && a.signal !== "mail" && a.signal !== "google" && a.n !== GHUB) ? `<div class="plan-label">見張りの合図</div>
+      <div class="plan-row" id="sigrow"><input type="text" id="sigid" placeholder="${a.signal === "none" ? "ユーザー名" : "同意が要る"}" value="${esc(a.sigid)}" ${a.signal === "none" ? "" : "disabled"}><button type="button" class="go" id="sigbtn" ${a.signal === "none" ? "" : "disabled"}>確かめる</button></div>
+      <p class="meta" id="signote">${esc(a.signote || (a.signal === "none" ? "公開の活動を合図にします。ユーザー名を入れて確かめてください。" : "このサービスの同意はまだ用意できていません。地図には載ります。"))}</p>` : ""}
+      ${(ME.email && !DEMO && a.will === "erase" && a.cost > 0 && a.n !== GHUB) ? `<div class="plan-label">解約に使う資格情報を預ける（任意）</div>
+      <p class="meta">預けなくても解約依頼のメールで進めます。預けると、確認者が揃って 7 日のブレーキが解けた後、attestation を通った執行コードの中だけで開きます。この画面の中で公開鍵で封をしてから送るので、サーバーも私たちも平文を見ません。</p>
+      ${a.sealed ? `<p class="meta">封印済み。</p>` : `<div class="plan-row"><input type="text" id="seal-id" placeholder="会員番号やログイン ID" autocomplete="off"><input type="password" id="seal-pw" placeholder="パスワード（任意）" autocomplete="new-password"><button type="button" class="go" id="sealbtn">封をして預ける</button></div><p class="meta" id="sealnote"></p>`}` : ""}
+      <div class="plan-label">契約</div>
+      <div class="plans" id="plans">
+        <button type="button" data-plan="__free" aria-pressed="${a.cost===0}">無料</button>
+        ${(a.plans || (CAT.find(c=>c.name===a.n)||{}).plans || []).map(p => `<button type="button" data-plan="${esc(p.name)}" data-cost="${+p.cost||0}" aria-pressed="${a.plan===p.name}">${esc(p.name)} ¥${(+p.cost||0).toLocaleString()}</button>`).join("")}
+      </div>
+      <div class="plan-row">月額 ¥<input type="number" id="cost" min="0" step="10" value="${a.cost}">
+        <select id="billing"><option value="monthly" ${a.billing!=="yearly"?"selected":""}>月払い</option><option value="yearly" ${a.billing==="yearly"?"selected":""}>年払い（月あたりで入力）</option></select>
+        <select id="via"><option value="direct" ${a.via==="direct"?"selected":""}>本体に直接</option><option value="google_play" ${a.via==="google_play"?"selected":""}>Google Play</option><option value="app_store" ${a.via==="app_store"?"selected":""}>App Store</option><option value="carrier" ${a.via==="carrier"?"selected":""}>キャリア決済</option></select>
+      </div>
+      <div class="ask">${asks(a).map(x => (x.q ? `<p class="q">${esc(x.q)}</p>` : "") + (x.note ? `<p>${esc(x.note)}</p>` : "")).join("")}</div>`;
+    const sealb = el.querySelector("#sealbtn");
+    if (sealb) sealb.addEventListener("click", async () => {
+      const id = el.querySelector("#seal-id").value.trim(), pw = el.querySelector("#seal-pw").value, note = el.querySelector("#sealnote");
+      if (!id) { note.textContent = "会員番号かログイン ID を入れてください。"; return; }
+      sealb.disabled = true; sealb.textContent = "封をしています";
+      try {
+        const k = await (await fetch("/api/seal/pubkey")).json(); if (!k.pem) throw new Error(k.error || "公開鍵が無い");
+        const der = Uint8Array.from(atob(k.pem.replace(/-----[^-]+-----/g, "").replace(/\s+/g, "")), c => c.charCodeAt(0));
+        const key = await crypto.subtle.importKey("spki", der, {name: "RSA-OAEP", hash: "SHA-256"}, false, ["encrypt"]);
+        const plain = new TextEncoder().encode(JSON.stringify({account_id: id, password: pw || undefined, asset: a.n}));
+        const ct = new Uint8Array(await crypto.subtle.encrypt({name: "RSA-OAEP"}, key, plain));
+        const b64 = btoa(String.fromCharCode(...ct));
+        const r = await (await fetch("/api/seal", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({asset: a.n, ciphertext: b64})})).json();
+        if (r.error) throw new Error(r.error);
+        a.sealed = true; el.querySelector("#seal-pw").value = ""; save(); panel();
+      } catch (e) { note.textContent = "封をできませんでした: " + e.message; sealb.disabled = false; sealb.textContent = "封をして預ける"; }
+    });
+    const sb = el.querySelector("#sigbtn");
+    if (sb) sb.addEventListener("click", async () => {
+      const id = el.querySelector("#sigid").value.trim(); if (!id) return; sb.disabled = true; sb.textContent = "確認中";
+      try {
+        const r = await (await fetch(`/api/source_check?name=${encodeURIComponent(a.n)}&id=${encodeURIComponent(id)}`)).json();
+        a.sigid = id; a.signote = r.ok ? `直近 90 日の公開活動 ${+r.events_90d||0} 回、最終 ${r.last_activity||"なし"}。${r.events_90d >= 3 ? "見張りの合図に使います。" : "3 回未満なので、この人の合図には使いません。"}${r.note}` : `使えません: ${r.note}`;
+        if (r.ok) { a.last = r.last_activity ? Math.max(0, Math.round((Date.now() - new Date(r.last_activity)) / 86400000)) : 120; }
+        save(); saveSources(); panel(); draw();
+      } catch (e) { sb.disabled = false; sb.textContent = "確かめる"; }
+    });
+    el.querySelectorAll("#logins button").forEach(b => b.addEventListener("click", () => { a.login = b.dataset.login; save(); draw(); panel(); }));
+    const setCost = (cost, plan) => { a.cost = Math.max(0, Math.round(cost)); a.plan = plan; if (a.cost === 0) a.via = "free"; else if (a.via === "free") a.via = el.querySelector("#via").value || "direct"; save(); summary(); draw(); panel(); };
+    el.querySelectorAll("#plans button").forEach(b => b.addEventListener("click", () => setCost(b.dataset.plan === "__free" ? 0 : +b.dataset.cost, b.dataset.plan === "__free" ? null : b.dataset.plan)));
+    el.querySelector("#cost").addEventListener("change", ev => setCost(+ev.target.value || 0, null));
+    el.querySelector("#billing").addEventListener("change", ev => { a.billing = ev.target.value; if (a.billing === "yearly" && a.cad < 365) a.cad = 365; save(); draw(); });
+    el.querySelector("#via").addEventListener("change", ev => { if (a.cost > 0) { a.via = ev.target.value; save(); draw(); panel(); } });
+    el.querySelectorAll(".wills button").forEach(btn => btn.addEventListener("click", () => { a.will = btn.dataset.w; save(); panel(); draw(); summary(); }));
+    const to = el.querySelector("#to"); if (to) to.addEventListener("input", () => { a.to = to.value; save(); });
+    if (to && a.will === "give" && !a.to) to.focus();
+  }
+  function summary(){
+    const paidA = A.filter(paid), monthly = paidA.reduce((s,a)=>s+a.cost,0), idle = paidA.filter(a => bright(a,0) < .3), undecided = A.filter(a => a.will==="undecided").length;
+    document.getElementById("summary").innerHTML = `<span>資産<b>${A.length} 件</b></span><span>月額<b>¥${monthly.toLocaleString()}</b></span>
+      <span class="warn">使っていないのに払っている<b>${idle.length} 件 ¥${idle.reduce((s,a)=>s+a.cost,0).toLocaleString()}/月</b></span><span>未定<b>${undecided} 件</b></span>`;
+  }
+  // ---- 流れの図と、確認者 ----
+  const STAGES = [
+    {k:"ALIVE", t:"いつもどおり", s:"メール・買い物・Drive・予定・YouTube のどれかに動きがある"},
+    {k:"QUIET", t:"沈黙 30 日", s:"気にかける。まだ誰にも連絡しない"},
+    {k:"WAITING", t:"沈黙 60 日", s:"確認者に「本人と連絡が取れますか」と聞く"},
+    {k:"GRACE", t:"猶予 14 日", s:"2 人が「取れない」と答えても、ここまでは待つ"},
+    {k:"FIRED", t:"実行", s:"あなた宛てに最後の通知 → 7 日 → 決めたとおりに止める・渡す"},
+  ];
+  function flowSource(now){
+    const NOW = {ALIVE:"いつもどおり", QUIET:"沈黙 30 日を超えた", WAITING:"確認者に連絡中", GRACE:"猶予 14 日", FIRED:"執行中", UNWATCHABLE:"見張れない（Google の通知待ち）"};
+    return `sequenceDiagram
+  autonumber
+  participant P as 本人
+  participant A as あとのこと（自動）
+  participant G as Google
+  participant C as 確認者（人）
+  participant X as 執行（ゲートつき）
+  rect rgb(27,31,42)
+    Note over P,A: 生前に一回だけ
+    P->>A: Google でログイン（見張りの同意）
+    P->>A: 棚卸し（受信箱を一回だけ読む）→ 地図ができる
+    P->>A: 遺志を塗る（渡す・消す・残す）／確認者を 2 人以上登録
+    P->>G: 無効化管理ツールの信頼できる連絡先に あとのこと を登録
+  end
+  loop 毎日 1 回。本人は何もしない
+    A->>G: 既読・送信・Drive・Calendar の日時だけ数える（本文は読まない）
+    G-->>A: 動きが見えている → いつもどおり
+  end
+  Note over A: 沈黙 30 日: 気にかける。誰にも連絡しない
+  Note over A: 沈黙 60 日: なぜそう見えるかを説明にまとめる
+  A->>C: 「本人と連絡が取れますか」（説明つき）
+  G-->>C: 最短 3 か月の沈黙で Google からも通知（見張りが止まっていても届く）
+  alt 取れた
+    C-->>A: いつもどおりへ戻す
+  else 取れない × 2 人以上（猶予 14 日）
+    C->>X: 執行を解放
+    X->>X: ポリシーゲート: 遺志に無いことはしない・確認者 2 人未満は通さない
+    X->>X: 止める（解約・連携解除）→ 渡す（存在を伝える・引き継ぐ）→ ログインの元になるものは最後
+  end
+  Note over P,X: いま: ${NOW[now]||now}`;
+  }
+  async function drawFlow(now){
+    const el = document.getElementById("flowchart");
+    document.getElementById("flowsteps").innerHTML = STAGES.map(st => `<li class="${st.k===now?"now":""}"><p class="k">${st.t}</p><p class="d">${st.s}</p></li>`).join("");
+    if (!window.mermaid) return;
+    mermaid.initialize({startOnLoad:false, theme:"base", securityLevel:"strict", fontFamily:'"Zen Kaku Gothic New", sans-serif', flowchart:{useMaxWidth:false, nodeSpacing:28, rankSpacing:36, padding:10},
+      sequence:{useMaxWidth:false, mirrorActors:false, actorMargin:36, messageMargin:28, noteMargin:8, boxMargin:8, width:170, height:40},
+      themeVariables:{background:"#141720", primaryColor:"#1b1f2a", primaryTextColor:"#e6e2d8", primaryBorderColor:"#3a3e49", lineColor:"#7c7f88", secondaryColor:"#141720", tertiaryColor:"#141720", fontSize:"13px",
+        actorBkg:"#1b1f2a", actorBorder:"#3a3e49", actorTextColor:"#e6e2d8", actorLineColor:"#3a3e49", signalColor:"#c9c5bc", signalTextColor:"#e6e2d8",
+        noteBkgColor:"#2a2a1f", noteBorderColor:"#c9a86a", noteTextColor:"#f2e9c9", labelBoxBkgColor:"#141720", labelBoxBorderColor:"#3a3e49", labelTextColor:"#7c7f88", loopTextColor:"#7c7f88", activationBkgColor:"#1b1f2a", activationBorderColor:"#3a3e49", sequenceNumberColor:"#0f1115"}});
+    try { const {svg} = await mermaid.render("flowsvg_" + Date.now(), flowSource(now)); el.innerHTML = svg; }
+    catch (e) { el.textContent = "図を描けませんでした: " + e.message; }
+  }
+  async function watchNow(){
+    const el = document.getElementById("watchnow");
+    try {
+      const j = await (await fetch("/api/watch")).json();
+      if (!j || !j.name) { el.innerHTML = ""; drawFlow("ALIVE"); return; }
+      const NAME = {ALIVE:"いつもどおり", QUIET:"沈黙 30 日を超えた", WAITING:"確認者に連絡中", FIRED:"執行中", UNWATCHABLE:"見張れない（Google の通知だけ待つ）"};
+      el.innerHTML = `<span>見張りの状態<b>${esc(NAME[j.name]||j.name)}</b></span><span>最後に見た日<b>${esc(j.checked||"まだ")}</b></span><span>沈黙<b>${esc(j.silence_days==null?"—":(+j.silence_days)+" 日")}</b></span><span>使っている源<b>${esc((j.usable_sources||[]).map(k=>NAMES[k]||k).join("・")||"なし")}</b></span>` + (j.explanation ? `<span class="exp">${esc(j.explanation)}</span>` : "");
+      drawFlow(j.name === "WAITING" && j.grace_over ? "GRACE" : j.name);
+    } catch (e) { el.innerHTML = ""; drawFlow("ALIVE"); }
+  }
+  if (ME.email && !DEMO) watchNow(); else drawFlow("ALIVE");
+  if (DEMO) {
+    document.getElementById("invlog").hidden = false;
+    document.getElementById("enclavedemo").hidden = false;
+    document.getElementById("enclaverun").addEventListener("click", ev => {
+      const b = ev.target, pre = document.getElementById("enclavelog"), note = document.getElementById("enclavenote");
+      b.disabled = true; b.textContent = "enclave を起こしています"; pre.hidden = false; pre.textContent = ""; note.textContent = "";
+      const es = new EventSource("/api/demo/enclave");
+      es.onmessage = e => { pre.textContent += e.data + "\n"; pre.scrollTop = pre.scrollHeight; };
+      es.addEventListener("result", e => { try { const j = JSON.parse(e.data);
+        note.textContent = j.error ? `失敗: ${j.error}` : `image digest ${j.digest}。封印を開けた ${j.opened.length} 件（開けた証拠のハッシュ ${(j.opened[0]||{}).proof||"—"}、中身の項目 ${((j.opened[0]||{}).fields||[]).join("・")}。パスワードそのものは enclave の外に出していません）。ゲート 許可 ${j.allowed} 件・拒否 ${j.denied} 件。`; } catch (_) {} });
+      es.addEventListener("done", () => { es.close(); b.disabled = false; b.textContent = "もう一度（30 分後）"; });
+      es.onerror = () => { es.close(); if (!pre.textContent) pre.textContent = "30 分に 1 回です。少し後でもう一度お試しください。"; b.disabled = false; b.textContent = "もう一度"; };
+    });
+    document.getElementById("invrun").addEventListener("click", ev => {
+      const b = ev.target, pre = document.getElementById("invlogbody"), note = document.getElementById("invnote");
+      b.disabled = true; b.textContent = "走っています"; pre.hidden = false; pre.textContent = ""; note.textContent = "";
+      const es = new EventSource("/api/demo/inventory");
+      es.onmessage = e => { pre.textContent += e.data + "\n"; pre.scrollTop = pre.scrollHeight; };
+      es.addEventListener("result", e => { try { const j = JSON.parse(e.data); note.textContent = j.error ? `結果を読めませんでした: ${j.error}` : `資産 ${j.count} 件を見つけました: ${(j.names||[]).join("、")}`; } catch (_) {} });
+      es.addEventListener("done", () => { es.close(); b.disabled = false; b.textContent = "もう一度"; });
+      es.onerror = () => { es.close(); if (!pre.textContent) { pre.textContent = "いま別の審査員が走らせています。数分後にもう一度お試しください。"; } b.disabled = false; b.textContent = "もう一度"; };
+    });
+    fetch("../data/inventory_demo_log.txt").then(r => r.ok ? r.text() : "").then(t => { if (t && document.getElementById("invlogbody").hidden) { const pre = document.getElementById("invlogbody"); pre.hidden = false; pre.textContent = "（前回の実行記録）\n" + t.replace(/\*\*/g, ""); } }).catch(()=>{});
+    const sec = document.getElementById("demofire"); sec.hidden = false;
+    document.getElementById("firebtn").addEventListener("click", async ev => {
+      const b = ev.target; b.disabled = true; b.textContent = "通しています";
+      const ol = document.getElementById("timeline"); ol.innerHTML = "";
+      try {
+        const j = await (await fetch("/api/demo/fire", {method:"POST"})).json();
+        for (const t of j.timeline) { const li = document.createElement("li"); li.className = t.event.startsWith("拒否") ? "deny" : (t.llm ? "llm" : ""); li.innerHTML = `<span>${+t.day} 日目</span><div>${esc(t.event)}</div>`; ol.appendChild(li); await new Promise(r => setTimeout(r, 220)); }
+        const rp = document.getElementById("demoreport"); rp.hidden = false; rp.textContent = j.report + "\n\n" + j.compressed;
+      } catch (e) { ol.innerHTML = `<li><span></span><div>通せませんでした: ${esc(e.message)}</div></li>`; }
+      b.disabled = false; b.textContent = "もう一度";
+    });
+  }
+  const WKEY = "atonokoto.who.v1." + (DEMO || !ME.email ? "demo" : ME.email);
+  let WHO = []; try { WHO = JSON.parse(localStorage.getItem(WKEY) || "[]"); } catch (e) {}
+  if (Array.isArray(SRV.who) && (!DEMO || !WHO.length)) WHO = SRV.who;   // ログイン中はサーバが正。架空は端末に無ければ 2 人で始める
+  function who(){
+    const t = document.getElementById("whotable"), n = document.getElementById("whonote");
+    t.innerHTML = WHO.map((w, i) => `<tr><td>${esc(w.name)}</td><td>${esc(w.mail)}</td><td style="text-align:right"><button type="button" class="x" data-i="${i}">外す</button></td></tr>`).join("");
+    t.querySelectorAll(".x").forEach(b => b.addEventListener("click", () => { WHO.splice(+b.dataset.i, 1); saveWho(); }));
+    n.innerHTML = WHO.length >= 2 ? `確認者は ${WHO.length} 人。沈黙 60 日で全員に連絡し、2 人が答えたら執行に進みます。`
+      : `<span class="warn">確認者が ${WHO.length} 人です。2 人以上いないと、執行は始まりません。</span>`;
+  }
+  const saveWill = () => { if (!ME.email || DEMO) return; const w = {}; A.forEach(a => w[a.n] = {will:a.will, to:a.to, login:a.login, sealed:!!a.sealed}); fetch("/api/will", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(w)}).catch(()=>{}); };
+  const saveSources = () => { if (!ME.email || DEMO) return; fetch("/api/sources", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(A.filter(a => a.sigid).map(a => ({name:a.n, ident:a.sigid})))}).catch(()=>{}); };
+  const saveWho = () => { try { localStorage.setItem(WKEY, JSON.stringify(WHO)); } catch (e) {} if (ME.email && !DEMO) fetch("/api/confirmers", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(WHO)}).catch(()=>{}); who(); };
+  document.getElementById("wadd").addEventListener("click", () => {
+    const nm = document.getElementById("wname").value.trim(), ml = document.getElementById("wmail").value.trim();
+    if (!nm || !ml) return;
+    if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(ml)) { document.getElementById("whonote").innerHTML = `<span class="warn">メールアドレスの形で入れてください（例 hanako@example.com）。</span>`; return; }
+    WHO.push({name: nm, mail: ml.trim().toLowerCase()}); document.getElementById("wname").value = ""; document.getElementById("wmail").value = ""; saveWho();
+  });
+  who();
+
+  // ---- Google でログイン（見張りの同意）→ 本物の足跡 ----
+  const NAMES = {purchase:"買い物・予約の通知", youtube:"YouTube の高評価・登録", gmail_sent:"メールの送信", gmail_read:"メールの既読", drive:"Drive の編集", calendar:"予定の変更"};
+  async function me(){
+    const el = document.getElementById("me");
+    try {
+      const j = await (await fetch("/api/me")).json();
+      if (j.email) {
+        const logoutLabel = /@atonokoto\.invalid$/.test(j.email) ? "ログアウト" : "Google の見張りを止めてログアウト";
+        el.innerHTML = DEMO ? `<a href="/web/index.html">あなたの地図へ</a>` : `<span>${esc(j.email)}</span><form method="post" action="/logout" style="display:inline"><button type="submit" class="go" style="padding:5px 12px;font-size:13px">${esc(logoutLabel)}</button></form>`;
+        if (!DEMO) footprint();
+      } else {
+        el.innerHTML = DEMO ? `<a href="/web/index.html">ログインへ</a>` : "";
+      }
+    } catch (e) { el.textContent = ""; }
+  }
+  async function footprint(){
+    const sec = document.getElementById("fp"), body = document.getElementById("fpbody");
+    sec.hidden = false; body.innerHTML = "<p>数えています。少し待ってください。</p>";
+    try {
+      const j = await (await fetch("/api/footprint?days=90")).json(); if (j.error) throw new Error(j.error);
+      const f = j.footprint.footprint, la = j.footprint.last_activity, jd = j.judgement;
+      const pv = j.footprint.purchases || {};
+      const ytn = j.footprint.youtube_note ? `<p class="meta">YouTube: ${esc(j.footprint.youtube_note)}。</p>` : "";
+      const pvtxt = Object.keys(pv).length ? `<p class="meta">買い物・予約の内訳（差出人の店と日付だけ。件名や本文は残していません）: ${Object.entries(pv).sort((x,y)=>y[1].n-x[1].n).map(([k,v]) => `${esc(k)} ${+v.n} 件、最終 ${esc(v.last||"")}`).join("・")}。定期便やサブスクの自動更新は数えていません。</p>` : "";
+      body.innerHTML = `<table>${Object.keys(NAMES).map(k => `<tr><td>${NAMES[k]}</td><td>${f[k]||0} 回</td><td>最終 ${la[k]||"なし"}</td><td>${jd.usable_sources.includes(k)?"見張りに使う":"使わない"}</td></tr>`).join("")}</table>${pvtxt}${ytn}
+        <p>${{A:"Google をよく使う人です", B:"メールは読む人です", C:"Google はほとんど使わない人です"}[jd.kind]||""}${jd.watchable ? "。こちらから沈黙を見張れます" : "。こちらからは見張れません"}。</p>
+        <p class="q">${esc((j.plan.to_person||"").replace(/atonokoto/g, "あとのこと"))}</p>`;
+    } catch (e) { body.innerHTML = `<p>読めませんでした: ${esc(e.message)}</p>`; }
+  }
+  me();
+  (function startBox(){
+    const box = document.getElementById("start"); if (!ME.email || DEMO) return;
+    if (params.get("login") === "inventory" && ME.inventory_consent) {
+      box.hidden = false; box.innerHTML = "<p>受信箱を読んで、資産の地図を作っています。数分かかります。この同意は読み終えたら捨てます。</p>";
+      fetch("/api/inventory", {method:"POST"}).then(r => r.json()).then(j => {
+        if (j.error) { box.innerHTML = `<p>棚卸しに失敗しました: ${esc(j.error)}</p>`; return; }
+        location.href = "/web/index.html";
+      }).catch(e => { box.innerHTML = `<p>棚卸しに失敗しました: ${esc(e.message)}</p>`; });
+    } else if (!ME.has_assets) {
+      box.hidden = false; box.innerHTML = `<p>まだ地図がありません。受信箱を一度だけ読んで、契約や登録を拾います。本文まで読みますが、その同意は読み終えたら捨てます。</p><a href="/login?kind=inventory">棚卸しを始める</a>`;
+    }
+  })();
+  document.getElementById("foot").textContent = `地図の元: ${source}。明るさは本人が最後に触ってからの日数。沈黙のつまみは、時間を進めたときの見え方を確かめるためのものです。`;
+  document.querySelectorAll('[role=tab]').forEach(b => b.addEventListener("click", () => { document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute("aria-selected","false")); b.setAttribute("aria-selected","true"); view = b.dataset.view; draw(); }));
+  const slider = document.getElementById("t"), out = document.getElementById("tout");
+  slider.addEventListener("input", () => { t = +slider.value; out.value = `${t} 日`; draw(); });
+  let afterTimer = null;
+  document.getElementById("afterword").addEventListener("input", () => {
+    save();
+    if (!ME.email || DEMO) return;
+    clearTimeout(afterTimer);
+    afterTimer = setTimeout(async () => {
+      const n = document.getElementById("afternote");
+      try { const r = await fetch("/api/afterword", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({text: document.getElementById("afterword").value})});
+            n.textContent = r.ok ? "保存しました。" : "保存できませんでした。"; } catch (e) { n.textContent = "保存できませんでした。"; }
+    }, 800);
+  });
+  // ---- 一言 → 遺志の解釈エージェント ----
+  const WNAME = {give:"渡す", erase:"消す", keep:"残す"};
+  document.getElementById("sayform").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const inp = document.getElementById("say"), btn = ev.target.querySelector("button"), rep = document.getElementById("reply");
+    const text = inp.value.trim(); if (!text) return;
+    btn.disabled = true; btn.textContent = "考えています"; rep.hidden = false; rep.innerHTML = "";
+    try {
+      const r = await fetch("/api/interpret", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({say:text})});
+      const j = await r.json(); if (!r.ok) throw new Error(j.error || r.status);
+      // 解釈は提案。地図に塗るのは本人が「この通りにする」を押してから（LLM の出力を無条件に適用しない）
+      const proposals = [];
+      (j.decisions || []).forEach(d => {
+        const a = A.find(x => x.n === d.asset) || A.find(x => norm(x.n) === norm(d.asset)); if (!a || !WILL.hasOwnProperty(d.action)) return;
+        proposals.push({a, action: d.action, to: d.action === "give" ? (d.to || "") : "", note: d.note || ""});
+      });
+      rep.innerHTML = (proposals.length ? `<p>こう塗ります。よければ押してください。</p><ul>${proposals.map(p => `<li>${esc(p.a.n)} → ${WNAME[p.action]}${p.to ? `（${esc(p.to)}）` : ""}${p.note ? `　${esc(p.note)}` : ""}</li>`).join("")}</ul><button type="button" class="go" id="applywill">この通りにする</button>` : "")
+        + (j.ask ? `<p class="q">${esc(j.ask)}</p>` : "") + (j.refused ? `<p>${esc(j.refused)}</p>` : "")
+        + (!proposals.length && !j.ask && !j.refused ? "<p>地図にあるものからは決められませんでした。</p>" : "");
+      const ap = rep.querySelector("#applywill");
+      if (ap) ap.addEventListener("click", () => { proposals.forEach(p => { p.a.will = p.action; if (p.to) p.a.to = p.to; }); save(); summary(); draw(); if (sel) panel(); ap.textContent = "塗りました"; ap.disabled = true; });
+    } catch (e) { rep.innerHTML = `<p class="err">聞けませんでした: ${esc(e.message)}</p>`; }
+    btn.disabled = false; btn.textContent = "聞く";
+  });
+  function norm(s){ return String(s||"").toLowerCase().replace(/[\s　]/g,""); }
+  addEventListener("resize", draw);
+  picker(); summary(); panel(); document.fonts?.ready.then(draw); draw();
+})();
+</script>
+</body>
+</html>

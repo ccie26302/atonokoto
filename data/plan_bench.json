@@ -1,0 +1,295 @@
+[
+ {
+  "persona": "A 型（山田太郎: Drive も Calendar も使う）",
+  "judgement": {
+   "kind": "A",
+   "watchable": true,
+   "usable_sources": [
+    "calendar",
+    "drive",
+    "gmail_read",
+    "gmail_sent",
+    "GitHub"
+   ],
+   "unused_google": [],
+   "added": [
+    {
+     "name": "GitHub",
+     "auth": "none",
+     "how": "公開イベント（GET /users/{user}/events/public）。非公開の活動は含まない",
+     "usable": true
+    },
+    {
+     "name": "Netflix",
+     "auth": "no",
+     "how": "公開 API 無し",
+     "usable": false
+    }
+   ],
+   "floors": {
+    "quiet": 30,
+    "waiting": 60,
+    "grace": 14
+   },
+   "outermost": {
+    "google_notice_min_days": 90,
+    "required": true
+   }
+  },
+  "plans": [
+   {
+    "to_person": "沈黙を見張るため、Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先にatonokotoを追加してください。カレンダーやGmailなどを源にするには同意が必要ですが、受信箱の本文は読まずに既読と送信の日時だけを確認します。追加したGitHubは源にできますが、Netflixは地図には載るが合図にはなりません。沈黙が30日続けば気にかけ、60日で確認者に連絡し、14日の猶予を設けます。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [
+     "GitHub"
+    ],
+    "ask_consent_for": [
+     "Google カレンダー",
+     "Google ドライブ",
+     "Gmail"
+    ]
+   },
+   {
+    "to_person": "あなたの沈黙を見張るため、Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先にatonokotoを入れてください。追加したGitHubは源にできますが、地図には載るが合図にはなりません。沈黙30日で気にかけ、60日で確認者に連絡、14日の猶予で見張ります。なお、受信箱の本文は読まず既読と送信の日時だけを見ます。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [
+     "GitHub"
+    ],
+    "ask_consent_for": []
+   },
+   {
+    "to_person": "あなたの沈黙を見張る計画をご案内します。受信箱の本文は読まず、既読と送信の日時だけを拝見します。追加されたGitHubは源にできますが、地図には載るが合図にはなりません。沈黙が30日で気にかけ、60日で確認者に連絡し、14日の猶予を設けます。Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先にatonokotoを追加してください。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [
+     "GitHub"
+    ],
+    "ask_consent_for": []
+   }
+  ],
+  "checks": [
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   },
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   },
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   }
+  ]
+ },
+ {
+  "persona": "B 型（メールは読むが他は使わない）",
+  "judgement": {
+   "kind": "B",
+   "watchable": true,
+   "usable_sources": [
+    "gmail_read"
+   ],
+   "unused_google": [
+    "gmail_sent",
+    "drive",
+    "calendar"
+   ],
+   "added": [
+    {
+     "name": "Spotify",
+     "auth": "oauth",
+     "how": "最近再生した曲（user-read-recently-played）",
+     "usable": false
+    },
+    {
+     "name": "銀行（三菱UFJ 等）",
+     "auth": "no",
+     "how": "個人向け API 無し。地図に載せて『触るな』を塗る用",
+     "usable": false
+    }
+   ],
+   "floors": {
+    "quiet": 30,
+    "waiting": 60,
+    "grace": 14
+   },
+   "outermost": {
+    "google_notice_min_days": 90,
+    "required": true
+   }
+  },
+  "plans": [
+   {
+    "to_person": "Gmailを用いて見張ることができますが、受信箱の本文は読まず、既読と送信の日時だけを確認します。Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先に atonokoto を追加してください。追加された銀行は地図には載りますが合図にはならず、沈黙が30日で気にかけ、60日で確認者に連絡し、14日の猶予をもってお見守りします。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [],
+    "ask_consent_for": []
+   },
+   {
+    "to_person": "Gmailの動きで見張りを開始しますが、受信箱の本文は読まずに既読と送信の日時だけを確認します。銀行については地図には載りますが合図にはなりません。見張りは沈黙30日でお気にかけて、60日で確認者に連絡し、14日の猶予を置く計画です。最後に、Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先にatonokotoを入れてください。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [],
+    "ask_consent_for": []
+   },
+   {
+    "to_person": "Gmailの受信箱（本文は読まず、日時のみ確認）を使って見張りを開始します。追加された銀行は、地図には載りますが合図にはなりません。Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先に atonokoto を必ず入れてください。沈黙が30日続けば気にかけ、60日で確認者に連絡、14日の猶予をもって判断します。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [],
+    "ask_consent_for": []
+   }
+  ],
+  "checks": [
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   },
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   },
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   }
+  ]
+ },
+ {
+  "persona": "C 型（ID としてしか使わない）",
+  "judgement": {
+   "kind": "C",
+   "watchable": true,
+   "usable_sources": [
+    "Spotify"
+   ],
+   "unused_google": [
+    "gmail_read",
+    "gmail_sent",
+    "drive",
+    "calendar"
+   ],
+   "added": [
+    {
+     "name": "Spotify",
+     "auth": "oauth",
+     "how": "最近再生した曲（user-read-recently-played）",
+     "usable": true
+    },
+    {
+     "name": "Netflix",
+     "auth": "no",
+     "how": "公開 API 無し",
+     "usable": false
+    }
+   ],
+   "floors": {
+    "quiet": 30,
+    "waiting": 60,
+    "grace": 14
+   },
+   "outermost": {
+    "google_notice_min_days": 90,
+    "required": true
+   }
+  },
+  "plans": [
+   {
+    "to_person": "Spotifyの連携に同意をいただければ見張りの源にできますが、Netflixは地図には載るものの合図にはなりません。Google無効化管理ツールを3か月に設定し、信頼できる連絡先に atonokoto を追加してください。沈黙が30日で気にかけ、60日で確認者に連絡し、14日の猶予を持ってお手伝いします。なお、受信箱の本文は読まず、既読や送信の日時だけを確認します。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [
+     "Spotify"
+    ],
+    "ask_consent_for": [
+     "Spotify"
+    ]
+   },
+   {
+    "to_person": "Spotifyの最近再生した曲の履歴を用いて、あなたを見張ることができます。これには同意が必要です。なお、Netflixは地図には載りますが合図にはなりません。Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先にatonokotoを追加してください。沈黙が30日で気にかけ、60日で確認連絡、14日の猶予を設けます。受信箱の本文は読まず、既読と送信の日時だけを見ます。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [
+     "Spotify"
+    ],
+    "ask_consent_for": [
+     "Spotify"
+    ]
+   },
+   {
+    "to_person": "Spotifyの再生履歴は沈黙の見張りの源にできますが、連携には同意が必要です。Netflixは地図には載りますが合図にはなりません。Googleの無効化管理ツールを3か月に設定し、信頼できる連絡先にatonokotoを追加してください。なお、私たちは受信箱の本文は読まず、既読と送信の日時だけを確認します。沈黙30日で気にかけ、60日で確認者に連絡、14日の猶予を設けます。",
+    "watchable": true,
+    "ask_google_notice": true,
+    "added_services": [
+     "Spotify"
+    ],
+    "ask_consent_for": [
+     "Spotify"
+    ]
+   }
+  ],
+  "checks": [
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   },
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   },
+   {
+    "watch": true,
+    "honest_c": true,
+    "notice": true,
+    "added": true,
+    "no_promise": true,
+    "body": true,
+    "all": true
+   }
+  ]
+ }
+]

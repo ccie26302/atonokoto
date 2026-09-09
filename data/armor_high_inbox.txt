@@ -1,0 +1,7 @@
+template us-central1/airlock
+  injection    検知 0/1
+  oauth_notice 検知 0/6
+  promo        検知 0/12
+  receipt      検知 0/34
+  recovery     検知 0/1
+  signup       検知 0/18

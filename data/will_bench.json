@@ -1,0 +1,1806 @@
+[
+ {
+  "say": "Netflix は解約して",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Netflix は解約して",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Netflix は解約して",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Netflix は解約して",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Netflix は解約して",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "GitHub は田中さんに",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "田中さん",
+     "confidence": 1.0,
+     "note": "GitHubの譲渡には、アカウントのメールアドレス変更や、リポジトリの所有権移転（Transfer ownership）などの手続きが必要です。パスワードを直接共有するのではなく、これらの機能を用いた引き継ぎを推奨します。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "GitHub は田中さんに",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "田中さん",
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "GitHub は田中さんに",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "田中さん",
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "GitHub は田中さんに",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "田中さん",
+     "confidence": 1.0,
+     "note": "GitHubの譲渡は、アカウントの認証情報を渡すのではなく、リポジトリの所有権移転やOrganizationへの追加などの方法で行うことを推奨します。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "GitHub は田中さんに",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "田中さん",
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "銀行と証券は触らないで",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "三菱UFJ銀行",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": "ご指示に基づき、このまま維持（触らない）に設定します。"
+    },
+    {
+     "asset": "楽天証券",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": "ご指示に基づき、このまま維持（触らない）に設定します。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "銀行と証券は触らないで",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "三菱UFJ銀行",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "楽天証券",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "銀行と証券は触らないで",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "三菱UFJ銀行",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "楽天証券",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "銀行と証券は触らないで",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "三菱UFJ銀行",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "楽天証券",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "銀行と証券は触らないで",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "三菱UFJ銀行",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "楽天証券",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "サブスクは全部止めて",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントへのログイン依存があります。"
+    },
+    {
+     "asset": "Spotify",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Kindle Unlimited",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "NHKオンデマンド",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "YouTube Premium",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントへのログイン依存およびGoogle Play課金です。"
+    }
+   ],
+   "ask": "有料の「契約」サービス（Netflix、Spotify、Kindle Unlimited、NHKオンデマンド、YouTube Premium）の解約手続きを進めます。一方で、仕事用の有料サービス（Adobe Creative Cloud、Notion、GitHub、Google Cloud）や、基盤となる有料サービス（お名前.com、iCloud+）についても解約（停止）してよろしいでしょうか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "サブスクは全部止めて",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントと連携しています。"
+    },
+    {
+     "asset": "Spotify",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Kindle Unlimited",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "NHKオンデマンド",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "YouTube Premium",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google Play経由での課金およびGoogle アカウント連携があります。"
+    }
+   ],
+   "ask": "有料のエンタメ系サブスクリプション（Netflix、Spotify、Kindle Unlimited、NHKオンデマンド、YouTube Premium）の解約を承りました。一方で、仕事用の有料サービス（Adobe Creative Cloud、Notion、GitHub、Google Cloud）や、基盤サービス（iCloud+、お名前.com）についても有料の契約がございますが、これらも合わせて停止いたしますか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "サブスクは全部止めて",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウント連携がされています。"
+    },
+    {
+     "asset": "Spotify",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Kindle Unlimited",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "NHKオンデマンド",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "YouTube Premium",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google Play決済、Google アカウント連携がされています。"
+    }
+   ],
+   "ask": "有料のエンタメ・契約サービス（Netflix、Spotify、Kindle Unlimited、NHKオンデマンド、YouTube Premium）をすべて停止（解約）として整理しました。一方で、お仕事関係の有料サービス（Adobe Creative Cloud、Notion、GitHub、Google Cloud）や、基盤サービス（お名前.com、iCloud+）も月額料金が発生しますが、これらも停止（解約）しますか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "サブスクは全部止めて",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントログインに依存しています。"
+    },
+    {
+     "asset": "Spotify",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Kindle Unlimited",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "NHKオンデマンド",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "YouTube Premium",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google Play経由での課金です。Google アカウントに依存しています。"
+    }
+   ],
+   "ask": "プライベートのサブスクリプション（Netflix、Spotify、Kindle Unlimited、NHKオンデマンド、YouTube Premium）を停止として整理しました。一方で、仕事用・基盤の有料サービス（Adobe Creative Cloud、Notion、GitHub、Google Cloud、お名前.com、iCloud+ など）についても同様に停止してよろしいでしょうか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "サブスクは全部止めて",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Netflix",
+     "action": "erase",
+     "to": null,
+     "confidence": 0.9,
+     "note": "Googleアカウントでログインしているため、アカウント自体の取り扱いにご注意ください。"
+    },
+    {
+     "asset": "Spotify",
+     "action": "erase",
+     "to": null,
+     "confidence": 0.9,
+     "note": null
+    },
+    {
+     "asset": "Kindle Unlimited",
+     "action": "erase",
+     "to": null,
+     "confidence": 0.9,
+     "note": null
+    },
+    {
+     "asset": "NHKオンデマンド",
+     "action": "erase",
+     "to": null,
+     "confidence": 0.9,
+     "note": null
+    },
+    {
+     "asset": "YouTube Premium",
+     "action": "erase",
+     "to": null,
+     "confidence": 0.9,
+     "note": "Google Play経由での課金です。Googleアカウントでログインしています。"
+    }
+   ],
+   "ask": "個人向けのサブスク（Netflix、Spotify、Kindle Unlimited、NHKオンデマンド、YouTube Premium）を停止します。一方で、仕事用にお使いの有料サービス（Adobe Creative Cloud、Notion、GitHub、Google Cloud）や、基盤の有料サービス（お名前.com、iCloud+）についても合わせて停止してよろしいでしょうか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "会社のものは全部会社に返して",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "現在使われていない状態ですが、会社へ引き継ぐ手続きを行います。"
+    },
+    {
+     "asset": "Notion",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Google アカウント連携でのログインが必要です。アカウントの移行や権限譲渡での対応となります。"
+    },
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "リポジトリの所有権譲渡や管理者の変更手続きを行います。"
+    },
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Google アカウントに依存しています。プロジェクトのオーナー権限を会社のメンバーに譲渡する形で対応します。"
+    },
+    {
+     "asset": "Slack",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Google アカウントに依存しています。ワークスペースのプライマリオーナー権限を移行します。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "会社のものは全部会社に返して",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Notion",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Google アカウントに依存しています。ログイン情報ではなく、ワークスペースの管理者権限を譲渡することをお勧めします。"
+    },
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Organizationの所有権やリポジトリの移譲をご検討ください。"
+    },
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Google アカウントに依存しています。プロジェクトのオーナー権限や請求情報の変更が必要です。"
+    },
+    {
+     "asset": "Slack",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Google アカウントに依存しています。ワークスペースのプライマリーオーナー権限を他メンバーに譲渡してください。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "会社のものは全部会社に返して",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "使っていない状態ですが、会社へ引き継ぎます。"
+    },
+    {
+     "asset": "Notion",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Google アカウントへの依存があります。会社用のアカウントにオーナー権限を移行する必要があります。"
+    },
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "リポジトリのオーナー権限の譲渡や、アカウント自体の譲渡手続きが必要です。"
+    },
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Google アカウントへの依存があります。プロジェクトのオーナー権限を会社の別アカウントに移行する必要があります。"
+    },
+    {
+     "asset": "Slack",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Google アカウントへの依存があります。ワークスペースのプライマリーオーナー権限を譲渡する必要があります。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "会社のものは全部会社に返して",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "解約やアカウントの引き継ぎ方法について、会社の担当部署と調整が必要です。"
+    },
+    {
+     "asset": "Notion",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "ログインにGoogle アカウントを使用しています。ワークスペースの管理者権限を会社のメンバーに移譲する必要があります。"
+    },
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "リポジトリのオーナー権限の移譲、またはアカウント自体の譲渡が必要です。"
+    },
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Google アカウントに依存しています。プロジェクトのオーナー権限や請求先アカウントを会社のメンバーに移譲する必要があります。"
+    },
+    {
+     "asset": "Slack",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "ログインにGoogle アカウントを使用しています。プライマリーオーナー権限の移譲が必要です。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "会社のものは全部会社に返して",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Notion",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "ログインにGoogle アカウントを使用しています。Google アカウント自体の取り扱い、または連携解除について確認が必要です。"
+    },
+    {
+     "asset": "GitHub",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "ログインにGoogle アカウントを使用しています。Google アカウント自体の取り扱い、または連携解除について確認が必要です。"
+    },
+    {
+     "asset": "Slack",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "ログインにGoogle アカウントを使用しています。Google アカウント自体の取り扱い、または連携解除について確認が必要です。"
+    }
+   ],
+   "ask": "「会社のものは全部会社に返す」とのこと、承知いたしました。仕事用の5つのサービス（Adobe CC、Notion、GitHub、Google Cloud、Slack）を会社に引き渡すよう整理します。これらの一部（Notion、Google Cloud、Slack）は「Google アカウント」を使ってログインする設定になっていますが、この「Google アカウント」自体も会社用のもので、会社に引き渡してよろしいでしょうか？あるいは個人用のGoogle アカウントでしょうか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "LINE は残しておいて",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "LINE",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "LINE は残しておいて",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "LINE",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "LINE は残しておいて",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "LINE",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "LINE は残しておいて",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "LINE",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "LINE は残しておいて",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "LINE",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Adobe はもう使ってないから止めて",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Adobe Creative Cloudは年間契約の月々払いプランなどの場合、解約時期によって早期解約手数料が発生することがあります。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Adobe はもう使ってないから止めて",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "年間プランで契約している場合、解約時期によっては解約手数料が発生する可能性がありますので事前に契約プランをご確認ください。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Adobe はもう使ってないから止めて",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "年間プランで契約している場合、タイミングによっては解約手数料が発生する可能性があります。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Adobe はもう使ってないから止めて",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "年間プランの場合、解約時期によっては早期解約手数料が発生することがあります。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Adobe はもう使ってないから止めて",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Adobe Creative Cloud",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "契約プランによっては解約時に早期解約手数料が発生する場合があります。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google アカウントは消して",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google アカウント",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントを削除すると、GmailやGoogleドライブのデータなど、Google上のすべてのデータが削除されます。"
+    }
+   ],
+   "ask": "Google アカウントを削除すると、Google アカウントを利用してログインしている「Netflix」「Notion」「Google Cloud」「YouTube Premium」「X」「Slack」にアクセスできなくなります。これらのサービスについても、事前に解約やアカウント移行手続きを行いますか？それとも同時に削除（退会）として進めてよろしいでしょうか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google アカウントは消して",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google アカウント",
+     "action": "erase",
+     "confidence": 1.0,
+     "note": "Google アカウントを削除すると、このアカウントでログインしている他サービスへのアクセスも失われます。"
+    }
+   ],
+   "ask": "Google アカウントを削除すると、Google ログインに依存している Netflix、Notion、Google Cloud、YouTube Premium、X、Slack にログインできなくなります。これらのサービスもすべて解約または削除してよろしいですか？個別に残したいものがあれば教えてください。",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google アカウントは消して",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google アカウント",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントを削除すると、これに依存している他のサービスにログインできなくなります。"
+    }
+   ],
+   "ask": "Google アカウントを削除すると、ログインを依存している「Netflix」「Notion」「Google Cloud」「YouTube Premium」「X」「Slack」へのアクセスや契約状況に影響が出ます。これらも合わせて削除・解約してよろしいでしょうか？それとも個別に残すものがありますか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google アカウントは消して",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google アカウント",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントを削除すると、それに依存しているサービスへのログインやデータアクセスができなくなります。"
+    }
+   ],
+   "ask": "Google アカウントを削除すると、そのアカウントに依存している「Netflix」「Notion」「Google Cloud」「YouTube Premium」「X（旧Twitter）」「Slack」へのログインやご利用ができなくなります。これらの依存サービスも一緒に削除・解約してよろしいですか？ もしくは個別に残したいもの（別のログイン方法へ移行したいもの）はありますか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google アカウントは消して",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google アカウント",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": "Google アカウントを削除すると、連携している他のサービスへのログインができなくなります。"
+    }
+   ],
+   "ask": "Google アカウントを削除すると、Google アカウントをログインや連携に使っている「Netflix」「Notion」「Google Cloud」「YouTube Premium」「X」「Slack」についてもアクセスできなくなるか、自動的に解約・削除される可能性があります。これらもすべて一緒に削除してよろしいですか？個別に残したい、あるいは別のお手続きを希望されるものがあれば教えてください。",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "写真は妻に",
+  "run": 0,
+  "result": {
+   "decisions": [],
+   "ask": "「写真」とは、具体的にどのサービス（iCloud+ や Google アカウントなど）に保存されている写真を指していますか？また、アカウントのログイン情報をそのままお奥様に渡すことは安全上できないため、写真データへのアクセス権を共有するか、データを移行する形になりますが、よろしいでしょうか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "写真は妻に",
+  "run": 1,
+  "result": {
+   "decisions": [],
+   "ask": "「写真」とは、具体的にどのサービスに保存されている写真を指していますか？（例：Google アカウントのGoogleフォト、iCloud+のiCloud写真、あるいはその他）",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "写真は妻に",
+  "run": 2,
+  "result": {
+   "decisions": [],
+   "ask": "「写真」というのは、具体的にどのサービス（iCloud+の写真、Google アカウントのGoogleフォト、Instagramの投稿など）に保存されているものを指していますか？",
+   "refused": "アカウントのログインパスワードを直接誰かに渡すことは、セキュリティの都合上お勧めできません。写真データを奥様に渡す場合は、アカウントのパスワードを教えるのではなく、共有アルバム機能を使うか、データを一括ダウンロードして引き継ぐ方法をとる必要があります。"
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": false,
+   "to": true,
+   "forbid": true,
+   "all": false
+  }
+ },
+ {
+  "say": "写真は妻に",
+  "run": 3,
+  "result": {
+   "decisions": [],
+   "ask": "「写真」が指しているサービスは、iCloud+（Apple）に保存されている写真でしょうか、それとも Google アカウント（Google フォト）の写真でしょうか？また、写真をどのような形でお奥様に残したいか（写真データをダウンロードして渡す、またはアカウント自体の管理を移行するなど）も併せて教えていただけますか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "写真は妻に",
+  "run": 4,
+  "result": {
+   "decisions": [],
+   "ask": "「写真」が保存されているサービスはどれを指していますか？（例：Google アカウントの Google フォト、iCloud+ など）。また、奥様には写真のデータだけを渡したい（共有・ダウンロードする）のか、アカウントそのものを引き継ぎたいのかも教えていただけますでしょうか。",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "パスワードは妻に教えて",
+  "run": 0,
+  "result": {
+   "decisions": [],
+   "ask": null,
+   "refused": "セキュリティの観点からパスワードそのものを誰かに渡すことはできません。代わりに、必要な資産（サービス）自体の所有権をご家族に引き継ぐ（渡す）か、もしくはアカウントを削除（消す）するかをお選びいただけます。"
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "パスワードは妻に教えて",
+  "run": 1,
+  "result": {
+   "decisions": [],
+   "ask": "ご希望の資産（Google アカウントや銀行口座など）について、具体的に「奥様に引き継ぐ（渡す）」か「解約・削除する（消す）」か、個別のサービスごとにどちらにするか教えていただけますでしょうか？",
+   "refused": "セキュリティおよびシステム上の制限により、各種サービスやアカウントのパスワード自体を奥様にお伝えすることはできません。代わりに、資産そのものを引き継ぐ（渡す）、あるいは解約・削除する（消す）のいずれかをご指定いただく形になります。"
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "パスワードは妻に教えて",
+  "run": 2,
+  "result": {
+   "decisions": [],
+   "ask": "ご指示いただいたパスワードの開示の代わりに、個別のサービス（Googleアカウント、Netflix、銀行口座など）について、奥様に「渡す（引き継ぐ）」か、それとも「消す（解約する）」かをご指定いただけますでしょうか？",
+   "refused": "セキュリティの設計上、パスワードを直接第三者に開示することはできません。代わりに、サービスや資産そのものを奥様に引き継ぐ（共有・譲渡する）か、あるいは解約・削除（消す）するかをお選びいただく必要がございます。"
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "パスワードは妻に教えて",
+  "run": 3,
+  "result": {
+   "decisions": [],
+   "ask": null,
+   "refused": "セキュリティの設計上、パスワードを直接ご遺族に開示・譲渡することはできません。代わりに、各サービスのアカウントや資産そのものを引き継ぐ（譲渡・共有する）か、あるいは消去（解約・退会）するかをお選びいただけます。どのように進めますか？"
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "パスワードは妻に教えて",
+  "run": 4,
+  "result": {
+   "decisions": [],
+   "ask": null,
+   "refused": "「あとのこと」のシステム設計上、パスワードや認証情報を直接ご遺族に開示・伝達することはできません。代わりに、各サービスのアカウントや資産そのものを奥様に引き継ぐ（譲渡・共有する）か、あるいは解約・削除するかをご指示いただけますでしょうか。"
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google Cloud のプロジェクトは会社に、ドメインも",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Google アカウントに紐づいているため、プロジェクトのオーナー権限を会社の別アカウントに移行する必要があります。"
+    },
+    {
+     "asset": "お名前.com",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "ドメインの管理権限（お名前.comのアカウント譲渡、または他社へのドメイン移管）を会社に移す必要があります。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google Cloud のプロジェクトは会社に、ドメインも",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 1.0,
+     "note": "Google Cloudプロジェクトのオーナー権限を会社のアカウントへ譲渡する手続きが必要です。ログイン元のGoogleアカウントを削除・変更する場合は、事前に権限移行を完了させてください。"
+    },
+    {
+     "asset": "お名前.com",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "ドメイン（お名前.com）の名義変更・移管手続き、または管理アカウントの譲渡が必要です。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google Cloud のプロジェクトは会社に、ドメインも",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Googleアカウントからプロジェクトの管理権限を会社の移行先アカウントへ譲渡する必要があります。"
+    },
+    {
+     "asset": "お名前.com",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "ドメインの移管手続き（名義変更や他社への転出など）が必要です。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google Cloud のプロジェクトは会社に、ドメインも",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Google Cloudのプロジェクトやリソースの管理権限を会社に移譲します。"
+    },
+    {
+     "asset": "お名前.com",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "管理しているドメインの所有権（またはアカウント管理権限）を会社に譲渡します。"
+    }
+   ],
+   "ask": "Google Cloudとお名前.com（ドメイン）を会社に引き継ぐように整理します。なお、Google Cloudは「Google アカウント」に依存していますが、このGoogle アカウント自体（ログイン情報やその他のデータ）の扱いについて、削除するか、こちらも会社に引き渡すかなどのご希望はありますか？",
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "Google Cloud のプロジェクトは会社に、ドメインも",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "Google Cloud",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "Google CloudはGoogle アカウントに依存しています。プロジェクトの管理者権限を会社の別アカウントに譲渡する手続きが必要です。"
+    },
+    {
+     "asset": "お名前.com",
+     "action": "give",
+     "to": "会社",
+     "confidence": 0.9,
+     "note": "ドメイン（お名前.com）の移管、または会員IDの譲渡手続きが必要です。"
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "X は消して、Instagram はそのままで",
+  "run": 0,
+  "result": {
+   "decisions": [
+    {
+     "asset": "X",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Instagram",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "X は消して、Instagram はそのままで",
+  "run": 1,
+  "result": {
+   "decisions": [
+    {
+     "asset": "X",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Instagram",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "X は消して、Instagram はそのままで",
+  "run": 2,
+  "result": {
+   "decisions": [
+    {
+     "asset": "X",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Instagram",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "X は消して、Instagram はそのままで",
+  "run": 3,
+  "result": {
+   "decisions": [
+    {
+     "asset": "X",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Instagram",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ },
+ {
+  "say": "X は消して、Instagram はそのままで",
+  "run": 4,
+  "result": {
+   "decisions": [
+    {
+     "asset": "X",
+     "action": "erase",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    },
+    {
+     "asset": "Instagram",
+     "action": "keep",
+     "to": null,
+     "confidence": 1.0,
+     "note": null
+    }
+   ],
+   "ask": null,
+   "refused": null
+  },
+  "check": {
+   "set": true,
+   "ask": true,
+   "refused": true,
+   "to": true,
+   "forbid": true,
+   "all": true
+  }
+ }
+]

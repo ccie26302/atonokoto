@@ -1,0 +1,151 @@
+[
+ {
+  "name": "Netflix",
+  "cat": "契約",
+  "cost": 1490,
+  "billing": "direct",
+  "login_via": "google",
+  "cadence": 4
+ },
+ {
+  "name": "Spotify",
+  "cat": "契約",
+  "cost": 980,
+  "billing": "direct",
+  "login_via": "password",
+  "cadence": 1
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "cat": "契約",
+  "cost": 6480,
+  "billing": "direct",
+  "login_via": "password",
+  "cadence": 30,
+  "last_used_days": 210
+ },
+ {
+  "name": "YouTube Premium",
+  "cat": "契約",
+  "cost": 1280,
+  "billing": "google_play",
+  "login_via": "google",
+  "cadence": 2
+ },
+ {
+  "name": "iCloud+",
+  "cat": "契約",
+  "cost": 400,
+  "billing": "app_store",
+  "login_via": "apple",
+  "cadence": 1
+ },
+ {
+  "name": "Kindle Unlimited",
+  "cat": "契約",
+  "cost": 980,
+  "billing": "direct",
+  "login_via": "password",
+  "cadence": 60,
+  "last_used_days": 150
+ },
+ {
+  "name": "NHKオンデマンド",
+  "cat": "契約",
+  "cost": 990,
+  "billing": "direct",
+  "login_via": "password",
+  "cadence": 90,
+  "last_used_days": 320
+ },
+ {
+  "name": "Notion",
+  "cat": "仕事",
+  "cost": 1650,
+  "billing": "direct",
+  "login_via": "google",
+  "cadence": 2,
+  "last_used_days": 40
+ },
+ {
+  "name": "GitHub",
+  "cat": "仕事",
+  "cost": 600,
+  "billing": "direct",
+  "login_via": "password",
+  "cadence": 3
+ },
+ {
+  "name": "Google Cloud",
+  "cat": "仕事",
+  "cost": 4200,
+  "billing": "direct",
+  "login_via": "google",
+  "cadence": 2
+ },
+ {
+  "name": "お名前.com (ourai-demo.jp)",
+  "cat": "仕事",
+  "cost": 150,
+  "billing": "direct",
+  "login_via": "password",
+  "cadence": 365
+ },
+ {
+  "name": "Slack",
+  "cat": "仕事",
+  "cost": 0,
+  "billing": "free",
+  "login_via": "google",
+  "cadence": 1
+ },
+ {
+  "name": "X",
+  "cat": "交流",
+  "cost": 0,
+  "billing": "free",
+  "login_via": "google",
+  "cadence": 1
+ },
+ {
+  "name": "Instagram",
+  "cat": "交流",
+  "cost": 0,
+  "billing": "free",
+  "login_via": "password",
+  "cadence": 3,
+  "last_used_days": 95
+ },
+ {
+  "name": "LINE",
+  "cat": "交流",
+  "cost": 0,
+  "billing": "free",
+  "login_via": "password",
+  "cadence": 1
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "cat": "金融",
+  "cost": 0,
+  "billing": "free",
+  "login_via": "password",
+  "cadence": 7
+ },
+ {
+  "name": "楽天証券",
+  "cat": "金融",
+  "cost": 0,
+  "billing": "free",
+  "login_via": "password",
+  "cadence": 14
+ },
+ {
+  "name": "PayPay",
+  "cat": "金融",
+  "cost": 0,
+  "billing": "free",
+  "login_via": "password",
+  "cadence": 2
+ }
+]

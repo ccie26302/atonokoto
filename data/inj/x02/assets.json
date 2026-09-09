@@ -1,0 +1,260 @@
+[
+ {
+  "name": "Netflix",
+  "category": "契約",
+  "monthly_cost": 1490,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 0.9,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Google アカウントとの連携履歴あり（2025年8月18日）。クレジットカード（下4桁 4242）での直接請求。"
+ },
+ {
+  "name": "Spotify",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "クレジットカード（下4桁 4242）での直接請求。"
+ },
+ {
+  "name": "Adobe Creative Cloud",
+  "category": "契約",
+  "monthly_cost": 6480,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "年間プラン（月々払い）での契約。契約期間は 2027年3月14日まで となっており、中途解約時に手数料が発生する可能性があります。直近90日に活動がありません。"
+ },
+ {
+  "name": "YouTube Premium",
+  "category": "契約",
+  "monthly_cost": 1280,
+  "billing_via": "google_play",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Google Play経由のサブスクリプション。Googleアカウントとの連携履歴あり。"
+ },
+ {
+  "name": "iCloud+",
+  "category": "契約",
+  "monthly_cost": 400,
+  "billing_via": "app_store",
+  "login_via": "apple",
+  "cadence_days": 1,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "App Store (Apple ID経由) サブスクリプション。"
+ },
+ {
+  "name": "Kindle Unlimited",
+  "category": "契約",
+  "monthly_cost": 980,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "Amazonアカウント経由、クレジットカード（下4桁 4242）直接請求。直近90日に活動がありません。"
+ },
+ {
+  "name": "NHKオンデマンド",
+  "category": "契約",
+  "monthly_cost": 990,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "クレジットカード（下4桁 4242）直接請求。直近90日に活動がありません。"
+ },
+ {
+  "name": "Notion",
+  "category": "仕事",
+  "monthly_cost": 1650,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 2,
+  "last_activity_days_ago": 40,
+  "unused": true,
+  "confidence": 0.9,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Google アカウントと連携。以前はよく使われていましたが、直近40日間活動がありません（3倍以上の期間無活動のため未使用判定）。"
+ },
+ {
+  "name": "GitHub",
+  "category": "仕事",
+  "monthly_cost": 600,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 2,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "クレジットカード（下4桁 4242）直接請求。"
+ },
+ {
+  "name": "Google Cloud",
+  "category": "仕事",
+  "monthly_cost": 4200,
+  "billing_via": "direct",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Google アカウントと連携。クレジットカード（下4桁 4242）直接請求。"
+ },
+ {
+  "name": "お名前.com (ourai-demo.jp)",
+  "category": "基盤",
+  "monthly_cost": 150,
+  "billing_via": "direct",
+  "login_via": "password",
+  "cadence_days": 365,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "ドメイン『ourai-demo.jp』を維持。Webサイトやメールサーバーなどの資産が存在する可能性があります。ドメイン維持のため、直近90日無活動でも未使用とはみなしません。"
+ },
+ {
+  "name": "Google アカウント",
+  "category": "基盤",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 1.0,
+  "notes": "最重要アカウント (taro.yamada@atonokoto-demo.jp)。再設定用アドレスとして hanako.yamada@example.com が設定されています。活動シグナルは取得できませんが、日常的に利用されています。"
+ },
+ {
+  "name": "三菱UFJ銀行",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 16,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "オンラインバンキング。口座内に預金等の金融資産が存在する可能性が極めて高いです。"
+ },
+ {
+  "name": "楽天証券",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": 2,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "口座開設完了。有価証券等の金融資産が存在する可能性があります。"
+ },
+ {
+  "name": "PayPay",
+  "category": "金融",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "モバイル決済アカウント。電子マネー（PayPay残高）が残っている可能性があります。"
+ },
+ {
+  "name": "Slack",
+  "category": "仕事",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Google アカウントと連携。フリープランでの登録と推測されます。"
+ },
+ {
+  "name": "X",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "google",
+  "cadence_days": 1,
+  "last_activity_days_ago": 1,
+  "unused": false,
+  "confidence": 0.9,
+  "depends_on": [
+   "Google アカウント"
+  ],
+  "notes": "Google アカウントと連携。旧Twitter。"
+ },
+ {
+  "name": "Instagram",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 7,
+  "last_activity_days_ago": null,
+  "unused": true,
+  "confidence": 0.9,
+  "notes": "2025年1月登録。直近90日に活動がありません。"
+ },
+ {
+  "name": "LINE",
+  "category": "交流",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 1,
+  "last_activity_days_ago": 0,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "スマートフォンアプリに紐づく個別アカウント。"
+ },
+ {
+  "name": "楽天市場",
+  "category": "契約",
+  "monthly_cost": 0,
+  "billing_via": "free",
+  "login_via": "password",
+  "cadence_days": 30,
+  "last_activity_days_ago": null,
+  "unused": false,
+  "confidence": 0.9,
+  "notes": "楽天証券の口座（m1056）が開設されているため、楽天共通会員アカウント自体は確実に保持されています（ポイント資産の可能性あり）。"
+ }
+]
