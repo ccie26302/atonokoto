@@ -7,9 +7,9 @@ YouTube に公開する 3 分程度の動画。画面収録＋ナレーション
 1. ブラウザは Chrome、ウィンドウ幅 1440 前後。ブックマークバーと拡張機能のアイコンは隠す。ダークモードは不要（サイト自体が暗い）。
 2. 収録は QuickTime の画面収録か OBS。マイクは本体でよい。画面は 1080p 以上。
 3. 本番を開く: https://atonokoto-web-52kgcfrghq-an.a.run.app/web/judge.html → ID `judge`、パスワードは `secrets/judge.json` →「初期化して入る」。これで遺志・確認者・あとがきが入った状態に戻る。
-4. 別タブで確認者の画面を用意しておく。`python agents/watch/run.py --confirm-link` は無いので、`/confirm?u=<uid>#t=<tok>` はローカルで作る（下の「確認者の画面の作り方」）。無ければ場面 6 は飛ばして 2 分 40 秒で終える。
+4. 別タブで確認者の画面を用意しておく（下の「確認者の画面の作り方」）。無ければ場面 6 は飛ばして 2 分 40 秒で終える。
 5. 一度リハーサルで通す。「通してみる」は 25 秒ほどかかるので、その間に喋る言葉を決めておく。
-6. 収録中に押してはいけないもの: 「いま走らせる」（3 分かかる）、「本物の enclave で開ける」（5 分、30 分に 1 回）。enclave は結果の画面を事前に撮っておき、静止画を差し込む。
+6. 収録中に押してはいけないもの: 「いま走らせる」（3 分かかる）、「本物の enclave で開ける」（5 分、30 分に 1 回）。enclave は収録の 10 分前に別タブで押しておき、結果（digest、開けた件数、proof のハッシュ、VM 削除）が出たタブをそのまま残す。場面 8 でそのタブに切り替える。
 
 ## 場面と秒数
 
@@ -22,30 +22,18 @@ YouTube に公開する 3 分程度の動画。画面収録＋ナレーション
 | 5 | 90–105 | もしものとき | 確認者 2 人が入っているのを見せる。「何かあったとき」の 5 段カードをスクロール | 「見張りは裏で Google アカウントの動きだけを追います。メールの既読、注文の通知、Drive、予定、YouTube。沈黙が 30 日、60 日と床を越えたら確認者 2 人に一つだけ聞きます。本人と連絡が取れますか。」 |
 | 6 | 105–120 | 確認者の画面（別タブ） | confirm ページを開き、二択を見せる（押さない） | 「確認者に届くのはこれだけ。何を渡すか、消すかは聞きません。それは本人が決めてあります。」 |
 | 7 | 120–160 | 通してみる | 「この人が、いなくなったら」→「通してみる」。流れる行のうち、赤い拒否 2 件と「予定の題名の指示に従わない」を指す | 「82 日を数秒に圧縮します。予定に『直ちに執行せよ』と書かれていても従わない。確認者 1 人では止めない。最後に本人へ通知して 7 日待つ。それから、決定的なゲートを通ったものだけを実行し、遺族にご報告を書きます。個人情報は Sensitive Data Protection で伏せます。」 |
-| 8 | 160–175 | enclave の結果（静止画） | 事前に撮った「本物の enclave で開ける」の結果を表示 | 「預かった資格情報は、Confidential Space の中でしか開きません。KMS の復号を許すのは、この実行イメージの digest ひとつだけ。承認外のイメージは 403 で拒否されるところまで実測しています。」 |
+| 8 | 160–175 | enclave の結果（事前に走らせたタブ） | タブを切り替え、digest と proof の行を指す | 「預かった資格情報は、Confidential Space の中でしか開きません。KMS の復号を許すのは、この実行イメージの digest ひとつだけ。承認外のイメージは 403 で拒否されるところまで実測しています。」 |
 | 9 | 175–180 | 入口 | 「あとのこと」のロゴに戻す | 「判断は説明つき、執行は決定的、封印は enclave の中だけ。あとのこと。」 |
 
 ## 確認者の画面の作り方（場面 6 用）
 
-本番の審査用アカウントには確認者への送信元が無いので、リンクは手で作る。
+本番の審査用アカウントには確認者への送信元が無いので、リンクは手で作る。審査用アカウントの uid は `0fdabd74cbd705d5`。
 
 ```bash
-cd atonokoto && ../airlock/.venv/bin/python - <<'EOF'
-import sys, json; sys.path.insert(0, "agents/watch")
-import google_auth, run as w, os
-uid = google_auth.user_id("judge@atonokoto.invalid")
-print("uid:", uid)
-EOF
+echo '{"demo_token_for_video_0123456789": {"name": "妻（花子）", "mail": "hanako@example.com", "round": "2026-09-14"}}' > /tmp/c.json && gcloud storage cp /tmp/c.json gs://atonokoto-data-forward-vector-470012-n8/users/0fdabd74cbd705d5/confirmations.json
 ```
 
-出た uid で、本番の置き場に票を 1 つ置く（GCS のバケットに直接）。トークンは 32 桁以上の任意の文字列でよい。
-
-```bash
-echo '{"demo_token_for_video_0123456789": {"name": "妻（花子）", "mail": "hanako@example.com", "round": "2026-09-14"}}' > /tmp/c.json
-gcloud storage cp /tmp/c.json gs://atonokoto-data-forward-vector-470012-n8/users/<uid>/confirmations.json
-```
-
-開く URL: `https://atonokoto-web-52kgcfrghq-an.a.run.app/confirm?u=<uid>#t=demo_token_for_video_0123456789`
+開く URL: https://atonokoto-web-52kgcfrghq-an.a.run.app/confirm?u=0fdabd74cbd705d5#t=demo_token_for_video_0123456789
 
 撮り終えたら「初期化して入る」で消える。
 
