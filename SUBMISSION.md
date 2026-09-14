@@ -34,7 +34,7 @@ Cloud Run（サービス＋ジョブ）、Cloud Scheduler、Vertex AI Gemini（A
 正直な限界: OAuth は Testing（本番は CASA が要る）、各社の解約手続きの自動化は未実装（解約は依頼メール）、確認者への送信元は Workspace の委任で用意する。
 
 - デプロイ URL: https://atonokoto-web-52kgcfrghq-an.a.run.app/web/index.html
-- GitHub: ローカルに初回コミット済み（bbdc882 系）。公開/非公開を決めたら push して、ダッシュボードから GitHub App で連携する。提出後はデフォルトブランチを 12/1 まで凍結
+- GitHub: https://github.com/ccie26302/atonokoto （公開、main）。ダッシュボードから GitHub App で連携する。提出後はデフォルトブランチを 12/1 まで凍結
 
 ### 動作確認の方法（審査・運営のみ閲覧）
 
@@ -54,7 +54,7 @@ Google ログインは不要です。トップの「審査用アカウントで�
 
 ## 提出物のチェック
 
-- [ ] GitHub リポジトリの連携（初回コミット済み。push と連携が残り。デフォルトブランチを提出時点で凍結）
+- [ ] GitHub リポジトリの連携（push 済み。ダッシュボードで GitHub App の連携が残り。デフォルトブランチを提出時点で凍結）
 - [ ] デプロイ URL
 - [ ] 動作確認の方法（審査用 ID/パスワード。パスワードは secrets/judge.json から転記）
 - [ ] プロジェクト概要（300 字）

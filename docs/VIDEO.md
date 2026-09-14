@@ -41,4 +41,4 @@ echo '{"demo_token_for_video_0123456789": {"name": "妻（花子）", "mail": "h
 
 - YouTube は「限定公開」でよい（URL を知っている人が見られる）。ダッシュボードに URL を貼る。
 - タイトル: 「あとのこと ― デジタル遺産の執行エージェント（第5回 Agentic AI Hackathon with Google Cloud）」
-- 説明欄に デプロイ URL と GitHub の URL。
+- 説明欄に デプロイ URL と GitHub の URL（https://github.com/ccie26302/atonokoto）。

@@ -63,7 +63,7 @@ Google Cloud 上で、死後のデジタル資産を本人の遺志どおりに�
 ## 5. リンクと数値の一覧（応募シートに転記）
 
 - デプロイ URL: https://atonokoto-web-52kgcfrghq-an.a.run.app/web/index.html
-- GitHub: （push 後に記入）
+- GitHub: https://github.com/ccie26302/atonokoto
 - アーキテクチャ図: `docs/architecture.png`
 - 脅威モデル: `THREAT_MODEL.md`
 - 実測: 注入 0/20 追従、判断 21/21、ゲート 16/16、状態機械 37/37、承認 9/9、送信 7/7、買い物判定 38/38、配備先 42/42、IAM 6/6、遺志の解釈 59/60
