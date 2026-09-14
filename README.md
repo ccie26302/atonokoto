@@ -1,19 +1,25 @@
-# atonokoto
+# あとのこと（atonokoto）
 
 何があるかを描く。誰に渡すかを塗る。いなくなったら、そのとおりに。
 
-- `DESIGN.md` 設計（v6.1）
+いなくなった後のデジタルの持ち物（サブスク、写真、アカウント）を、生前に本人が決めたとおりに止め、渡し、報告する AI エージェント。Google Cloud 上で動く。第5回 Agentic AI Hackathon with Google Cloud の応募作。
+
+- 本番: https://atonokoto-web-52kgcfrghq-an.a.run.app/web/index.html （審査用アカウントは `/web/judge.html`。ログイン不要の「架空の人の地図を見る」もある）
+- 全体像: `docs/OVERVIEW.md`（何をするもので、どう動いているか。実測値つき）
+- 構成図: `docs/architecture.png`
+
+- `DESIGN.md` 設計（v6.3）
 - `THREAT_MODEL.md` 脅威モデル。守るもの・誰から・対策と証拠・まだ甘いところ
 - `ARCHITECTURE.md` 構成
-- `poc-cs/` `poc-kms/` 実測済みの封印 PoC
+- `poc-cs/` `poc-kms/` 封印の PoC（検証用。復号結果を標準出力に出す作りなので、本番の鍵からは権限を外してある）
 - `agents/inventory/` 棚卸しエージェント（ADK, scout→linker→classifier→verifier）
 - `agents/will/` 遺志の解釈エージェント（ADK, 一言→塗り分け／聞き返し／拒否）
 - `agents/gate/` ポリシーゲート（LLM 不在・決定的・監査鎖つき）
 - `agents/execute/` 執行（計画は決定的、LLM は文面だけ。止める → 渡す → ハブは最後）。`enclave.py` は Confidential Space の中で走り、封印を開ける唯一の経路（`Dockerfile.cs`、digest は `infra/enclave_digest.txt`）
-- `agents/watch/` 見張り。`run.py` が 1 日 1 回裏で走る（Mac は launchd `infra/com.atonokoto.watch.plist`、本番は Cloud Scheduler → Cloud Run）。`state.py` 床つき状態機械、`plan.py` 加入時の見張り計画、`signals_google.py` Gmail メタデータ・Drive・Calendar、`signals_ext.py` 足したサービスの合図（GitHub・Zenn・Qiita・Bluesky は認証不要で動作、同意が要るものは準備中）。確認者の承認は署名つきリンク → `/confirm`
+- `agents/watch/` 見張り。`run.py` が 1 日 1 回裏で走る（本番は Cloud Scheduler → Cloud Run ジョブ）。`state.py` 床つき状態機械（弱い源、猶予の下限）、`plan.py` 加入時の見張り計画、`signals_google.py` Gmail メタデータ・Drive・Calendar・YouTube、`purchases.py` 買い物・予約・振込の通知メール（33 店。件名は保存しない）、`signals_ext.py` 足したサービスの合図（GitHub・Zenn・Qiita・Bluesky・note・Mastodon・Wikipedia・AtCoder・Lichess・Chess.com・Stack Overflow・Letterboxd は認証不要で動作）。説明が要るときは ADK の調査係（読み取り専用ツール 4 つ）→ 判断係。確認者の承認は署名つきリンク → `/confirm`
 - `data/` 架空の故人の合成データと、手で足せるサービスの一覧（`catalog.json`。合図になるかを持つ）
 - `web/` 星図と、一言の入力（`server.py` が解釈エージェントを HTTP で呼ぶ）
-- `tests/` 採点と両側検証（Model Armor の検知率、注入への追従、遺志解釈のケース、見張りの判断、執行、配備先の安全側検査 `security_check.py`、innerHTML の未エスケープ検出 `xss_lint.py`、確認者の承認経路 `confirm_flow.py`、送信の制約 `mailer_check.py`）
+- `tests/` 採点と両側検証（Model Armor の検知率、注入への追従、遺志解釈のケース、見張りの判断、執行、配備先の安全側検査 `security_check.py`、IAM の検査 `infra_check.py`、innerHTML の未エスケープ検出 `xss_lint.py`、確認者の承認経路 `confirm_flow.py`、送信の制約 `mailer_check.py`）
 
 ## 動かす
 
