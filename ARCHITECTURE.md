@@ -133,6 +133,7 @@ Cloud Scheduler が1日1回 Cloud Run を叩く。見張り用トークン（読
 | Google の無効化通知 | アカウント無効化管理ツール → atonokoto の受信箱 | 同意不要 | 未検証（最短 3 か月） |
 
 | メールの既読・送信 | Gmail `messages.list`（metadata、本文なし） | 制限付き | API 形状確認済み |
+| 見張りの調査係 | ADK の LlmAgent × 2（調査係: 読み取り専用ツール 4 つ → 判断係: output_schema）。確認者向け文面は事実（機械）＋見立て（LLM、検閲つき） | 追加権限不要 | 実装（`tests/watch_scenarios.py`） |
 | 買い物・予約の通知 | 同じ metadata の差出人ドメイン＋件名の型（`purchases.py`）。店と日付だけ記録 | 制限付き（追加なし） | 本人の受信箱で実測（13/13 本物、宣伝 0） |
 | YouTube の高評価・登録 | `playlistItems.list(LL)`、`subscriptions.list(mine)` | `youtube.readonly` | 実装（未同意なら 403 → 無い扱い） |
 | 足したサービス | `signals_ext.py`。認証不要: GitHub・Zenn・Qiita・Bluesky・note・Mastodon・Wikipedia・AtCoder（公開物の日付）、Lichess・Chess.com・Stack Overflow（サイトを開いた日）、Letterboxd（観た日）。各 2 アカウントで取得確認。同意が要るもの（Spotify・Notion・Strava 等）は準備中と表示 | サービスごと | 実装 |
