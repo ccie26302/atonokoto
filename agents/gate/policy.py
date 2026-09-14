@@ -68,10 +68,12 @@ def _upload_audit_object(name: str, rec: dict):
 
 class Auditor:
     """執行 1 回分の監査鎖。ファイルは呼び出し側が指定し、鎖の先頭は呼び出し側が持つ。追記専用バケットにも 1 判定 1 オブジェクトで残す。"""
-    def __init__(self, path: str, chain: list): self.path, self.chain, self.seq, self.round = path, chain, 0, chain[0].replace(":", "_")
+    def __init__(self, path: str, chain: list, upload: bool = True):
+        # upload=False はデモ用。鎖はファイルに残すが、本物の監査バケット（追記専用・400 日）には書かない
+        self.path, self.chain, self.seq, self.round, self.upload = path, chain, 0, chain[0].replace(":", "_"), upload
     def write(self, d: "Decision"):
         rec = _audit(d, self.chain, self.path); self.seq += 1
-        _upload_audit_object(f"gate/{self.round}/{self.seq:04d}-{rec['hash'][:12]}.json", rec)
+        if self.upload: _upload_audit_object(f"gate/{self.round}/{self.seq:04d}-{rec['hash'][:12]}.json", rec)
 
 def _audit(d: Decision, prev_hash: list, path: str | None = None):
     path = path or AUDIT_PATH

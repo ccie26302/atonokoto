@@ -98,11 +98,11 @@ async def letter(kind: str, asset: dict, person: str, recipient: str | None) -> 
 
 FORBIDDEN_IN_LETTER = ("パスワード:", "password:", "口座番号", "暗証", "1234-567890")
 
-def execute(assets, steps, ctx: Context, person: str, outbox: str, audit_path: str, do_letters=True, today=None, round_id: str | None = None) -> dict:
+def execute(assets, steps, ctx: Context, person: str, outbox: str, audit_path: str, do_letters=True, today=None, round_id: str | None = None, upload_audit: bool = True) -> dict:
     today = today or dt.date.today()
-    # 監査鎖はこの執行だけのもの（グローバルを共有しない。並行する別の執行やデモと交差しない）
+    # 監査鎖はこの執行だけのもの（グローバルを共有しない。並行する別の執行やデモと交差しない）。デモは upload_audit=False で本物の監査バケットに書かない
     chain = [f"genesis:{round_id or today.isoformat()}"]
-    audit = policy.Auditor(audit_path, chain)
+    audit = policy.Auditor(audit_path, chain, upload=upload_audit)
     os.makedirs(outbox, exist_ok=True)
     by = {a["name"]: a for a in assets}
     remaining = {a["name"]: True for a in assets}

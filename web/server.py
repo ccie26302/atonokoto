@@ -220,8 +220,10 @@ class H(SimpleHTTPRequestHandler):
             # 審査員向け: 架空の利用者「demo」の封印を、本物の Confidential Space で開けて執行する。5 分ほどかかる。30 分に 1 回、同時に 1 つ
             if not os.environ.get("K_SERVICE"): return self._json(400, {"error": "本番でだけ動く"})
             now = _time.time()
-            if now - _ENCLAVE_LAST[0] < 1800 or not _DEMO_LOCK.acquire(blocking=False):
-                return self._json(429, {"error": "enclave のデモは 30 分に 1 回です。少し後でもう一度"})
+            if now - _ENCLAVE_LAST[0] < 1800:
+                return self._json(429, {"error": f"enclave のデモは 30 分に 1 回です。あと {int((1800 - (now - _ENCLAVE_LAST[0])) // 60) + 1} 分ほどでもう一度"})
+            if not _DEMO_LOCK.acquire(blocking=False):
+                return self._json(429, {"error": "いま別のデモ（棚卸しか enclave）が走っています。終わってからもう一度"})
             if not _demo_quota("enclave"):
                 _DEMO_LOCK.release(); return self._json(429, {"error": "今日の enclave デモの上限（6 回）に達しました"})
             _ENCLAVE_LAST[0] = now
@@ -501,7 +503,7 @@ class H(SimpleHTTPRequestHandler):
             ctx = _Ctx(confirmers=2, unlocked_tracks={"stop", "hand"}, remaining={a["name"]: True for a in assets})
             g2 = _gate("close_hub", _Asset("Google アカウント", "erase", is_hub=True, dependents=["Netflix", "YouTube Premium"]), ctx, audit=False)
             timeline.append({"day": 82, "date": d.isoformat(), "event": f"拒否: 依存が残るうちに Google アカウントを閉じようとした → {g2.reason}"})
-            execd = ex.execute(assets, steps, ctx, "山田太郎", os.path.join(tmp, "outbox"), os.path.join(tmp, "audit.jsonl"), do_letters=False, today=d, round_id="demo")
+            execd = ex.execute(assets, steps, ctx, "山田太郎", os.path.join(tmp, "outbox"), os.path.join(tmp, "audit.jsonl"), do_letters=False, today=d, round_id="demo", upload_audit=False)   # デモは監査バケットに書かない
             rp = ex.report(assets, execd, os.path.join(tmp, "report.md"))
             for r in execd["results"]:
                 if r["action"] == "report": continue

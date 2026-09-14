@@ -35,6 +35,7 @@ async def letters(n):
         rs = await asyncio.gather(*[ex.letter(kind, a, "山田太郎", to) for _ in range(n)])
         ok = 0
         for t in rs:
+            t = t.translate(str.maketrans("０１２３４５６７８９", "0123456789"))   # 全角の数字は同じ意味
             good = all(m in t for m in must) and not any(f in t for f in ex.FORBIDDEN_IN_LETTER) and 80 <= len(t) <= 900
             ok += good
             if not good: print("     落ち:", [m for m in must if m not in t], len(t), t[-90:].replace(chr(10), " "))
