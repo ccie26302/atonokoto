@@ -32,8 +32,8 @@
   const ctx = __CTX__; const el = document.getElementById("body");
   const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const invalid = () => { el.innerHTML = "<p>このリンクは無効です。あとのことから届いたメールのリンクを開いてください。</p>"; };
-  // トークンは # 以降（サーバのログに残らない）。古い形（?t=）も受ける
-  ctx.token = new URLSearchParams(location.hash.slice(1)).get("t") || new URLSearchParams(location.search).get("t") || "";
+  // トークンは # 以降だけ（サーバのログに残らない）。?t= は受けない（互換すべきリンクは発行していない）
+  ctx.token = new URLSearchParams(location.hash.slice(1)).get("t") || "";
   if (!ctx.u || !ctx.token) { invalid(); return; }
   const ask = () => {
     el.innerHTML = `<p>${ctx.name ? esc(ctx.name) + " さん。" : ""}この人の Google アカウントの動きが、しばらく見えていません。見張りが見たものは次のとおりです。</p>

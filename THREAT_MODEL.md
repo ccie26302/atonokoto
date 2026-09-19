@@ -65,7 +65,7 @@
 | 手紙の誤送信・乱用 | 宛先は登録済みの確認者・遺志の相手・本人だけ。本文はリテラル検査に加えて Sensitive Data Protection（カード・口座・パスワード・トークン）で検査し、見つかれば送らない。1 日 20 通。宛先はハッシュで台帳と Cloud Logging に残す | `tests/mailer_check.py` 7/7（SMTP スタブ） | 実測（送信元は未設定。設定後に本番で再測） |
 
 | T6/T7 同じ digest のイメージを他プロジェクトの Confidential Space で起動して復号する | WIF の条件は swname と STABLE だけで、起動元プロジェクトを見ていなかった。`assertion.submods.gce.project_id` と `assertion.dbgstat == 'disabled-since-boot'` を条件に足す（`infra/deploy.sh`）。現状の守りはイメージが非公開の Artifact Registry にあること | 2026-09-19 の記事査読で発覚。deploy.sh に反映、本番への適用と再測は未 | 実装（適用待ち） |
-| T4 確認リンクを `?t=` の形で開くとトークンがリクエストログに残る | 発行するリンクは `#` 渡しだけ。ページ側は互換のため `?t=` も受ける | `web/confirm.html` | 設計のみ（フォールバックの撤去は未） |
+| T4 確認リンクを `?t=` の形で開くとトークンがリクエストログに残る | ページは `#` 以降しか受けない（`?t=` の互換読み取りは 2026-09-19 に撤去。互換すべきリンクは発行していなかった） | `web/confirm.html` | 実装（配備は提出前） |
 
 ## まだ甘いところ（正直に）
 
