@@ -2,7 +2,7 @@
 """配備先の IAM が文書の主張どおりかを検査する（読み取りのみ）。
   - KMS の復号は infra/enclave_digest.txt の digest ひとつだけ
   - Cloud Run の SA は KMS の公開鍵閲覧だけ（復号できない）
-  - WIF の条件に CONFIDENTIAL_SPACE と STABLE
+  - WIF の条件に CONFIDENTIAL_SPACE と STABLE、起動元プロジェクト、dbgstat
   - 利用者秘密のロールは atonokoto-u-* と Project 型に限定（SecretVersion を全部通す条件が無い）
   - 監査バケットの SA は objectCreator だけ
 """
@@ -20,6 +20,7 @@ T.append(("Cloud Run の SA は復号できない", not any("atonokoto-run@" in 
 prov = g("iam", "workload-identity-pools", "providers", "describe", "cs-provider", "--workload-identity-pool", "cs-pool", "--location", "global")
 cond = prov.get("attributeCondition", "")
 T.append(("WIF は CONFIDENTIAL_SPACE かつ STABLE", "CONFIDENTIAL_SPACE" in cond and "STABLE" in cond, cond))
+T.append(("WIF は起動元プロジェクトと非デバッグ（dbgstat）も縛る", f"submods.gce.project_id == '{P}'" in cond and "dbgstat == 'disabled-since-boot'" in cond, cond))
 pol = g("projects", "get-iam-policy", P)
 us = [b for b in pol["bindings"] if b["role"].endswith("atonokotoUserSecrets")]
 T.append(("利用者秘密のロールは条件付きで、SecretVersion を全部通す条件が無い",

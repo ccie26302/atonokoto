@@ -64,8 +64,8 @@
 | T6 サービスアカウントが広い | Vertex は `aiplatform.endpoints.predict` だけのカスタムロール。バケットは objectUser。Scheduler の起動権限はジョブ 1 つに限定。Secret は指定 4 件の読み取り＋トークン 2 件の追記 | 絞った後に本番で Gemini 呼び出しとバケット書き込みが動くことを確認 | 実測 |
 | 手紙の誤送信・乱用 | 宛先は登録済みの確認者・遺志の相手・本人だけ。本文はリテラル検査に加えて Sensitive Data Protection（カード・口座・パスワード・トークン）で検査し、見つかれば送らない。1 日 20 通。宛先はハッシュで台帳と Cloud Logging に残す | `tests/mailer_check.py` 7/7（SMTP スタブ） | 実測（送信元は未設定。設定後に本番で再測） |
 
-| T6/T7 同じ digest のイメージを他プロジェクトの Confidential Space で起動して復号する | WIF の条件は swname と STABLE だけで、起動元プロジェクトを見ていなかった。`assertion.submods.gce.project_id` と `assertion.dbgstat == 'disabled-since-boot'` を条件に足す（`infra/deploy.sh`）。現状の守りはイメージが非公開の Artifact Registry にあること | 2026-09-19 の記事査読で発覚。deploy.sh に反映、本番への適用と再測は未 | 実装（適用待ち） |
-| T4 確認リンクを `?t=` の形で開くとトークンがリクエストログに残る | ページは `#` 以降しか受けない（`?t=` の互換読み取りは 2026-09-19 に撤去。互換すべきリンクは発行していなかった） | `web/confirm.html` | 実装（配備は提出前） |
+| T6/T7 同じ digest のイメージを他プロジェクトの Confidential Space で起動して復号する | WIF の条件は swname と STABLE だけで、起動元プロジェクトを見ていなかった。`assertion.submods.gce.project_id` と `assertion.dbgstat == 'disabled-since-boot'` を条件に足す（`infra/deploy.sh`）。現状の守りはイメージが非公開の Artifact Registry にあること | 2026-09-19 の記事査読で発覚。同日 deploy.sh で本番に適用（`tests/infra_check.py` で条件を検査）。承認済み経路の再測は本番の「本物の enclave で開ける」で実施。別プロジェクトからの同 digest 起動で拒否されることの実測は未 | 実測（承認側のみ。拒否側は未測） |
+| T4 確認リンクを `?t=` の形で開くとトークンがリクエストログに残る | ページは `#` 以降しか受けない（`?t=` の互換読み取りは 2026-09-19 に撤去。互換すべきリンクは発行していなかった） | `web/confirm.html`、本番で `location.search` 参照が無いことを確認 | 実測 |
 
 ## まだ甘いところ（正直に）
 
