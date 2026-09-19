@@ -58,7 +58,7 @@
 | T7 依存の改ざん | pip のバージョン固定、Mermaid は同梱、非 root で実行、Artifact Registry の脆弱性スキャンを有効化 | Dockerfile、`containerscanning.googleapis.com` | 実装（依存の署名検証・SBOM は未対応） |
 | A1 トークンの露出 | 読み取りスコープのみ（書き込みが混ざると起動で落ちる）、コンテナに残さない、古いバージョンは無効化、棚卸し用は読み終えたら revoke、使われないまま 24 時間経てば見張りジョブが revoke | google_auth の assert、Secret Manager のバージョン一覧 | 実装 |
 | A1 7 日失効（Testing） | 「読めない」を沈黙に数えない。本番は OAuth 検証＋CASA | 状態機械 | 設計のみ（CASA は未着手） |
-| A2 封印資格情報の悪用 | ブラウザで KMS 公開鍵により封印（サーバーは暗号文のみ）。復号は Confidential Space の enclave 内だけ（KMS IAM は執行イメージの digest ひとつ）。手紙にはアカウント ID しか載せず、平文はハッシュ（proof）だけ監査に残す | 製品経路で両側を実測（2026-09-08）: 承認済み digest の enclave は封印を開け、proof が手元の SHA-256 と一致。**承認外の digest**（一つ前のイメージ）で同じ経路を走らせると KMS が 403 で拒否し、開けた件数 0。Cloud Run の SA からの復号は PERMISSION_DENIED | 実測（自動解約の手続き自体は未実装。開けて手紙に使うまで） |
+| A2 封印資格情報の悪用 | ブラウザで KMS 公開鍵により封印（サーバーは暗号文のみ）。復号は Confidential Space の enclave 内だけ（KMS IAM は執行イメージの digest ひとつ）。手紙に資格情報は載せず（アカウント ID の差し込みも未実装）、平文はハッシュ（proof）だけ監査に残す | 製品経路で両側を実測（2026-09-08）: 承認済み digest の enclave は封印を開け、proof が手元の SHA-256 と一致。**承認外の digest**（一つ前のイメージ）で同じ経路を走らせると KMS が 403 で拒否し、開けた件数 0。Cloud Run の SA からの復号は PERMISSION_DENIED | 実測（自動解約の手続き自体は未実装。開けて手紙に使うまで） |
 | A3 遺族レポートの PII | Sensitive Data Protection で伏せる（日本の電話番号は正規表現で二重に） | 本番で伏せ字を確認 | 実測 |
 
 | T6 サービスアカウントが広い | Vertex は `aiplatform.endpoints.predict` だけのカスタムロール。バケットは objectUser。Scheduler の起動権限はジョブ 1 つに限定。Secret は指定 4 件の読み取り＋トークン 2 件の追記 | 絞った後に本番で Gemini 呼び出しとバケット書き込みが動くことを確認 | 実測 |

@@ -287,7 +287,7 @@ def gate(action, asset, will):        # ツール呼び出しの直前
 1. 本人が星の詳細で「解約に使う資格情報を預ける（任意）」を選ぶ。ブラウザが KMS の公開鍵（RSA-OAEP SHA-256）で封をしてから送る。サーバーは暗号文しか受け取らず、利用者ごとの Secret Manager の秘密（`atonokoto-u-<id>-sealed-<資産>`）に置く（`/api/seal`）
 2. 発火 → 最後の通知 → 7 日のブレーキ → 票の数え直し、の後、封印がある利用者は見張りジョブが Confidential VM を 1 台起こす（`run_enclave`。AMD SEV、Confidential Space イメージ、起動ポリシーで環境変数の上書きを限定）
 3. enclave（`agents/execute/enclave.py`）が attestation トークン → STS（プールの条件は `swname == CONFIDENTIAL_SPACE`、`image_digest` を属性に）→ KMS `asymmetricDecrypt`。KMS の IAM は執行イメージの digest ひとつにしか復号を許していない
-4. 開けた資格情報は enclave のメモリだけ。手紙に載るのはアカウント ID。出力（手紙・報告・監査）を GCS と追記専用バケットへ書いて VM を止める。監査には平文の代わりに平文のハッシュ（proof）を残す
+4. 開けた資格情報は enclave のメモリだけ。アカウント ID を資産に付けるが、手紙への差し込みは未実装。出力（手紙・報告・監査）を GCS と追記専用バケットへ書いて VM を止める。監査には平文の代わりに平文のハッシュ（proof）を残す
 
 **実測（2026-09-08）** 封印した架空の資格情報を enclave が開き、proof（平文の SHA-256 先頭 12 桁）が手元の計算と一致。Cloud Run のサービスアカウントで同じ復号は PERMISSION_DENIED。承認外の digest（一つ前のイメージ）で同じ経路を走らせると、attestation は通るが KMS が 403 を返し、開けた件数は 0（同日実測）。
 
