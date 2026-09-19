@@ -21,4 +21,6 @@ data/demo_report.md
 web/vendor/*.map
 data/audit_execute_*.jsonl
 data/users/
-video/
+video/*
+!video/make_narration.py
+!video/mux_narration.py

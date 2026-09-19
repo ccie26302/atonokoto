@@ -34,6 +34,8 @@ Cloud Run（サービス＋ジョブ）、Cloud Scheduler、Vertex AI Gemini（A
 正直な限界: OAuth は Testing（本番は CASA が要る）、各社の解約手続きの自動化は未実装（解約は依頼メール）、確認者への送信元は Workspace の委任で用意する。
 
 - デプロイ URL: https://atonokoto-web-52kgcfrghq-an.a.run.app/web/index.html
+- デモ動画: https://youtu.be/_yvurlzuf-Q （3 分 35 秒。台本は docs/VIDEO_NARRATION.md）
+- 画面キャプチャ: docs/captures/01〜10（動画から切り出した 1920×954）
 - GitHub: https://github.com/ccie26302/atonokoto （公開、main）。ダッシュボードから GitHub App で連携する。提出後はデフォルトブランチを 12/1 まで凍結
 
 ### 動作確認の方法（審査・運営のみ閲覧）
@@ -61,7 +63,7 @@ Google ログインは不要です。トップの「審査用アカウントで�
 - [ ] 課題と解決（800 字）
 - [ ] アーキテクチャ説明（800 字）
 - [x] アーキテクチャ図（docs/architecture.png、2000×1260）
-- [ ] 画面キャプチャ（最大 10 枚）
-- [ ] デモ動画（YouTube、3 分程度）
+- [x] 画面キャプチャ（docs/captures/ の 10 枚をアップロード）
+- [x] デモ動画 https://youtu.be/_yvurlzuf-Q
 - [ ] Zenn 記事（任意、Idea カテゴリ）
 - [ ] 最終審査への現地参加承諾（12/1 渋谷）
