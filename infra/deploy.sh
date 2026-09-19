@@ -45,9 +45,10 @@ gcloud iam roles describe atonokotoUserSecrets --project $PROJECT >/dev/null 2>&
 # 条件: 利用者の秘密（atonokoto-u-*）と、secrets.create のために Project 型だけ。
 # 以前の「resource.type != Secret」は SecretVersion（型が違う）を全部通してしまい、全秘密が読めた（2026-09-09 の外部レビューで発覚）。無条件のフォールバックも置かない
 gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$SA --role=projects/$PROJECT/roles/atonokotoUserSecrets --condition="expression=resource.name.startsWith(\"projects/$PROJECT_NUMBER/secrets/atonokoto-u-\") || resource.type == \"cloudresourcemanager.googleapis.com/Project\",title=atonokoto-user-secrets-only" >/dev/null
-# Confidential Space の WIF: 本番イメージ（STABLE）だけ。デバッグ版は SSH で中に入れるので弾く
+# Confidential Space の WIF: 本番イメージ（STABLE、dbgstat=disabled-since-boot）だけ。デバッグ版は SSH で中に入れるので弾く。
+# 起動元プロジェクトも縛る（同じ digest のイメージを他プロジェクトの Confidential Space で起動しても同じ principal になるため。2026-09-19 の記事査読で発覚）
 gcloud iam workload-identity-pools providers update-oidc cs-provider --workload-identity-pool cs-pool --location global --project $PROJECT \
-  --attribute-condition="assertion.swname == 'CONFIDENTIAL_SPACE' && 'STABLE' in assertion.submods.confidential_space.support_attributes" >/dev/null 2>&1 || true
+  --attribute-condition="assertion.swname == 'CONFIDENTIAL_SPACE' && 'STABLE' in assertion.submods.confidential_space.support_attributes && assertion.dbgstat == 'disabled-since-boot' && assertion.submods.gce.project_id == '$PROJECT'" >/dev/null 2>&1 || true
 # 初期データをバケットへ（無ければ）
 gcloud storage cp data/catalog.json data/assets.json data/will_demo.json data/inbox.json data/oauth.json data/signals.json data/truth.json data/inventory_demo_log.txt $BUCKET/ 2>/dev/null || true
 
